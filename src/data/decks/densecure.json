@@ -1,0 +1,948 @@
+[
+ {
+  "id": "densecure-01",
+  "deck": "densecure",
+  "type": "procedure",
+  "name_en": "Cloud Event Log Analysis",
+  "name_ru": "Анализ облачных журналов",
+  "desc_en": "Are you missing what should be in your cloud logs? Do you even know what cloud provider logs you need in an incident response situation? There are thousands of data connectors in your cloud service provider. Have any of them changed since the last time you reviewed them? Good luck hunting for a specific needle in a stack of needles.",
+  "desc_ru": "Защитники изучают журналы облачного провайдера: аудит действий в консоли и API, входы, изменения конфигурации. Всё ли нужное вообще логируется? Знаете ли вы, какие журналы понадобятся при реагировании на инцидент? У провайдера тысячи коннекторов данных — менялись ли они с последней проверки? Удачи в поисках конкретной иголки в стоге иголок.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Check with your cloud provider and see what tools they provide. It's ok, you're paying them a ton of money for all this."
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/01.webp"
+ },
+ {
+  "id": "densecure-02",
+  "deck": "densecure",
+  "type": "procedure",
+  "name_en": "Permissions Audit",
+  "name_ru": "Аудит прав доступа",
+  "desc_en": "Users can have everything by default... which makes your organization vulnerable by design. Who gets to do what and why? Who is the magical unicorn that gets the exceptions? Are permissions open for convenience? When was the last time you fixed something a security audit didn't make you do? You can be the decider if you want--the power is yours!",
+  "desc_ru": "Защитники проверяют, у кого какие права и почему. По умолчанию пользователям часто доступно всё — и организация уязвима by design. Кто тот волшебный единорог, которому положены исключения? Не открыты ли права «для удобства»? Когда вы в последний раз исправляли что-то, чего не требовал аудит? Решать вам — власть в ваших руках!",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "ROADtools",
+   "ScoutSuite",
+   "AzureHound",
+   "Prowler"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/02.webp"
+ },
+ {
+  "id": "densecure-03",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "Microsoft Direct Send Phishing",
+  "name_ru": "Фишинг через Microsoft Direct Send",
+  "desc_en": "The attackers found your public Microsoft 365 smart host mail endpoint and delivered a phishing email to an end user, bypassing your spam filtering. They harvested the end user's credentials.",
+  "desc_ru": "Злоумышленники нашли ваш публичный почтовый endpoint смарт-хоста Microsoft 365 и доставили фишинговое письмо пользователю в обход спам-фильтра. Они похитили учётные данные пользователя.",
+  "detections_en": [
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics",
+   "Cloud Event Log Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "34",
+   "39",
+   "44",
+   "36"
+  ],
+  "tools": [
+   "Direct Send"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В почтовом ящике сотрудника лежит письмо «от коллеги» с внутренним адресом отправителя, хотя в журналах шлюза фильтрации оно вообще не проходило.",
+   "Через час после этого письма в Entra ID зафиксирован успешный вход под учётной записью сотрудника с IP-адреса хостинг-провайдера в другой стране."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/03.webp"
+ },
+ {
+  "id": "densecure-04",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "Wi-Fi Guest Network Escape",
+  "name_ru": "Побег из гостевой Wi-Fi-сети",
+  "desc_en": "The attackers abused your open guest network. A misconfiguration allowed them access to the production network.",
+  "desc_ru": "Злоумышленники воспользовались вашей открытой гостевой сетью. Ошибка конфигурации дала им доступ к производственной сети.",
+  "detections_en": [
+   "Firewall Log Review",
+   "SIEM Log Analysis",
+   "Cyber Deception",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "35",
+   "34",
+   "37",
+   "36"
+  ],
+  "tools": [
+   "bettercap",
+   "Metasploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Межсетевой экран фиксирует сканирование внутренних серверов с адресов из диапазона, который DHCP выдаёт посетителям в переговорных.",
+   "Охрана вспоминает, что вчера вечером в машине на парковке у офиса долго сидел человек с ноутбуком на коленях."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/04.webp"
+ },
+ {
+  "id": "densecure-05",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "Publicly Exposed Secret Key",
+  "name_ru": "Публично раскрытый секретный ключ",
+  "desc_en": "The attackers compromised your network after a developer pushed an application secret access key to a public Git repository.",
+  "desc_ru": "Злоумышленники проникли в вашу сеть после того, как разработчик опубликовал секретный ключ доступа приложения в публичном Git-репозитории.",
+  "detections_en": [
+   "Server Analysis",
+   "Cyber Deception",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "33",
+   "37",
+   "39"
+  ],
+  "tools": [
+   "TruffleHog"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сервисная учётная запись приложения, которая годами ходила только с одного сервера, ночью начала выполнять запросы с неизвестных внешних IP.",
+   "Один из разработчиков упоминает, что на прошлой неделе выкладывал «чистенький» форк внутреннего проекта на GitHub, чтобы показать коллегам из другой компании."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/05.webp"
+ },
+ {
+  "id": "densecure-06",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "Vendor Default Credentials Attack",
+  "name_ru": "Атака с заводскими учётными данными вендора",
+  "desc_en": "The attackers examined public vendor documentation, finding the default passwords to one of your remote services, granting them access.",
+  "desc_ru": "Злоумышленники изучили публичную документацию вендора, нашли пароли по умолчанию к одному из ваших сервисов удалённого доступа и получили доступ.",
+  "detections_en": [
+   "Firewall Log Review",
+   "Server Analysis",
+   "Cyber Deception",
+   "Permissions Audit"
+  ],
+  "detections": [
+   "35",
+   "33",
+   "37",
+   "45"
+  ],
+  "tools": [
+   "Firefox"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журнале веб-консоли управления сетевым устройством — успешный вход под учётной записью «admin» с внешнего IP с первой же попытки.",
+   "Подрядчик, внедрявший систему два года назад, на вопрос о смене паролей при сдаче проекта отвечает долгой паузой."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/06.webp"
+ },
+ {
+  "id": "densecure-07",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "Vishing",
+  "name_ru": "Вишинг",
+  "desc_en": "The attackers spoofed the help desk caller ID, convincing an employee to provide credentials in order to complete an \"urgent task.\"",
+  "desc_ru": "Злоумышленники подделали номер службы поддержки и убедили сотрудника сообщить учётные данные для выполнения «срочной задачи».",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "39",
+   "36"
+  ],
+  "tools": [
+   "SpoofCard"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сотрудница отдела продаж уверяет, что утром ей звонили из «нашей техподдержки» с правильного внутреннего номера — но в журналах helpdesk такого обращения нет.",
+   "Её учётная запись через полчаса вошла в VPN с незнакомого устройства и начала массово выгружать файлы из CRM."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/07.webp"
+ },
+ {
+  "id": "densecure-08",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "Trojan Mail",
+  "name_ru": "Троянская посылка",
+  "desc_en": "The attackers shipped enticingly labeled USB devices with autorun malware to remote employees' homes. Multiple employees connected them to their workstations, allowing the malware to beacon back to the attacker.",
+  "desc_ru": "Злоумышленники разослали удалённым сотрудникам на дом USB-устройства с заманчивыми надписями и вредоносом с автозапуском. Несколько сотрудников подключили их к рабочим машинам, и вредонос начал «маячить» (beacon) на сервер атакующих.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis",
+   "SIEM Log Analysis",
+   "Firewall Log Review"
+  ],
+  "detections": [
+   "38",
+   "43",
+   "34",
+   "35"
+  ],
+  "tools": [
+   "A USB device loaded with malware (ex. PlugX) and a little luck."
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Несколько сотрудников на удалёнке получили по почте «подарок к юбилею компании» — и почти все говорят, что подарок «оказался пустой».",
+   "С их ноутбуков каждые пять минут уходят одинаковые небольшие HTTPS-запросы на один и тот же недавно зарегистрированный домен."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/08.webp"
+ },
+ {
+  "id": "densecure-09",
+  "deck": "densecure",
+  "type": "initial",
+  "name_en": "HTML Smuggling",
+  "name_ru": "HTML Smuggling (контрабанда через HTML)",
+  "desc_en": "The attackers obtained a remote shell on an endpoint by convincing a user to execute malware utilizing a well-disguised .html attachment.",
+  "desc_ru": "Злоумышленники получили удалённую командную оболочку на рабочей станции, убедив пользователя запустить вредонос, спрятанный в хорошо замаскированном .html-вложении.",
+  "detections_en": [
+   "Firewall Log Review",
+   "Memory Analysis",
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "35",
+   "43",
+   "38",
+   "40"
+  ],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Бухгалтер открыл из письма «счёт-фактуру», после чего браузер сам скачал ZIP-архив — хотя почтовый шлюз никаких архивов во вложениях не пропускал.",
+   "Вскоре с этой рабочей станции установлено постоянное исходящее соединение на нестандартный порт к VPS-хостингу."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/09.webp"
+ },
+ {
+  "id": "densecure-10",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "Insecure Internet of Things (IoT)",
+  "name_ru": "Незащищённый интернет вещей (IoT)",
+  "desc_en": "The attackers exploit IoT devices accessible from the production network, allowing them to pivot to other network segments.",
+  "desc_ru": "Злоумышленники эксплуатируют IoT-устройства, доступные из производственной сети, и через них продвигаются в другие сегменты сети.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Cyber Deception",
+   "Firewall Log Review",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "36",
+   "37",
+   "35",
+   "34"
+  ],
+  "tools": [
+   "Shodan"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Умный телевизор в переговорной внезапно стал инициатором SSH-соединений к серверам бухгалтерии.",
+   "Мониторинг показывает, что IP-камера в холле генерирует трафик в десятки раз больше обычного, причём в основном во внутреннюю сеть, а не к видеорегистратору."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/10.webp"
+ },
+ {
+  "id": "densecure-11",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "Misconfigured Certificate Template",
+  "name_ru": "Неправильно настроенный шаблон сертификата",
+  "desc_en": "The attackers request a vulnerable certificate template from your Active Directory Certificate Services (AD CS) server.",
+  "desc_ru": "Злоумышленники запрашивают сертификат по уязвимому шаблону на вашем сервере Active Directory Certificate Services (AD CS).",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Server Analysis",
+   "Permissions Audit",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "39",
+   "33",
+   "45",
+   "34"
+  ],
+  "tools": [
+   "Certipy/Certify",
+   "PKINIT",
+   "Impacket"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журнале центра сертификации — сертификат, выпущенный по запросу рядового пользователя, но с именем субъекта администратора домена.",
+   "Вскоре после этого контроллер домена зафиксировал вход доменного админа по сертификату с рабочей станции стажёра."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/11.webp"
+ },
+ {
+  "id": "densecure-12",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "NTLM Abuse",
+  "name_ru": "Злоупотребление NTLM",
+  "desc_en": "The attackers perform a New Technology LAN Manager Version 1 (NTLMv1) downgrade attack by coercing authentication from a target host.",
+  "desc_ru": "Злоумышленники проводят атаку понижения до NTLMv1 (New Technology LAN Manager версии 1), принуждая целевой хост пройти аутентификацию.",
+  "detections_en": [
+   "SIEM Log Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "34",
+   "33"
+  ],
+  "tools": [
+   "Coercer",
+   "PetitPotam"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Контроллер домена внезапно сам инициировал аутентификацию к обычной пользовательской рабочей станции через EFSRPC.",
+   "В событиях входа появились аутентификации с устаревшим пакетом безопасности, который, по данным аудита, в домене «давно никто не использует»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/12.webp"
+ },
+ {
+  "id": "densecure-13",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "Dumping LSASS Via Task Manager",
+  "name_ru": "Дамп LSASS через Диспетчер задач",
+  "desc_en": "The attackers utilize local admin access to perform a memory dump of the Local Security Authority Subsystem Service (LSASS) process using Task Manager.",
+  "desc_ru": "Злоумышленники с правами локального администратора снимают дамп памяти процесса Local Security Authority Subsystem Service (LSASS) с помощью Диспетчера задач.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "34"
+  ],
+  "tools": [
+   "taskmgr.exe",
+   "Pypykatz",
+   "Mimikatz",
+   "CrackMapExec"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На файловом сервере в папке Temp администратора появился файл .DMP размером около 60 МБ, созданный в 3 часа ночи.",
+   "Через час учётные записи двух администраторов, недавно заходивших на этот сервер, начали логиниться на другие хосты в нерабочее время."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/13.webp"
+ },
+ {
+  "id": "densecure-14",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "Default Administrator Credentials",
+  "name_ru": "Учётные данные администратора по умолчанию",
+  "desc_en": "The attackers were able to identify a device that was still configured with the default credentials. A single web search was all it took to gain admin access to your machines.",
+  "desc_ru": "Злоумышленники нашли устройство, на котором так и остались учётные данные по умолчанию. Одного поискового запроса хватило, чтобы получить админский доступ к вашим машинам.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Permissions Audit",
+   "Server Analysis"
+  ],
+  "detections": [
+   "39",
+   "45",
+   "33"
+  ],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Встроенная учётная запись администратора на устройстве, которой никто не пользовался со дня установки, вдруг вошла в систему изнутри сети.",
+   "С этого устройства начались подключения с правами администратора к нескольким серверам, и смена паролей пользователей ничего не меняет."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/14.webp"
+ },
+ {
+  "id": "densecure-15",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "Decrypting LSA Secrets",
+  "name_ru": "Расшифровка секретов LSA",
+  "desc_en": "The attackers utilize local admin access to query the registry and find credentials stored within the Local Security Authority (LSA) secrets.",
+  "desc_ru": "Злоумышленники с правами локального администратора обращаются к реестру и извлекают учётные данные, хранящиеся в секретах Local Security Authority (LSA).",
+  "detections_en": [
+   "SIEM Log Analysis",
+   "Endpoint Security Protection Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "34",
+   "38",
+   "39"
+  ],
+  "tools": [
+   "CrackMapExec",
+   "Mimikatz",
+   "PowerShell"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На сервере зафиксирован запуск reg.exe с сохранением кустов SYSTEM и SECURITY в файлы во временной папке.",
+   "Вскоре сервисная учётная запись резервного копирования, пароль которой не меняли пять лет, вошла интерактивно на рабочую станцию."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/15.webp"
+ },
+ {
+  "id": "densecure-16",
+  "deck": "densecure",
+  "type": "pivot",
+  "name_en": "SUID Permissions Abuse",
+  "name_ru": "Злоупотребление правами SUID",
+  "desc_en": "The attackers identify and exploit a binary with Set User ID (SUID) permissions.",
+  "desc_ru": "Злоумышленники находят и эксплуатируют исполняемый файл с правами Set User ID (SUID).",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Server Analysis",
+   "Permissions Audit"
+  ],
+  "detections": [
+   "39",
+   "33",
+   "45"
+  ],
+  "tools": [
+   "Impacket",
+   "Metasploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На Linux-сервере веб-приложения процесс от имени www-data породил дочерний процесс с UID 0.",
+   "В журнале команд видно, что под сервисной учётной записью кто-то выполнил find по всей файловой системе с фильтром по правам доступа."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/16.webp"
+ },
+ {
+  "id": "densecure-17",
+  "deck": "densecure",
+  "type": "persist",
+  "name_en": "MachineAccountQuota (MAQ) Abuse",
+  "name_ru": "Злоупотребление MachineAccountQuota (MAQ)",
+  "desc_en": "The attackers identify and abuse the MachineAccountQuota (MAQ) attribute to create a new machine account in the domain.",
+  "desc_ru": "Злоумышленники обнаруживают атрибут MachineAccountQuota (MAQ) и злоупотребляют им, чтобы создать в домене новую учётную запись компьютера.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "SIEM Log Analysis",
+   "Permissions Audit"
+  ],
+  "detections": [
+   "39",
+   "34",
+   "45"
+  ],
+  "tools": [
+   "Impacket",
+   "PowerShell"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В AD появилась учётная запись компьютера «WS-PRINT03$», которую никто из ИТ не заводил, а её создателем указан рядовой сотрудник.",
+   "Инвентаризация не находит в сети такого устройства, но учётная запись регулярно проходит аутентификацию на контроллере домена."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/17.webp"
+ },
+ {
+  "id": "densecure-18",
+  "deck": "densecure",
+  "type": "persist",
+  "name_en": "Group Policy Object (GPO) Modification",
+  "name_ru": "Модификация объекта групповой политики (GPO)",
+  "desc_en": "The attackers modify a Group Policy Object (GPO) to create a scheduled task which reestablishes a beacon.",
+  "desc_ru": "Злоумышленники изменяют объект групповой политики (GPO), чтобы создать запланированное задание, которое восстанавливает «маячок» (beacon).",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis",
+   "Server Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "36",
+   "34",
+   "33",
+   "38"
+  ],
+  "tools": [
+   "SharpGPOAbuse",
+   "Microsoft Advanced Group Policy Management"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После переустановки заражённой рабочей станции подозрительный исходящий трафик возобновился сразу после её ввода в домен.",
+   "В SYSVOL изменился файл в одной из политик, хотя в журнале изменений ИТ за месяц правок нет."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/18.webp"
+ },
+ {
+  "id": "densecure-19",
+  "deck": "densecure",
+  "type": "persist",
+  "name_en": "Golden Ticket Attack",
+  "name_ru": "Атака «Золотой билет»",
+  "desc_en": "The attackers steal the Kerberos Ticket Granting Ticket (KRBTGT) account credentials and issue TGTs outside the network.",
+  "desc_ru": "Злоумышленники похищают учётные данные служебной учётной записи Kerberos KRBTGT и выпускают TGT-билеты за пределами сети.",
+  "detections_en": [
+   "Server Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "33",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Impacket",
+   "Mimikatz",
+   "Rubeus"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Контроллер домена видит запросы TGS с билетами, для которых в журнале никогда не было соответствующего события выдачи TGT.",
+   "Учётная запись уволенного полгода назад сотрудника отключена, но под её именем продолжают успешно получать доступ к файловым ресурсам."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/19.webp"
+ },
+ {
+  "id": "densecure-20",
+  "deck": "densecure",
+  "type": "persist",
+  "name_en": "Screensaver Hijack",
+  "name_ru": "Захват заставки",
+  "desc_en": "The attackers modify the screensaver path to create a reverse shell triggered by user inactivity. Unfortunately, this exciting new virtual fishtank screensaver has end users hooked, and they might fight efforts to remove it.",
+  "desc_ru": "Злоумышленники подменяют путь к заставке, чтобы при бездействии пользователя запускалась обратная оболочка (reverse shell). Увы, новый «виртуальный аквариум» так понравился сотрудникам, что они могут сопротивляться его удалению.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36",
+   "34"
+  ],
+  "tools": [
+   "SCRNSAVE.EXE"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Исходящие соединения с ноутбуков появляются ровно через 10 минут после того, как пользователь отходит от компьютера, и исчезают, как только он возвращается.",
+   "Пол-офиса в восторге от новых рыбок на мониторах, а ИТ-отдел ничего подобного не раскатывал."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/20.webp"
+ },
+ {
+  "id": "densecure-21",
+  "deck": "densecure",
+  "type": "persist",
+  "name_en": "SSH Authorized Keys Modification",
+  "name_ru": "Модификация authorized_keys SSH",
+  "desc_en": "The attackers add their own SSH public key to a user's authorized_keys file.",
+  "desc_ru": "Злоумышленники добавляют свой открытый SSH-ключ в файл authorized_keys пользователя.",
+  "detections_en": [
+   "Server Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Firewall Log Review"
+  ],
+  "detections": [
+   "33",
+   "36",
+   "35"
+  ],
+  "tools": [
+   "Impacket",
+   "Metasploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После смены пароля администратора Linux-сервера в журнале auth.log всё равно появляются успешные входы под его именем — без запроса пароля.",
+   "Межсетевой экран фиксирует входящие SSH-сессии на этот сервер с зарубежного IP каждую ночь."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/21.webp"
+ },
+ {
+  "id": "densecure-22",
+  "deck": "densecure",
+  "type": "c2",
+  "name_en": "Unauthorized Filesharing Utility",
+  "name_ru": "Несанкционированный файлообменник",
+  "desc_en": "The attackers take advantage of an employee's unsanctioned \"shadow IT\" cloud-based filesharing resource to exfiltrate data.",
+  "desc_ru": "Злоумышленники используют несанкционированный облачный файлообменник сотрудника («теневое ИТ») для эксфильтрации данных.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Firewall Log Review",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "36",
+   "35",
+   "34"
+  ],
+  "tools": [
+   "Dropbox",
+   "Google Drive"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Прокси фиксирует гигабайты исходящего трафика к популярному потребительскому облачному сервису с машины маркетолога в 2 часа ночи.",
+   "Маркетолог признаётся, что давно «по-тихому» делится макетами с подрядчиками через личный аккаунт, потому что корпоративный портал «неудобный»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/22.webp"
+ },
+ {
+  "id": "densecure-23",
+  "deck": "densecure",
+  "type": "c2",
+  "name_en": "Misuse of Remote Access Software",
+  "name_ru": "Злоупотребление ПО удалённого доступа",
+  "desc_en": "The attackers install a trusted and commonly used remote access software in the environment.",
+  "desc_ru": "Злоумышленники устанавливают в инфраструктуре доверенное и широко распространённое ПО удалённого доступа.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "40",
+   "36"
+  ],
+  "tools": [
+   "TeamViewer",
+   "AnyDesk",
+   "ScreenConnect"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Пользователь видит, как курсор на его экране сам двигается по рабочему столу, хотя он ни с кем не делился экраном.",
+   "Антивирус молчит: на нескольких серверах появилось подписанное легитимное приложение, которого нет в реестре разрешённого ПО и которое постоянно держит соединение с облачными ретрансляторами."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/23.webp"
+ },
+ {
+  "id": "densecure-24",
+  "deck": "densecure",
+  "type": "c2",
+  "name_en": "Hosted Note Taking as C2",
+  "name_ru": "Облачные заметки как C2",
+  "desc_en": "The attackers use a trusted note-taking application to publish commands, allowing malware to fetch and execute.",
+  "desc_ru": "Злоумышленники публикуют команды через доверенное приложение для заметок, а вредонос забирает и выполняет их.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "38",
+   "36",
+   "34"
+  ],
+  "tools": [
+   "OffensiveNotion",
+   "Discord",
+   "Power Automate"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сервер, на котором никто не работает интерактивно, каждые 30 секунд обращается к API популярного сервиса совместной работы.",
+   "После каждого такого обращения на сервере запускаются короткие процессы командной строки с разными аргументами."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/24.webp"
+ },
+ {
+  "id": "densecure-25",
+  "deck": "densecure",
+  "type": "c2",
+  "name_en": "Bluetooth as Exfil",
+  "name_ru": "Эксфильтрация через Bluetooth",
+  "desc_en": "The attackers enable Bluetooth and then lurk within the broadcast range (33') to exfiltrate data.",
+  "desc_ru": "Злоумышленники включают Bluetooth и затаиваются в радиусе его действия (около 10 м), чтобы выкачивать данные.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "40",
+   "38"
+  ],
+  "tools": [
+   "Windows Bluetooth"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На стационарном ПК в бухгалтерии, где Bluetooth отключён политикой, в журнале появилось сопряжение с незнакомым устройством.",
+   "Охрана заметила, что уже третий день под окнами офиса подолгу стоит одна и та же машина, а в сетевом трафике никаких аномальных выгрузок нет."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/densecure/25.webp"
+ },
+ {
+  "id": "densecure-26",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Crank Up the Pressure",
+  "name_ru": "Давление нарастает",
+  "desc_en": "The attackers have started contacting your clients stating that they have compromised personally identifiable information (PII) and your company was not willing to protect it. Word spreads quickly on social media. Leadership is demanding results faster than you can possibly deliver, the Defenders lose 1 turn.",
+  "desc_ru": "Злоумышленники начали писать вашим клиентам, что украли их персональные данные (PII), а компания не захотела их защищать. Новость мгновенно разлетается по соцсетям. Руководство требует результатов быстрее, чем вы физически способны, — защитники теряют 1 ход.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Защитники теряют следующий ход.",
+  "image": "cards/densecure/26.webp"
+ },
+ {
+  "id": "densecure-27",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Communication Infrastructure DDoS",
+  "name_ru": "DDoS на инфраструктуру связи",
+  "desc_en": "An attack group unrelated to the current scenario runs a DDoS attack against your communications infrastructure during the incident. The Defenders must use an alternative form of communication for the next two turns.",
+  "desc_ru": "Посторонняя группировка, не связанная с текущим инцидентом, устраивает DDoS-атаку на вашу инфраструктуру связи. Следующие два хода защитники должны общаться альтернативным способом.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Связь лежит: 2 хода бросаете 2d20 и берёте худший.",
+  "image": "cards/densecure/27.webp"
+ },
+ {
+  "id": "densecure-28",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Way to Plan Ahead",
+  "name_ru": "Вот это предусмотрительность",
+  "desc_en": "The security team brought on DenSecure™ for threat emulation against known threat actor behavior. The team has implemented new detections that caught the attacker's persistence actions within the network. The Incident Captain must reveal the Persistence card.",
+  "desc_ru": "Команда безопасности пригласила DenSecure™ для эмуляции поведения известных группировок. Внедрённые после этого новые детекты поймали действия злоумышленников по закреплению в сети. Раскрывается карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "Раскрывается карта закрепления.",
+  "image": "cards/densecure/28.webp"
+ },
+ {
+  "id": "densecure-29",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Water, Water Everywhere!",
+  "name_ru": "Вода, кругом вода!",
+  "desc_en": "A pipe bursts in the server room. Seems like a good time to model that new flower print bathing suit while the backup site is brought online. The Defenders receive a -3 modifier for the next two turns.",
+  "desc_ru": "В серверной прорвало трубу. Самое время примерить новый купальник в цветочек, пока поднимают резервную площадку. Защитники получают модификатор −3 на следующие два хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -3,
+    "target": "all",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "−3 ко всем проверкам на 2 хода.",
+  "image": "cards/densecure/29.webp"
+ },
+ {
+  "id": "densecure-30",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Timber!",
+  "name_ru": "Берегись, падает!",
+  "desc_en": "A tree falls and knocks out power to your office -- time to head to a secondary location. Unfortunately, traffic is terrible and you'll be stuck in the car for a while. The Defender who rolled the die and caused this Inject can't help the team for three turns while they're stuck in traffic.",
+  "desc_ru": "Упавшее дерево обесточило офис — пора перебираться на резервную площадку. Увы, пробки чудовищные, и вы надолго застряли в машине. Защитник, чей бросок вызвал эту вводную, три хода не может помогать команде — он стоит в пробке.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "Вы застряли в пробке: 3 хода бросаете 2d20 и берёте худший.",
+  "image": "cards/densecure/30.webp"
+ },
+ {
+  "id": "densecure-31",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "It's a Feature, Not a Bug",
+  "name_ru": "Это не баг, это фича",
+  "desc_en": "A penetration test reveals a critical severity issue in one of your core technologies that the vendor claims is a feature, not a bug. The Defenders implement their own defenses to mitigate exploitation. The Defenders receive a +2 modifier on all Procedure cards for the rest of the session.",
+  "desc_ru": "Пентест выявил критическую уязвимость в одной из ключевых технологий, но вендор утверждает, что это не баг, а фича. Защитники сами выстраивают защиту от эксплуатации. Защитники получают модификатор +2 ко всем процедурам до конца игры.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": "all"
+   }
+  ],
+  "effect_ru": "+2 ко всем процедурам до конца игры.",
+  "image": "cards/densecure/31.webp"
+ },
+ {
+  "id": "densecure-32",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Dude... Where's My Server?",
+  "name_ru": "Чувак, где мой сервер?",
+  "desc_en": "Your organization's users contact the helpdesk saying all of their fileshares are missing. Security footage reveals an unknown person absconding with the physical drives. Server Analysis is unavailable to the Defenders for the rest of the session -- in addition, they lose 1 turn as they figure out whose problem this is.",
+  "desc_ru": "Пользователи звонят в helpdesk: пропали все общие папки. Камеры наблюдения показывают, как неизвестный уносит физические диски. Анализ серверов недоступен защитникам до конца игры — к тому же они теряют 1 ход, выясняя, чья это вообще проблема.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Server Analysis"
+     ]
+    }
+   },
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Анализ серверов недоступен до конца игры, и защитники теряют 1 ход.",
+  "image": "cards/densecure/32.webp"
+ },
+ {
+  "id": "densecure-33",
+  "deck": "densecure",
+  "type": "inject",
+  "name_en": "Executive Buy-In",
+  "name_ru": "Руководство прониклось",
+  "desc_en": "An at-home PC compromise has your CEO's personally identifiable information (PII) all over the web. Suddenly, management cares a lot about security and has approved all of the team's training requests. The Defenders receive a +2 modifier on all Procedure cards for the rest of the session.",
+  "desc_ru": "После взлома домашнего ПК персональные данные (PII) генерального директора разлетелись по всему интернету. Внезапно руководство всерьёз озаботилось безопасностью и одобрило все заявки команды на обучение. Защитники получают модификатор +2 ко всем процедурам до конца игры.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": "all"
+   }
+  ],
+  "effect_ru": "+2 ко всем процедурам до конца игры.",
+  "image": "cards/densecure/33.webp"
+ }
+]

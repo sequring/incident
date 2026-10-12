@@ -1,0 +1,914 @@
+[
+ {
+  "id": "coop-01",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Wardriving",
+  "name_ru": "Вардрайвинг",
+  "desc_en": "The attackers drove by company headquarters and collected Wi-Fi details from an omnidirectional access point in the break room and gained access to the network.",
+  "desc_ru": "Злоумышленники проехали мимо штаб-квартиры компании, собрали данные Wi-Fi с всенаправленной точки доступа в комнате отдыха и получили доступ к сети.",
+  "detections_en": [
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Network Threat Hunting"
+  ],
+  "detections": [
+   "34",
+   "36"
+  ],
+  "tools": [
+   "Kismet",
+   "Aircrack Suite",
+   "Eaphammer",
+   "WiFite",
+   "hostpad-wpe",
+   "hostapd-mana"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Контроллер беспроводной сети зафиксировал всплеск неудачных попыток аутентификации на точке доступа в комнате отдыха, а затем — успешное подключение неизвестного ноутбука.",
+   "Охрана заметила машину, которая полчаса стояла с работающим двигателем у забора штаб-квартиры, а потом уехала."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/01.webp"
+ },
+ {
+  "id": "coop-02",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Malicious QR Code",
+  "name_ru": "Вредоносный QR-код",
+  "desc_en": "The attackers utilized a malicious QR code and directed a victim to a phishing site (such as a credential harvesting site), forced a malicious app download, or exploited a browser vulnerability.",
+  "desc_ru": "Злоумышленники использовали вредоносный QR-код и перенаправили жертву на фишинговый сайт (например, для кражи учётных данных), вынудили скачать вредоносное приложение или проэксплуатировали уязвимость браузера.",
+  "detections_en": [
+   "Firewall Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis"
+  ],
+  "detections": [
+   "35",
+   "34"
+  ],
+  "tools": [
+   "Canva",
+   "Microsoft Office",
+   "Evilginx"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В столовой и у кассы для оплаты счетов кто-то расклеил новые «официальные» листовки с призывом «обновить данные лицевого счёта».",
+   "Межсетевой экран зафиксировал обращения нескольких корпоративных смартфонов к недавно зарегистрированному домену, похожему на портал входа Microsoft 365."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/02.webp"
+ },
+ {
+  "id": "coop-03",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Compromised Advanced Metering Infrastructure (AMI)",
+  "name_ru": "Компрометация инфраструктуры интеллектуального учёта (AMI)",
+  "desc_en": "The attackers gained access to the internal network by compromising the AMI head-end system or vendor distribution point.",
+  "desc_ru": "Злоумышленники проникли во внутреннюю сеть, скомпрометировав головную систему AMI (сервер сбора данных с «умных» счётчиков) или точку распространения поставщика.",
+  "detections_en": [
+   "Server Analysis",
+   "Network Threat Hunting",
+   "Endpoint Security Protection Analysis",
+   "Cloud Event Log Analysis"
+  ],
+  "detections": [
+   "33",
+   "36",
+   "38",
+   "44"
+  ],
+  "tools": [
+   "Hardware Interface Device (Tigard, Shikra, etc)",
+   "Binwalk",
+   "EMBA",
+   "Wireless Tooling"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сервер сбора показаний счётчиков начал устанавливать соединения с внутренними серверами бухгалтерии, хотя раньше общался только с сетью счётчиков.",
+   "Несколько сотен абонентов одновременно получили «нулевые» показания, а у поставщика ПО для счётчиков внепланово сменилась версия пакета обновлений."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/03.webp"
+ },
+ {
+  "id": "coop-04",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Stolen Corporate Laptop",
+  "name_ru": "Украденный корпоративный ноутбук",
+  "desc_en": "The attackers gained access to your internal network by using the credentials found on a stolen laptop of an employee with access to sensitive information.",
+  "desc_ru": "Злоумышленники получили доступ к внутренней сети, используя учётные данные, найденные на украденном ноутбуке сотрудника с доступом к конфиденциальной информации.",
+  "detections_en": [
+   "User and Entity Behavior Analytics (UEBA)",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "39",
+   "38"
+  ],
+  "tools": [
+   "Kon-boot",
+   "Mimikatz",
+   "Hashcat"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Главный инженер на прошлой неделе сообщил, что из его машины на парковке украли сумку, но заявление в ИТ так и не дошло.",
+   "Учётная запись главного инженера ночью вошла в VPN из другого региона, пока сам он был на объекте без связи."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/04.webp"
+ },
+ {
+  "id": "coop-05",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Burglarized Rural Substations",
+  "name_ru": "Взлом сельских подстанций",
+  "desc_en": "The attackers broke into an isolated substation where the ports were unsecured and they gained access to the network.",
+  "desc_ru": "Злоумышленники проникли на удалённую подстанцию, где сетевые порты не были защищены, и получили доступ к сети.",
+  "detections_en": [
+   "Site Walkthrough",
+   "Network Threat Hunting",
+   "Security Information and Event Management (SIEM) Log Analysis"
+  ],
+  "detections": [
+   "36",
+   "34"
+  ],
+  "tools": [
+   "Door Shims",
+   "Mini Jim",
+   "Hasp",
+   "Shim",
+   "Lock Shims",
+   "RFID Card Cloning Device",
+   "Under Door Tool",
+   "Ladder",
+   "Bolt Cutters"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Выездная бригада сообщила, что замок на воротах одной из дальних площадок перекушен, а дверь щитовой прикрыта, но не заперта.",
+   "На коммутаторе удалённого объекта поднялся порт, который годами был неактивен, и в сети появился неизвестный MAC-адрес."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/05.webp"
+ },
+ {
+  "id": "coop-06",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Imposter IT Worker",
+  "name_ru": "Самозванец в ИТ-отделе",
+  "desc_en": "The attackers successfully impersonated a job candidate, got hired, and gained credentials and network access.",
+  "desc_ru": "Злоумышленники успешно выдали себя за кандидата на вакансию, были приняты на работу и получили учётные данные и доступ к сети.",
+  "detections_en": [
+   "User and Entity Behavior Analytics (UEBA)",
+   "Endpoint Security Protection Analysis",
+   "Active Defense and Cyber Deception",
+   "Network Threat Hunting"
+  ],
+  "detections": [
+   "39",
+   "38",
+   "37",
+   "36"
+  ],
+  "tools": [
+   "Resume",
+   "LinkedIn",
+   "Generative AI"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Новый удалённый администратор всегда отключает камеру на созвонах, а рабочий ноутбук ему отправили на адрес, не совпадающий с указанным в анкете.",
+   "Учётная запись недавно нанятого сотрудника обращается к файловым ресурсам, никак не связанным с его задачами, и работает строго по ночам."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/06.webp"
+ },
+ {
+  "id": "coop-07",
+  "deck": "coop",
+  "type": "initial",
+  "name_en": "Post End-of-Life Exploitation",
+  "name_ru": "Эксплуатация систем после окончания поддержки",
+  "desc_en": "The attackers exploited the legacy system's lack of patched vulnerabilities and gained a foothold in the network.",
+  "desc_ru": "Злоумышленники воспользовались незакрытыми уязвимостями устаревшей системы и закрепились в сети.",
+  "detections_en": [
+   "Server Analysis",
+   "Network Threat Hunting",
+   "Endpoint Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "33",
+   "36",
+   "40",
+   "43"
+  ],
+  "tools": [
+   "Metasploit",
+   "Command and Control Frameworks"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Старый сервер под Windows Server 2008, который «никто не трогает», внезапно перезагрузился посреди дня.",
+   "Сканер уязвимостей выдал критические находки по хосту, который в CMDB помечен как списанный."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/07.webp"
+ },
+ {
+  "id": "coop-08",
+  "deck": "coop",
+  "type": "pivot",
+  "name_en": "Account Abuse",
+  "name_ru": "Злоупотребление учётной записью",
+  "desc_en": "The attackers exploit a service-level account with previously obtained domain administrator privileges.",
+  "desc_ru": "Злоумышленники используют служебную учётную запись, которая ранее получила права администратора домена.",
+  "detections_en": [
+   "Permissions Audit",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "45",
+   "39",
+   "34",
+   "43"
+  ],
+  "tools": [
+   "BloodHound",
+   "LinPEAS",
+   "Impacket"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись службы резервного копирования интерактивно вошла на контроллер домена — раньше такого не было никогда.",
+   "В группе «Domain Admins» обнаружилась служебная учётная запись, которую никто из администраторов туда не добавлял (по крайней мере, никто не признаётся)."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/08.webp"
+ },
+ {
+  "id": "coop-09",
+  "deck": "coop",
+  "type": "pivot",
+  "name_en": "User Token Theft",
+  "name_ru": "Кража токена пользователя",
+  "desc_en": "The attackers steal and impersonate a user's session from a cloud token.",
+  "desc_ru": "Злоумышленники крадут облачный токен пользователя и действуют от имени его сессии.",
+  "detections_en": [
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Cloud Event Log Analysis"
+  ],
+  "detections": [
+   "34",
+   "39",
+   "44"
+  ],
+  "tools": [
+   "Evilginx",
+   "Mimikatz",
+   "SharpSploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журналах Microsoft 365 одна и та же сессия бухгалтера активна одновременно из офиса и с IP-адреса хостинг-провайдера за рубежом.",
+   "Пользователь клянётся, что не подтверждал MFA, но доступ к его почте продолжается и после смены пароля."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/09.webp"
+ },
+ {
+  "id": "coop-10",
+  "deck": "coop",
+  "type": "pivot",
+  "name_en": "Trusted Connection Abuse",
+  "name_ru": "Злоупотребление доверенным соединением",
+  "desc_en": "The attackers exploit a trusted network connection to move from the IT to OT network.",
+  "desc_ru": "Злоумышленники используют доверенное сетевое соединение, чтобы перейти из ИТ-сети в сеть АСУ ТП (OT).",
+  "detections_en": [
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Firewall Log Analysis",
+   "Network Threat Hunting",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "34",
+   "35",
+   "36",
+   "37"
+  ],
+  "tools": [
+   "Impacket",
+   "NetExec",
+   "PsExec"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Межсетевой экран между офисной и технологической сетями пропустил SMB-сессии с рабочей станции бухгалтерии на инженерную станцию диспетчерской.",
+   "На инженерной станции появился новый сервис со случайным именем, созданный удалённо с офисного хоста."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/10.webp"
+ },
+ {
+  "id": "coop-11",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Remote Management Misuse",
+  "name_ru": "Злоупотребление средствами удалённого управления",
+  "desc_en": "The attackers exploit an exposed remote network access application enabled through shadow IT, allowing a backdoor connection.",
+  "desc_ru": "Злоумышленники используют открытое в интернет приложение удалённого доступа, установленное в обход ИТ (теневые ИТ), как бэкдор.",
+  "detections_en": [
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Server Analysis",
+   "Endpoint Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "34",
+   "33",
+   "40",
+   "43"
+  ],
+  "tools": [
+   "AnyDesk",
+   "Metasploit",
+   "PowerSploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На сервере биллинга обнаружено ПО удалённого доступа, которое кто-то из подрядчиков поставил «на время» два года назад.",
+   "Ночью на сервере сам по себе двигался курсор — это заметил дежурный, зашедший проверить резервное копирование."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/11.webp"
+ },
+ {
+  "id": "coop-12",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Hardware Compromise",
+  "name_ru": "Компрометация оборудования",
+  "desc_en": "The attackers compromise an IOT device's firmware to enable remote control capabilities.",
+  "desc_ru": "Злоумышленники модифицируют прошивку IoT-устройства, чтобы получить возможность удалённого управления.",
+  "detections_en": [
+   "Network Threat Hunting",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Firewall Log Analysis",
+   "Protocol Analysis"
+  ],
+  "detections": [
+   "36",
+   "34",
+   "35",
+   "coop-20"
+  ],
+  "tools": [
+   "Bus Pirate",
+   "OpenOCD",
+   "Flashrom"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Контрольная сумма прошивки одного из IoT-устройств на подстанции не совпадает с эталоном производителя.",
+   "Датчик температуры в серверной каждые 10 минут отправляет небольшие пакеты на внешний IP-адрес, которого нет в документации."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/12.webp"
+ },
+ {
+  "id": "coop-13",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Supervisory Control and Data Acquisition (SCADA) Breach",
+  "name_ru": "Взлом SCADA",
+  "desc_en": "The attackers install remote management software on the OT/SCADA Human Machine Interface (HMI) system.",
+  "desc_ru": "Злоумышленники устанавливают ПО удалённого управления на систему человеко-машинного интерфейса (HMI) в сети OT/SCADA.",
+  "detections_en": [
+   "Protocol Analysis",
+   "Endpoint Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Firewall Log Analysis"
+  ],
+  "detections": [
+   "coop-20",
+   "40",
+   "34",
+   "35"
+  ],
+  "tools": [
+   "TeamViewer",
+   "ConnectWise",
+   "VNC",
+   "LogMeIn"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Диспетчер заметил на панели оператора новый значок в системном трее, которого вчера не было.",
+   "Межсетевой экран технологической сети фиксирует исходящие соединения с панели оператора на облачные серверы ретрансляции."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/13.webp"
+ },
+ {
+  "id": "coop-14",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Data Historian Compromise",
+  "name_ru": "Компрометация историана данных",
+  "desc_en": "The attackers compromise the data historian or a data historian controller to establish long-term persistence and maintain control over operational data, using it as a bridge between OT and IT networks.",
+  "desc_ru": "Злоумышленники компрометируют историан (архив технологических данных) или его контроллер, чтобы надолго закрепиться и контролировать технологические данные, используя его как мост между сетями OT и ИТ.",
+  "detections_en": [
+   "Permissions Audit",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "45",
+   "39"
+  ],
+  "tools": [
+   "SQLmap",
+   "Metasploit",
+   "PowerSploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В базе архива технологических данных появилась новая учётная запись SQL с правами sysadmin, которую никто не заводил.",
+   "Аналитики жалуются, что в отчётах по нагрузке за прошлую неделю «пропали» несколько часов данных, а затем внезапно появились снова."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/14.webp"
+ },
+ {
+  "id": "coop-15",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Shadow IT Compromise",
+  "name_ru": "Компрометация теневых ИТ",
+  "desc_en": "The attackers discover and leverage unauthorized equipment previously added by staff without approval.",
+  "desc_ru": "Злоумышленники находят и используют несанкционированное оборудование, ранее подключённое сотрудниками без согласования.",
+  "detections_en": [
+   "Firewall Log Analysis",
+   "Network Threat Hunting",
+   "Security Information and Event Management (SIEM) Log Analysis"
+  ],
+  "detections": [
+   "35",
+   "36",
+   "34"
+  ],
+  "tools": [
+   "Shodan",
+   "Nmap",
+   "Metasploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Shodan показывает открытый порт веб-интерфейса на IP-адресе кооператива, хотя ни одного такого сервиса в реестре нет.",
+   "В шкафу линейного цеха нашли маленький роутер, подключённый к корпоративной сети, — «чтобы на телефонах был Wi-Fi»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/15.webp"
+ },
+ {
+  "id": "coop-16",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Tool Masquerade",
+  "name_ru": "Маскировка под инструмент",
+  "desc_en": "The attackers exploit the relationship of a trusted third-party remote management software that already exists in the Supervisory Control and Data Acquisition (SCADA) environment.",
+  "desc_ru": "Злоумышленники используют доверие к стороннему ПО удалённого управления, которое уже есть в среде SCADA.",
+  "detections_en": [
+   "Network Threat Hunting",
+   "Security Information and Event Management (SIEM)",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "36",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Impacket",
+   "Sliver",
+   "Chisel"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись техподдержки поставщика SCADA подключилась в выходные, хотя никаких заявок на обслуживание не было.",
+   "Агент удалённого управления на инженерной станции стал передавать значительно больше трафика, чем обычно, и в нетипичное время."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/16.webp"
+ },
+ {
+  "id": "coop-17",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Vendor Account Misuse",
+  "name_ru": "Злоупотребление учётной записью поставщика",
+  "desc_en": "The attackers enumerate Active Directory and leverage an old, unused but still active vendor account.",
+  "desc_ru": "Злоумышленники перечисляют объекты Active Directory и используют старую, неиспользуемую, но всё ещё активную учётную запись поставщика.",
+  "detections_en": [
+   "Permissions Audit",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Network Threat Hunting",
+   "Cloud Event Log Analysis"
+  ],
+  "detections": [
+   "45",
+   "39",
+   "36",
+   "44"
+  ],
+  "tools": [
+   "BloodHound",
+   "SharpHound",
+   "NetExec",
+   "Impacket"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Контроллер домена зафиксировал массовые LDAP-запросы ко всем группам и пользователям с одной рабочей станции.",
+   "Учётная запись подрядчика, контракт с которым закончился три года назад, вдруг выполнила успешный вход."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/17.webp"
+ },
+ {
+  "id": "coop-18",
+  "deck": "coop",
+  "type": "persist",
+  "name_en": "Temporary Permanence",
+  "name_ru": "Нет ничего постояннее временного",
+  "desc_en": "The attackers exploit outdated and forgotten network equipment.",
+  "desc_ru": "Злоумышленники используют устаревшее и забытое сетевое оборудование.",
+  "detections_en": [
+   "User and Entity Behavior Analytics (UEBA)",
+   "Network Threat Hunting"
+  ],
+  "detections": [
+   "39",
+   "36"
+  ],
+  "tools": [
+   "Nmap",
+   "Metasploit",
+   "RouterSploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В сети отвечает коммутатор, которого нет ни на одной схеме, — по прошивке ему лет десять.",
+   "Учётная запись admin на старом сетевом устройстве авторизовалась ночью, хотя пароль от него никто в отделе не помнит."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/18.webp"
+ },
+ {
+  "id": "coop-19",
+  "deck": "coop",
+  "type": "procedure",
+  "name_en": "Call A Consultant",
+  "name_ru": "Вызов консультанта",
+  "desc_en": "Do you want help? Feeling stuck? Rolling badly? Need a different perspective on the incident? Then maybe it's time to phone a friend.\n\nYou can choose one Consultant Card to help your team with the incident.\n\nThe Consultant Card's modifier is effective immediately.",
+  "desc_ru": "Нужна помощь? Застряли? Кубик не идёт? Нужен свежий взгляд на инцидент? Возможно, пора позвонить другу.\n\nВы можете выбрать одну карту консультанта, которая поможет вашей команде с инцидентом.\n\nМодификатор карты консультанта начинает действовать немедленно.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/19.webp"
+ },
+ {
+  "id": "coop-20",
+  "deck": "coop",
+  "type": "procedure",
+  "name_en": "Protocol Analysis",
+  "name_ru": "Анализ протоколов",
+  "desc_en": "Examining the traffic on a network can determine what systems should be talking and what systems shouldn't be talking to each other on specific protocols.",
+  "desc_ru": "Анализ сетевого трафика позволяет понять, какие системы должны общаться друг с другом по определённым протоколам (например, промышленным Modbus, DNP3), а какие — не должны.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Zeek",
+   "Wireshark",
+   "Suricata"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/coop/20.webp"
+ },
+ {
+  "id": "coop-21",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Storm Duty",
+  "name_ru": "Штормовое дежурство",
+  "desc_en": "Severe weather is preventing employees from reaching the office. \"I always wondered what this company-issued inflatable raft was for...\"\n\nAll of the Defenders must roll the dice. The two players with the lowest numbers must sit out for the next two turns.",
+  "desc_ru": "Непогода не даёт сотрудникам добраться до офиса. «Всегда было интересно, зачем компания выдала мне надувной плот…»\n\nВсе защитники бросают кубик. Два игрока с наименьшими результатами пропускают следующие два хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Половина команды не добралась до офиса: 2 хода броски с помехой (2d20, берётся меньший).",
+  "image": "cards/coop/21.webp"
+ },
+ {
+  "id": "coop-22",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Panic in the Streets",
+  "name_ru": "Паника на улицах",
+  "desc_en": "Media and customers are in a panic because critical infrastructure has been compromised. It's a poly-crisis!\n\nThe Defenders must play their Crisis Management card on their next turn. If they are successful, they can move past this issue. If they aren't, they receive a -2 modifier on all Detections for the rest of the session.",
+  "desc_ru": "СМИ и абоненты в панике: скомпрометирована критическая инфраструктура. Это поликризис!\n\nЗащитники обязаны на следующем ходу разыграть карту «Кризисное управление». При успехе проблема снята. При неудаче — модификатор −2 ко всем детекциям до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "force_procedure",
+    "procedure": "Crisis Management",
+    "on_fail": [
+     {
+      "op": "modifier",
+      "value": -2,
+      "target": "all"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Следующий ход — «Кризисное управление»; при провале −2 ко всем детекциям до конца игры.",
+  "image": "cards/coop/22.webp"
+ },
+ {
+  "id": "coop-23",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Coordinated Campaign",
+  "name_ru": "Скоординированная кампания",
+  "desc_en": "E-ISAC All Points Bulletin: A coordinated campaign is impacting available resources. Like Ocean's Eleven, but our network is the casino.\n\nThe Defenders lose the +3 modifier on Established Detections for two turns.",
+  "desc_ru": "Срочный бюллетень E-ISAC (центра обмена информацией об угрозах в электроэнергетике): скоординированная кампания истощает ресурсы. Как «Одиннадцать друзей Оушена», только казино — это наша сеть.\n\nЗащитники теряют бонус +3 установленных процедур на два хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "no_established_bonus",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Установленные процедуры теряют бонус +3 на 2 хода.",
+  "image": "cards/coop/23.webp"
+ },
+ {
+  "id": "coop-24",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "A Seat at the Table",
+  "name_ru": "Место за столом",
+  "desc_en": "The IT and OT managers have instituted an 'Interdepartmental Game Night' after discovering a shared love of Settlers of Catan, resulting in greater cooperative culture.\n\nThe Defenders must roll the dice. If roll is 11+, the Incident Captain must reveal the Persistence card. If 1-10, the Defenders lose two turns.",
+  "desc_ru": "Руководители ИТ и OT обнаружили общую любовь к «Колонизаторам» и учредили «межотдельский вечер настолок» — культура сотрудничества заметно выросла.\n\nЗащитники бросают кубик. При 11+ раскрывается карта закрепления. При 1–10 защитники теряют два хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "roll_check",
+    "success_at": 11,
+    "on_success": [
+     {
+      "op": "reveal_attack",
+      "category": "persist"
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "skip_turns",
+      "count": 2
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20: 11+ — раскрывается карта закрепления; 1–10 — вы теряете два хода.",
+  "image": "cards/coop/24.webp"
+ },
+ {
+  "id": "coop-25",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Watch Out Below",
+  "name_ru": "Берегись!",
+  "desc_en": "One of the high voltage transmission towers in the power grid that was feeding your largest substation and main operations center has decided to take the day off.\n\nThe Defenders must play the Crisis Management card on their next turn. If they are successful, continue play; if they are unsuccessful, lose two turns.",
+  "desc_ru": "Одна из опор ЛЭП высокого напряжения, питавшая вашу крупнейшую подстанцию и главный диспетчерский центр, решила взять выходной.\n\nЗащитники обязаны на следующем ходу разыграть карту «Кризисное управление». При успехе игра продолжается; при неудаче — потеря двух ходов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "force_procedure",
+    "procedure": "Crisis Management",
+    "on_fail": [
+     {
+      "op": "skip_turns",
+      "count": 2
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Следующий ход — «Кризисное управление»; при провале защитники теряют 2 хода.",
+  "image": "cards/coop/25.webp"
+ },
+ {
+  "id": "coop-26",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Chuckles, I'm in Danger",
+  "name_ru": "Ой, кажется, я в опасности",
+  "desc_en": "While your cooperative is responding to a major weather disaster [hurricane / wildfire / tornado / ice storm] adversaries launch a coordinated cyber attack. Crews are stretched thin, communications are degraded, and your cyber team must triage competing crises.\n\nGame over, man. Discuss. Roll dice and let the odds be ever in your favor.",
+  "desc_ru": "Пока кооператив ликвидирует последствия крупного стихийного бедствия [ураган / лесной пожар / торнадо / ледяной шторм], противник запускает скоординированную кибератаку. Бригады на пределе, связь деградировала, а киберкоманде приходится расставлять приоритеты между конкурирующими кризисами.\n\nВсё, игра окончена. Обсудите. Бросайте кубики — и пусть удача всегда будет на вашей стороне.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "end_game",
+    "result": "neutral"
+   }
+  ],
+  "effect_ru": "Сессия немедленно заканчивается — время для разбора.",
+  "image": "cards/coop/26.webp"
+ },
+ {
+  "id": "coop-27",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Meth House Meltdown",
+  "name_ru": "Пожар в нарколаборатории",
+  "desc_en": "A meth house fire burned a nearby fiber line, leaving the utility without communications and scrambling to operate.\n\nThe Defenders get a -3 modifier for the next three rolls.",
+  "desc_ru": "Пожар в подпольной нарколаборатории сжёг соседнюю оптоволоконную линию: компания осталась без связи и работает в авральном режиме.\n\nЗащитники получают модификатор −3 на следующие три броска.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -3,
+    "target": "all",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "−3 ко всем броскам на 3 хода.",
+  "image": "cards/coop/27.webp"
+ },
+ {
+  "id": "coop-28",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Wipe Better",
+  "name_ru": "Стирай лучше",
+  "desc_en": "Bobby the intern at your Co-op didn't properly wipe the server before selling it. This server had PII on it.\n\nImmediately remove anyone named Robert, Bob, or Bobby for the rest of the session. In addition, the Defenders then choose one player to sit out for the next three turns as he/she is dealing with legal issues.",
+  "desc_ru": "Стажёр Бобби не стёр как следует данные с сервера перед его продажей. А на сервере были персональные данные (PII).\n\nНемедленно удалите из игры всех по имени Роберт, Боб или Бобби до конца сессии. Кроме того, защитники выбирают одного игрока, который пропустит следующие три хода — он разбирается с юристами.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "Один из защитников занят юристами: 3 хода броски с помехой (2d20, берётся меньший).",
+  "image": "cards/coop/28.webp"
+ },
+ {
+  "id": "coop-29",
+  "deck": "coop",
+  "type": "inject",
+  "name_en": "Business Email Compromise",
+  "name_ru": "Компрометация деловой переписки (BEC)",
+  "desc_en": "The attackers sent a fake invoice with malware attached to the accounting team and they opened it, triggered the malware, and paid it!\n\nThe Defenders get a -3 modifier for the next two rolls.",
+  "desc_ru": "Злоумышленники прислали бухгалтерии поддельный счёт с вредоносным вложением — его открыли, запустили вредонос и… оплатили счёт!\n\nЗащитники получают модификатор −3 на следующие два броска.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -3,
+    "target": "all",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "−3 ко всем броскам на 2 хода.",
+  "image": "cards/coop/29.webp"
+ },
+ {
+  "id": "coop-30",
+  "deck": "coop",
+  "type": "consultant",
+  "name_en": "Cyber Mutual Assistance (CMA)",
+  "name_ru": "Cyber Mutual Assistance (CMA)",
+  "desc_en": "The Defenders get a +2 modifier on all dice rolls for the rest of the session.\n\nCMA is a voluntary, confidential industry-led framework for cyber support across the electric power and natural gas sectors during or in advance of cyber emergencies. Assistance may include advisory support, personnel, or equipment.",
+  "desc_ru": "Защитники получают модификатор +2 ко всем броскам до конца сессии.\n\nCMA — добровольная конфиденциальная отраслевая программа взаимной киберпомощи в электроэнергетике и газовом секторе во время киберинцидентов или при подготовке к ним. Помощь может включать консультации, персонал или оборудование.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Взаимная киберпомощь в электроэнергетике и газовом секторе",
+   "Консультационная поддержка",
+   "Персонал",
+   "Оборудование"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": "all"
+   }
+  ],
+  "effect_ru": "+2 ко всем броскам до конца игры.",
+  "image": "cards/coop/30.webp"
+ },
+ {
+  "id": "coop-31",
+  "deck": "coop",
+  "type": "consultant",
+  "name_en": "Morale Suppression Team",
+  "name_ru": "Morale Suppression Team",
+  "desc_en": "The Incident Captain must reveal the Initial Compromise or Pivot and Escalate Card.\n\nA team of subject-matter experts have made your day just inconvenient enough to keep the bad guys out, thus lowering morale but raised security levels.",
+  "desc_ru": "Раскрывается карта первоначального доступа или повышения привилегий и перемещения.\n\nКоманда профильных экспертов сделала ваш день ровно настолько неудобным, чтобы не пустить злоумышленников: боевой дух упал, зато уровень безопасности вырос.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Профильные эксперты по безопасности",
+   "Ужесточение мер безопасности"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "Раскрывается карта первоначального доступа.",
+  "image": "cards/coop/31.webp"
+ }
+]

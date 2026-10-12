@@ -1,0 +1,955 @@
+[
+ {
+  "id": "redcanary-01",
+  "deck": "redcanary",
+  "type": "procedure",
+  "name_en": "Call a Consultant",
+  "name_ru": "Вызов консультанта",
+  "desc_en": "Do you want help? Feeling stuck? Rolling badly? Need a different perspective on the incident? Then maybe it's time to phone a friend.\n\nYou can choose one Consultant Card to help your team with the incident.\n\nThe Consultant Card's modifier is effective immediately.",
+  "desc_ru": "Нужна помощь? Зашли в тупик? Кубик не идёт? Нужен свежий взгляд на инцидент? Похоже, пора звонить другу.\n\nВы можете выбрать одну карту консультанта, которая поможет вашей команде с инцидентом.\n\nЭффект карты консультанта действует немедленно.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/01.webp"
+ },
+ {
+  "id": "redcanary-02",
+  "deck": "redcanary",
+  "type": "procedure",
+  "name_en": "Physical Security Review",
+  "name_ru": "Проверка физической безопасности",
+  "desc_en": "Do you have security cameras? Do you have security guards? Do you have access badges for certain areas in your facilities? Can just anyone access your sensitive IT infrastructure? No? Are you sure?",
+  "desc_ru": "Защитники проверяют физическую безопасность: записи камер видеонаблюдения, журналы СКУД (системы контроля доступа по пропускам), журналы охраны и посетителей. Есть ли у вас камеры? Охрана? Пропуска в отдельные зоны? Может ли кто угодно добраться до вашей критичной ИТ-инфраструктуры? Нет? Вы уверены?",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/02.webp"
+ },
+ {
+  "id": "redcanary-03",
+  "deck": "redcanary",
+  "type": "initial",
+  "name_en": "USB Drive-by",
+  "name_ru": "Заражение через USB",
+  "desc_en": "An employee picked up a worm on their work machine after plugging their USB device into a communal computer at a print shop, giving the attackers access to the internal network.",
+  "desc_ru": "Сотрудник подхватил червя на рабочий компьютер после того, как вставил свою флешку в общий компьютер в копицентре, — и злоумышленники получили доступ во внутреннюю сеть.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "40",
+   "38"
+  ],
+  "tools": [
+   "USB Rubber Ducky",
+   "Bash Bunny"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На ноутбуке менеджера по маркетингу в корне съёмного диска обнаружился ярлык с именем папки «Документы», а сама папка стала скрытой.",
+   "EDR фиксирует, что msiexec.exe на этом же ноутбуке сам ходит в интернет на странные короткие домены — сразу после подключения внешнего накопителя."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/03.webp"
+ },
+ {
+  "id": "redcanary-04",
+  "deck": "redcanary",
+  "type": "initial",
+  "name_en": "Compiled After Delivery",
+  "name_ru": "Компиляция после доставки",
+  "desc_en": "The attackers assembled their files on an endpoint by delivering text-based source code and using that compromised system's native compiler.",
+  "desc_ru": "Злоумышленники доставили на конечную точку исходный код в текстовом виде и собрали свои файлы прямо там, штатным компилятором скомпрометированной системы.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "40",
+   "38"
+  ],
+  "tools": [
+   "GCC",
+   "csc.exe",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На ПК бухгалтера, где никто никогда не писал код, в журнале процессов вдруг появился запуск компилятора .NET из папки Temp.",
+   "Почтовый шлюз пропустил вложение с безобидным на вид .txt-файлом, а через минуту на той же машине появился свежий неподписанный .exe."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/04.webp"
+ },
+ {
+  "id": "redcanary-05",
+  "deck": "redcanary",
+  "type": "initial",
+  "name_en": "Gatekeeper Bypass",
+  "name_ru": "Обход Gatekeeper",
+  "desc_en": "The attackers bypassed Apple's Gatekeeper functionality and tricked a user into downloading a malicious file on a macOS endpoint.",
+  "desc_ru": "Злоумышленники обошли защитный механизм Apple Gatekeeper и уговорили пользователя скачать вредоносный файл на macOS.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36"
+  ],
+  "tools": [
+   "certutil",
+   "codesign",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Дизайнер жалуется: скачал «обновление» для плеера, MacBook не выдал никаких предупреждений, но после запуска ничего не обновилось.",
+   "В журналах macOS у загруженного файла отсутствует атрибут карантина, а Mac начал регулярно обращаться к незнакомому хосту."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/05.webp"
+ },
+ {
+  "id": "redcanary-06",
+  "deck": "redcanary",
+  "type": "initial",
+  "name_en": "Obfuscated Payload Delivery",
+  "name_ru": "Доставка обфусцированной нагрузки",
+  "desc_en": "The attackers installed a malicious executable that evaded signature-based analysis by encoding and splitting its payload.",
+  "desc_ru": "Злоумышленники установили вредоносный исполняемый файл, который обошёл сигнатурный анализ за счёт кодирования и разбиения своей полезной нагрузки на части.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "43"
+  ],
+  "tools": [
+   "ADVobfuscator",
+   "Manual fuzzing/string splitting",
+   "Base64 encoding"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Антивирус проверил подозрительный файл из письма и счёл его чистым, но на VirusTotal через день у него уже десяток срабатываний.",
+   "В командной строке процесса на рабочей станции видна огромная строка из букв и цифр, которую склеивают по кусочкам."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/06.webp"
+ },
+ {
+  "id": "redcanary-07",
+  "deck": "redcanary",
+  "type": "initial",
+  "name_en": "RFID Theft",
+  "name_ru": "Кража RFID",
+  "desc_en": "The attackers used a Flipper Zero to copy the Radio Frequency Identification (RFID) signal from an IT employee's entry badge and gained physical access to the server room.",
+  "desc_ru": "Злоумышленники с помощью Flipper Zero скопировали RFID-сигнал (радиочастотной идентификации) с пропуска ИТ-сотрудника и получили физический доступ в серверную.",
+  "detections_en": [
+   "Physical Security Review",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "redcanary-02",
+   "39"
+  ],
+  "tools": [
+   "Flipper Zero"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "По журналу СКУД пропуск системного администратора открыл серверную в 2:40 ночи, хотя сам он утверждает, что спал дома.",
+   "Админ вспоминает, что накануне в очереди в кафе к нему вплотную стоял незнакомец с «тамагочи-дельфином» в руках."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/07.webp"
+ },
+ {
+  "id": "redcanary-08",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "Disabling Windows Defender",
+  "name_ru": "Отключение Windows Defender",
+  "desc_en": "The attackers use PowerShell commands and scripts to disable Windows Defender, enabling them to bypass file inspection controls designed to prevent malware.",
+  "desc_ru": "Злоумышленники с помощью команд и скриптов PowerShell отключают Windows Defender, чтобы обойти проверку файлов, призванную блокировать вредоносное ПО.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "34"
+  ],
+  "tools": [
+   "Cobalt Strike",
+   "BloodHound",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Консоль управления антивирусом показывает, что на нескольких серверах защита в реальном времени выключена, хотя политика её требует.",
+   "В SIEM всплыла пачка событий об изменении параметров защиты и добавлении целых дисков в исключения сканирования."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/08.webp"
+ },
+ {
+  "id": "redcanary-09",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "Process Injection",
+  "name_ru": "Внедрение в процесс",
+  "desc_en": "The attackers inject their payload into a legitimate, privileged process.",
+  "desc_ru": "Злоумышленники внедряют свою полезную нагрузку в легитимный привилегированный процесс.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "43"
+  ],
+  "tools": [
+   "Donut",
+   "Cobalt Strike",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Системный процесс, который никогда не ходит в сеть, вдруг начал устанавливать исходящие соединения.",
+   "EDR сообщает об удалённом создании потока в чужом процессе и о странице памяти с правами на запись и исполнение."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/09.webp"
+ },
+ {
+  "id": "redcanary-10",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "LSASS Credential Dump",
+  "name_ru": "Дамп учётных данных из LSASS",
+  "desc_en": "The attackers dump the contents of the Local Security Authority Subsystem Service (LSASS) process memory, gaining access to legitimate account credentials.",
+  "desc_ru": "Злоумышленники снимают дамп памяти процесса LSASS (служба проверки подлинности локальной системы безопасности Windows) и получают учётные данные легитимных пользователей.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "43",
+   "39"
+  ],
+  "tools": [
+   "Mimikatz",
+   "ProcDump",
+   "comsvcs.dll",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На файловом сервере в C:\\Windows\\Temp обнаружен файл размером около 60 МБ с расширением .dmp, созданный посреди ночи.",
+   "Учётная запись администратора домена через полчаса после этого вошла на десяток машин, где этот админ никогда не работал."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/10.webp"
+ },
+ {
+  "id": "redcanary-11",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "Application Control Bypass",
+  "name_ru": "Обход контроля приложений",
+  "desc_en": "The attackers use Rundll32 to execute malicious code while avoiding detection.",
+  "desc_ru": "Злоумышленники используют Rundll32, чтобы выполнить вредоносный код и не попасться средствам обнаружения.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "40",
+   "38"
+  ],
+  "tools": [
+   "Cobalt Strike",
+   "Metasploit",
+   "Rundll32",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Белый список приложений (AppLocker) ничего не заблокировал, но на машине выполняется код из DLL, лежащей в профиле пользователя.",
+   "Штатная системная утилита Windows запущена без аргументов и при этом держит открытое соединение к внешнему IP."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/11.webp"
+ },
+ {
+  "id": "redcanary-12",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "Read/Write With chmod 777",
+  "name_ru": "Чтение/запись через chmod 777",
+  "desc_en": "The attackers turn their attention to your *nix machines and want all the permissions! They're using misconfigured user and group permissions to run in a different user's context.",
+  "desc_ru": "Злоумышленники переключились на ваши *nix-машины и хотят все права разом! Они используют неверно настроенные права пользователей и групп, чтобы выполнять код в контексте другого пользователя.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Cyber Deception"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "39",
+   "37"
+  ],
+  "tools": [
+   "find",
+   "chmod",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На Linux-сервере у бинарника в /usr/local/bin внезапно появился бит setuid, а у каталога с конфигами — права на запись для всех.",
+   "Сервисная учётная запись веб-приложения вдруг стала обращаться к приманочному файлу с «паролями», который лежит в домашнем каталоге root."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/12.webp"
+ },
+ {
+  "id": "redcanary-13",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "PsExec Abuse",
+  "name_ru": "Злоупотребление PsExec",
+  "desc_en": "The attackers use PsExec to move laterally and gain control of additional systems.",
+  "desc_ru": "Злоумышленники используют PsExec для горизонтального перемещения и захвата новых систем.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36",
+   "34"
+  ],
+  "tools": [
+   "Net",
+   "PsExec",
+   "Atomic Red Team™",
+   "A fax machine"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На нескольких серверах одновременно появилась и тут же исчезла новая служба со случайным именем.",
+   "Мониторинг сети видит всплеск SMB-трафика с записью в административные шары ADMIN$ с одной рабочей станции на соседние."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/13.webp"
+ },
+ {
+  "id": "redcanary-14",
+  "deck": "redcanary",
+  "type": "pivot",
+  "name_en": "Lateral Tool Transfer",
+  "name_ru": "Перенос инструментов внутри сети",
+  "desc_en": "The attackers move a malicious payload from a system they initially compromised to a new host on the same network.",
+  "desc_ru": "Злоумышленники переносят вредоносную нагрузку с первой скомпрометированной системы на новый хост в той же сети.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36",
+   "34"
+  ],
+  "tools": [
+   "PsExec",
+   "PowerShell",
+   "Cobalt Strike",
+   "BITSAdmin"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Один и тот же неизвестный исполняемый файл с одинаковым хешем появился на трёх рабочих станциях с разницей в несколько минут.",
+   "Внутренний сетевой трафик показывает передачу файлов между двумя пользовательскими ПК, которые обычно друг с другом не общаются."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/14.webp"
+ },
+ {
+  "id": "redcanary-15",
+  "deck": "redcanary",
+  "type": "c2",
+  "name_en": "Authorized Remote Tools",
+  "name_ru": "Разрешённые средства удалённого доступа",
+  "desc_en": "The attackers use an authorized remote administration tool to exfiltrate confidential information.",
+  "desc_ru": "Злоумышленники используют разрешённый в компании инструмент удалённого администрирования для эксфильтрации конфиденциальной информации.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "40",
+   "36",
+   "39"
+  ],
+  "tools": [
+   "ScreenConnect",
+   "rsync",
+   "NetSupport",
+   "AnyDesk"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Техподдержка клянётся, что в выходные никто не подключался, но в журнале легитимной программы удалённой поддержки — многочасовая сессия к бухгалтерии.",
+   "Ночью с ПК финансового директора ушло несколько гигабайт на внешний адрес, и формально весь трафик принадлежит разрешённому приложению."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/15.webp"
+ },
+ {
+  "id": "redcanary-16",
+  "deck": "redcanary",
+  "type": "c2",
+  "name_en": "Cloud Services as Exfil",
+  "name_ru": "Облачные сервисы для эксфильтрации",
+  "desc_en": "The attackers hitch a ride on the application access tokens for your cloud-based resources. It's a good thing they didn't crash your Kubernetes, but not all is well; they leverage your API to exfiltrate data.",
+  "desc_ru": "Злоумышленники «прокатились» на токенах доступа приложений к вашим облачным ресурсам. Хорошо хоть Kubernetes не уронили, но радоваться рано: через ваш же API они выкачивают данные.",
+  "detections_en": [
+   "User and Entity Behavior Analytics (UEBA)",
+   "Server Analysis",
+   "Cyber Deception"
+  ],
+  "detections": [
+   "39",
+   "33",
+   "37"
+  ],
+  "tools": [
+   "AADInternals",
+   "Peirates"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сервисное приложение, которое обычно делает пару запросов в час, за ночь выполнило десятки тысяч вызовов API с нового IP-адреса.",
+   "Облачный счёт за исходящий трафик вырос в разы, при этом пароли пользователей никто не вводил и MFA не срабатывала."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/16.webp"
+ },
+ {
+  "id": "redcanary-17",
+  "deck": "redcanary",
+  "type": "c2",
+  "name_en": "Bluetooth as Exfil",
+  "name_ru": "Эксфильтрация через Bluetooth",
+  "desc_en": "The attackers knew you were watching that wired connection closely and got crafty—they exfiltrate all that valuable data via a Bluetooth-enabled device.",
+  "desc_ru": "Злоумышленники знали, что вы пристально следите за проводной сетью, и схитрили — выкачивают ценные данные через устройство с Bluetooth.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Physical Security Review"
+  ],
+  "detections": [
+   "40",
+   "redcanary-02"
+  ],
+  "tools": [
+   "Blue Pigeon"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сетевой мониторинг ничего подозрительного не видит, однако с файлового хранилища за ночь массово прочитаны документы R&D.",
+   "Охранник заметил, что в переговорной рядом с серверной уже несколько дней «забыт» чей-то телефон, подключённый к зарядке."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/17.webp"
+ },
+ {
+  "id": "redcanary-18",
+  "deck": "redcanary",
+  "type": "c2",
+  "name_en": "Malicious Access Point",
+  "name_ru": "Вредоносная точка доступа",
+  "desc_en": "The attackers hide an access point spoofing a legitimate ESSID in a plant pot in the lobby! Unsuspecting employee devices connect to it when they're nearby. This is a Machine-in-the-Middle (MitM) strategy.",
+  "desc_ru": "Злоумышленники спрятали в цветочном горшке в холле точку доступа, подделывающую легитимный ESSID (имя сети)! Устройства ничего не подозревающих сотрудников подключаются к ней, оказываясь рядом. Это классическая атака «человек посередине» (MitM).",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Physical Security Review"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36",
+   "redcanary-02"
+  ],
+  "tools": [
+   "WiFi Pineapple®"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сотрудники жалуются, что в холле корпоративный Wi-Fi стал «прыгать» и браузер выдаёт ошибки сертификатов на привычных сайтах.",
+   "Беспроводной контроллер видит две сети с одинаковым именем, но одна из них вещает с незнакомого MAC-адреса."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/18.webp"
+ },
+ {
+  "id": "redcanary-19",
+  "deck": "redcanary",
+  "type": "persist",
+  "name_en": "Event-Triggered Execution",
+  "name_ru": "Выполнение по событию",
+  "desc_en": "The attackers use a permanent WMI event subscription to execute a malicious payload anytime the user logs in.",
+  "desc_ru": "Злоумышленники используют постоянную подписку на события WMI, чтобы запускать вредоносную нагрузку при каждом входе пользователя в систему.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "33"
+  ],
+  "tools": [
+   "Cobalt Strike",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Вредоносный процесс на ноутбуке удаляли уже трижды, но после каждого входа пользователя он появляется снова.",
+   "В автозагрузке, планировщике и реестре всё чисто, но родительским процессом вредоноса оказывается системный WmiPrvSE.exe."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/19.webp"
+ },
+ {
+  "id": "redcanary-20",
+  "deck": "redcanary",
+  "type": "persist",
+  "name_en": "Scheduled Task",
+  "name_ru": "Запланированная задача",
+  "desc_en": "The attackers have made themselves immortal by using a scheduled task on a Windows system to persistently run malicious code every 30 minutes.",
+  "desc_ru": "Злоумышленники обрели бессмертие: запланированная задача в Windows запускает их вредоносный код каждые 30 минут.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "34"
+  ],
+  "tools": [
+   "Koadic",
+   "NetWire",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сетевой мониторинг фиксирует обращение к одному и тому же внешнему адресу с сервера строго каждые полчаса, как по часам.",
+   "В SIEM есть событие о создании нового объекта от имени SYSTEM с безобидным именем «GoogleUpdateCheck» на машине без Chrome."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/20.webp"
+ },
+ {
+  "id": "redcanary-21",
+  "deck": "redcanary",
+  "type": "persist",
+  "name_en": "Rename Process",
+  "name_ru": "Переименование процесса",
+  "desc_en": "The attackers change the name of a system utility to make their malicious executions look benign.",
+  "desc_ru": "Злоумышленники переименовывают системную утилиту, чтобы их вредоносные запуски выглядели безобидно.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "43"
+  ],
+  "tools": [
+   "Rundll32",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В списке процессов есть «svchost.exe», но запущен он из C:\\Users\\Public, а не из System32.",
+   "Хеш файла с невинным именем «notepad.exe» совпадает с совершенно другой системной утилитой Windows."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/21.webp"
+ },
+ {
+  "id": "redcanary-22",
+  "deck": "redcanary",
+  "type": "persist",
+  "name_en": "Spawn Web Shell",
+  "name_ru": "Запуск веб-шелла",
+  "desc_en": "The attackers abuse the Internet Information Services (IIS) worker process to install a web shell on a Windows web server.",
+  "desc_ru": "Злоумышленники используют рабочий процесс IIS (Internet Information Services) для установки веб-шелла на веб-сервер Windows.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Server Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "33",
+   "36"
+  ],
+  "tools": [
+   "Cobalt Strike",
+   "Empire",
+   "NetWire",
+   "Atomic Red Team™"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Рабочий процесс w3wp.exe на корпоративном веб-сервере порождает cmd.exe и powershell.exe.",
+   "В каталоге сайта появился новый .aspx-файл, к которому раз в несколько часов обращается один и тот же внешний IP с POST-запросами."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/redcanary/22.webp"
+ },
+ {
+  "id": "redcanary-23",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Missed Payday",
+  "name_ru": "Зарплата не пришла",
+  "desc_en": "The attackers compromise your email account, email HR, and instruct them to update your direct deposit information, routing your paycheck into a bank account they control.\n\nNOTES: Each of the Defenders must roll a D20 and the person with the lowest number has to get a night job as a bartender and must remain silent for the rest of the session.",
+  "desc_ru": "Злоумышленники взломали вашу почту, написали в HR и попросили обновить реквизиты для зарплаты — теперь она уходит на их счёт.\n\nПРИМЕЧАНИЕ: каждый из защитников бросает D20; выбросивший меньше всех устраивается барменом в ночную смену и молчит до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без механического эффекта: в одиночной игре некого отправлять в бармены.",
+  "image": "cards/redcanary/23.webp"
+ },
+ {
+  "id": "redcanary-24",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Not a Red Team",
+  "name_ru": "Это не красная команда",
+  "desc_en": "The network threat-hunting team has detected C2 beacons on multiple machines in your environment. The attackers can now install additional payloads on the affected machines.\n\nNOTES: Have the Incident Captain draw an additional Persistence Card as well as a Pivot and Escalate Card.",
+  "desc_ru": "Команда сетевого поиска угроз обнаружила C2-маячки на нескольких машинах в вашей среде. Теперь злоумышленники могут устанавливать на них дополнительные нагрузки.\n\nПРИМЕЧАНИЕ: в игру добавляются ещё одна карта закрепления и карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "persist"
+   },
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляются ещё две скрытые карты: закрепление и перемещение.",
+  "image": "cards/redcanary/24.webp"
+ },
+ {
+  "id": "redcanary-25",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Deez Registry Keyz Plz?",
+  "name_ru": "Ключики реестра, плиз?",
+  "desc_en": "A wild malicious registry key appears. The bad news: It is on 50 endpoints that are now rampant with malware. The good news: Management cares.\n\nNOTES: The Defenders get 3 additional turns to help solve the incident and a Consultant Card of their choice without rolling a D20.",
+  "desc_ru": "Появляется дикий вредоносный ключ реестра. Плохая новость: он на 50 конечных точках, и там теперь кишит малварь. Хорошая новость: руководству не всё равно.\n\nПРИМЕЧАНИЕ: защитники получают 3 дополнительных хода на расследование и карту консультанта на выбор без броска D20.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "extra_turns",
+    "count": 3
+   },
+   {
+    "op": "offer_consultant",
+    "count": 1
+   }
+  ],
+  "effect_ru": "+3 хода и консультант на ваш выбор без броска.",
+  "image": "cards/redcanary/25.webp"
+ },
+ {
+  "id": "redcanary-26",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Nuclear Test Site",
+  "name_ru": "Ядерный полигон",
+  "desc_en": "Thank goodness the Defenders are Atomic Red Team™ power users and they are prepared for all the endpoint threats.\n\nNOTES: The Defenders receive a +2 modifier on Endpoint Analysis and Endpoint Security Protection Analysis for the rest of the session.",
+  "desc_ru": "Слава богу, защитники — опытные пользователи Atomic Red Team™ и готовы к любым угрозам на конечных точках.\n\nПРИМЕЧАНИЕ: защитники получают +2 к Анализу конечных точек и Анализу средств защиты конечных точек до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": {
+     "procedures": [
+      "Endpoint Analysis",
+      "Endpoint Security Protection Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "+2 к Анализу конечных точек и Анализу средств защиты конечных точек до конца игры.",
+  "image": "cards/redcanary/26.webp"
+ },
+ {
+  "id": "redcanary-27",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Quishing",
+  "name_ru": "Квишинг",
+  "desc_en": "The local burger joint uses a QR code for its menu. How convenient! Unfortunately, a disgruntled ex-analyst knows the Defenders are regulars and put a malicious QR code over the legitimate one. Anyone who scanned it compromised their MFA device, which now needs to be wiped or replaced.\n\nNOTES: The Endpoint Security Protection Analysis card is unavailable for the next two turns.",
+  "desc_ru": "Бургерная за углом использует QR-код для меню. Как удобно! К сожалению, обиженный бывший аналитик знает, что защитники — постоянные клиенты, и наклеил поверх настоящего вредоносный QR-код. Все, кто его отсканировал, скомпрометировали своё MFA-устройство — теперь его надо сбрасывать или менять.\n\nПРИМЕЧАНИЕ: карта «Анализ средств защиты конечных точек» недоступна следующие два хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    },
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Анализ средств защиты конечных точек недоступен 2 хода.",
+  "image": "cards/redcanary/27.webp"
+ },
+ {
+  "id": "redcanary-28",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Cat on Keyboard Deletes Production Database",
+  "name_ru": "Кот на клавиатуре удалил боевую базу данных",
+  "desc_en": "Curiosity killed the database entries! A work-from-home administrator left their computer unlocked and, in an attempt to gain additional snuggles, their cat happened to spam out a mass delete on their keyboard. Oops.\n\nNOTES: Each of the Defenders must roll a D20. The first two people to roll an odd number have to go fix the database and must remain silent for the rest of the session. Even number rollers move on to finish the incident.",
+  "desc_ru": "Любопытство сгубило записи в базе! Администратор на удалёнке оставил компьютер незаблокированным, а кот, выпрашивая ласку, потоптался по клавиатуре и запустил массовое удаление. Упс.\n\nПРИМЕЧАНИЕ: каждый защитник бросает D20. Первые двое с нечётным результатом уходят чинить базу и молчат до конца сессии. Выбросившие чётное продолжают разбираться с инцидентом.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без механического эффекта: в одиночной игре некого отправлять чинить базу.",
+  "image": "cards/redcanary/28.webp"
+ },
+ {
+  "id": "redcanary-29",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Undocumented System",
+  "name_ru": "Неучтённая система",
+  "desc_en": "That asset management and discovery project probably shouldn't have been put on hold. An undocumented system was just found on the enterprise domain and we don't really know anything about it. Who knows when this thing was spun up and for what?\n\nNOTES: The machine had 200 Bitcoin from 2010. The Defenders order pizza and discuss if they're going to tell management or not.",
+  "desc_ru": "Пожалуй, проект по инвентаризации активов не стоило ставить на паузу. В корпоративном домене только что нашли неучтённую систему, о которой мы ничего не знаем. Кто, когда и зачем её поднял?\n\nПРИМЕЧАНИЕ: на машине оказалось 200 биткоинов образца 2010 года. Защитники заказывают пиццу и обсуждают, говорить ли руководству.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без механического эффекта — только пицца и муки совести.",
+  "image": "cards/redcanary/29.webp"
+ },
+ {
+  "id": "redcanary-30",
+  "deck": "redcanary",
+  "type": "inject",
+  "name_en": "Sneaky Sneaky RAT",
+  "name_ru": "Хитрый-прехитрый RAT",
+  "desc_en": "The attackers gain a foothold in the environment via remote access trojan (RAT). Now they're using it to load in external files and tools to further their reach. If this isn't under control soon, you'll have more than just RATs to worry about.\n\nNOTES: Have the Incident Captain pull another set of Attack Cards. The Defenders get five extra turns.",
+  "desc_ru": "Злоумышленники закрепились в среде через RAT (троян удалённого доступа). Теперь они подгружают через него внешние файлы и инструменты, чтобы расширить охват. Если быстро не взять это под контроль, крысы станут наименьшей из ваших проблем.\n\nПРИМЕЧАНИЕ: в игру добавляется ещё один набор карт атаки. Защитники получают пять дополнительных ходов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "set"
+   },
+   {
+    "op": "extra_turns",
+    "count": 5
+   }
+  ],
+  "effect_ru": "В игру добавляется второй полный набор из 4 скрытых атак. Вы получаете +5 ходов.",
+  "image": "cards/redcanary/30.webp"
+ },
+ {
+  "id": "redcanary-31",
+  "deck": "redcanary",
+  "type": "consultant",
+  "name_en": "Adam Mashinchi",
+  "name_ru": "Adam Mashinchi",
+  "desc_en": "The Incident Captain must reveal the C2 and Exfil Card",
+  "desc_ru": "Раскрывается карта управления и контроля (C2), эксфильтрации.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Управление продуктом",
+   "Красочные, но сомнительные метафоры",
+   "Фреймворки управления (C2)",
+   "Сомнительные скрипты и дурацкие сайты",
+   "Open-source инструменты безопасности",
+   "Приватность и шифрование"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "c2"
+   }
+  ],
+  "effect_ru": "Раскрывается карта C2 и эксфильтрации.",
+  "image": "cards/redcanary/31.webp"
+ },
+ {
+  "id": "redcanary-32",
+  "deck": "redcanary",
+  "type": "consultant",
+  "name_en": "Carrie Roberts",
+  "name_ru": "Carrie Roberts",
+  "desc_en": "The Incident Captain must reveal all cards that list Atomic Red Team™ as a tool",
+  "desc_ru": "Раскрываются все карты, где Atomic Red Team™ указан среди инструментов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Red Teaming (работа красной команды)",
+   "Операции безопасности",
+   "Эмуляция противника",
+   "Обучение"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "any"
+   }
+  ],
+  "effect_ru": "Раскрывается скрытая карта атаки (в оригинале — все с Atomic Red Team в инструментах).",
+  "image": "cards/redcanary/32.webp"
+ },
+ {
+  "id": "redcanary-33",
+  "deck": "redcanary",
+  "type": "consultant",
+  "name_en": "Mike Haag",
+  "name_ru": "Mike Haag",
+  "desc_en": "The Incident Captain must reveal all cards that list SIEM as a detection source",
+  "desc_ru": "Раскрываются все карты, где SIEM указан как источник обнаружения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Поиск угроз (threat hunting)",
+   "Атомарное тестирование",
+   "Исследование угроз",
+   "Обнаружение и реагирование",
+   "Ценитель мемов"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "any"
+   }
+  ],
+  "effect_ru": "Раскрывается скрытая карта атаки (в оригинале — все с SIEM в обнаружении).",
+  "image": "cards/redcanary/33.webp"
+ }
+]

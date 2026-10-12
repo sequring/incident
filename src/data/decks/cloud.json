@@ -1,0 +1,994 @@
+[
+ {
+  "id": "cloud-01",
+  "deck": "cloud",
+  "type": "c2",
+  "name_en": "Create Inbox Rule to Forward Emails",
+  "name_ru": "Правило пересылки почты во внешний ящик",
+  "desc_en": "The attackers create an inbox rule to automatically forward emails to an external address.",
+  "desc_ru": "Злоумышленники создают в почтовом ящике правило, которое автоматически пересылает письма на внешний адрес.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "45",
+   "44",
+   "34"
+  ],
+  "tools": [
+   "Ruler"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Партнёр позвонил финдиректору и удивился, откуда посторонний человек в курсе деталей их переписки по контракту — хотя письма никто никуда не пересылал вручную.",
+   "Почтовый шлюз фиксирует, что из ящика одного руководителя каждое входящее письмо через пару секунд уходит копией на бесплатный ящик на gmail.com."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/01.webp"
+ },
+ {
+  "id": "cloud-02",
+  "deck": "cloud",
+  "type": "c2",
+  "name_en": "Malicious Serverless Function",
+  "name_ru": "Вредоносная бессерверная функция",
+  "desc_en": "The attackers create a malicious serverless function that automatically posts any files uploaded to a cloud storage service to an attacker-controlled system.",
+  "desc_ru": "Злоумышленники создают вредоносную бессерверную функцию (serverless, например AWS Lambda или Azure Functions), которая автоматически отправляет каждый файл, загруженный в облачное хранилище, на подконтрольную им систему.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "39",
+   "36"
+  ],
+  "tools": [
+   "Cloud-Specific Command Line Tools"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В облачном счёте появилась новая строка: сотни тысяч коротких запусков вычислений, привязанных к событиям загрузки в хранилище, — хотя разработчики ничего такого не деплоили.",
+   "Сразу после каждой загрузки отчёта в хранилище из облака уходит исходящее HTTPS-соединение примерно того же объёма на незнакомый IP-адрес у хостинг-провайдера."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/02.webp"
+ },
+ {
+  "id": "cloud-03",
+  "deck": "cloud",
+  "type": "c2",
+  "name_en": "Virtual Machine Access via Web Portal",
+  "name_ru": "Доступ к виртуальным машинам через веб-портал",
+  "desc_en": "The attackers log in to the cloud web portal directly to interact with your virtual machines.",
+  "desc_ru": "Злоумышленники входят прямо в веб-консоль облачного провайдера и работают с вашими виртуальными машинами оттуда.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Cloud Web Portal"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Администратор заметил, что у продакшен-ВМ ночью кто-то запускал команды через встроенную браузерную консоль, хотя команда всегда ходит туда только по SSH через бастион.",
+   "Учётная запись инженера, который сейчас в отпуске, в 03:00 вошла в облачную консоль из другой страны и открыла страницы нескольких виртуальных машин."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/03.webp"
+ },
+ {
+  "id": "cloud-04",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Cloud Service Password Spray",
+  "name_ru": "Распыление паролей по облачному сервису",
+  "desc_en": "The attackers gained access to an employee's cloud account by spraying commonly used passwords (like SeasonYear!) against your organization. An example would be an attack against Microsoft Azure Active Directory users.",
+  "desc_ru": "Злоумышленники получили доступ к облачной учётной записи сотрудника, перебирая популярные пароли (вроде «Осень2024!») сразу по всем пользователям организации (password spraying — «распыление паролей»). Пример — атака на пользователей Microsoft Azure Active Directory.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Cyber Deception",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "37",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "SprayingToolkit",
+   "Hydra",
+   "BruteLoops",
+   "FireProx",
+   "MailSniper",
+   "MSOLSpray"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журнале входов Azure AD за ночь — по одной-две неудачные попытки почти для каждой учётной записи компании, с десятков разных IP-адресов облачных провайдеров.",
+   "Одна из этих попыток для бухгалтера закончилась успешным входом, а сама бухгалтер утром клянётся, что ночью спала."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/04.webp"
+ },
+ {
+  "id": "cloud-05",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Cloud Service Provider Vulnerability",
+  "name_ru": "Уязвимость облачного провайдера",
+  "desc_en": "A vulnerability has been discovered in a cloud service provider. The attackers found a path to escape customer segmentation boundaries within a service and gained access to your resources.",
+  "desc_ru": "В облачном сервисе провайдера обнаружена уязвимость. Злоумышленники нашли способ выйти за границы изоляции клиентов внутри сервиса и получили доступ к вашим ресурсам.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Firewall Log Review",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "44",
+   "35",
+   "36"
+  ],
+  "tools": [
+   "Cloud APIs and CLI tools"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В облачных журналах видны обращения к вашим ресурсам от служебного субъекта, которого нет ни в одной вашей учётной записи, — похоже, это внутренний идентификатор самого провайдера.",
+   "Ваша база данных принимает соединения с адресов из диапазона провайдера, хотя ни одно ваше приложение туда не ходит; а в новостях пишут о проблемах у этого провайдера."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/05.webp"
+ },
+ {
+  "id": "cloud-06",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Credentials Posted Publicly in a Code Repository",
+  "name_ru": "Учётные данные в публичном репозитории кода",
+  "desc_en": "The attackers discovered access keys or user credentials in a public code repository and leveraged them to authenticate to your environment.",
+  "desc_ru": "Злоумышленники нашли ключи доступа или учётные данные пользователя в публичном репозитории кода и с их помощью аутентифицировались в вашей среде.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Gitleaks",
+   "TruffleHog",
+   "Gitrob"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Ключ доступа сервисной учётной записи CI/CD, которая обычно работает только из вашего сборочного контура, вдруг начал выполнять API-вызовы с IP-адресов VPS-хостинга.",
+   "Пришло письмо от исследователя по программе bug bounty: «Посмотрите внимательнее на историю коммитов одного из ваших open-source проектов»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/06.webp"
+ },
+ {
+  "id": "cloud-07",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Malicious OAuth Application",
+  "name_ru": "Вредоносное OAuth-приложение",
+  "desc_en": "The attackers tricked a user into allowing an OAuth application to have permissions in their account. This granted them access to user resources like email, chat, and files.",
+  "desc_ru": "Злоумышленники обманом убедили пользователя выдать OAuth-приложению разрешения в его учётной записи. Это дало им доступ к ресурсам пользователя: почте, чатам и файлам.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "45",
+   "44",
+   "34"
+  ],
+  "tools": [
+   "O365 Attack Toolkit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сотрудница отдела продаж вспомнила, что вчера по ссылке из письма нажала «Принять» в окне Microsoft с запросом прав для приложения «Document Viewer Pro».",
+   "В журнале аудита Microsoft 365 стороннее приложение без издателя массово читает почту и файлы OneDrive одного пользователя, хотя сам он в этот момент офлайн."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/07.webp"
+ },
+ {
+  "id": "cloud-08",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Misconfigured MFA",
+  "name_ru": "Ошибки в настройке MFA",
+  "desc_en": "The organization deployed multi-factor authentication (MFA) across cloud services. However, they misconfigured certain protocols that allowed the attackers to authenticate with a single factor.",
+  "desc_ru": "Организация внедрила многофакторную аутентификацию (MFA) во всех облачных сервисах, однако неправильно настроила некоторые протоколы, и это позволило злоумышленникам войти, используя только один фактор.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "MFASweep"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журнале входов видны успешные аутентификации пользователя с иностранного IP без единого запроса второго фактора — хотя в веб-интерфейсе ему MFA приходит всегда.",
+   "Успешные входы идут через устаревшие клиенты (IMAP/EWS/ActiveSync), которыми в компании давно никто не пользуется."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/08.webp"
+ },
+ {
+  "id": "cloud-09",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Public Storage Bucket Exposed",
+  "name_ru": "Открытое облачное хранилище (bucket)",
+  "desc_en": "A cloud storage service was misconfigured to allow public access. The attackers used credentials stored in the leaked files to authenticate to your environment.",
+  "desc_ru": "Облачное хранилище было неправильно настроено и открыто для публичного доступа. Злоумышленники воспользовались учётными данными из утёкших файлов, чтобы войти в вашу среду.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "45",
+   "44",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "AWSBucketDump",
+   "cloud_enum",
+   "MicroBurst"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журналах доступа к хранилищу — тысячи анонимных GET-запросов к старым бэкапам и конфигурационным файлам с неизвестных адресов.",
+   "Через день после этого сервисная учётная запись, пароль которой хранился в одном из конфигов, вошла в облако с того же IP-адреса."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/09.webp"
+ },
+ {
+  "id": "cloud-10",
+  "deck": "cloud",
+  "type": "initial",
+  "name_en": "Out-of-Band Phish",
+  "name_ru": "Фишинг в обход почты",
+  "desc_en": "Instead of phishing via traditional means, the attackers were able to harvest credentials by sending malicious links through cloud services such as direct messaging, social media, or calendar event injection that your users clicked.",
+  "desc_ru": "Вместо привычной фишинговой рассылки злоумышленники собрали учётные данные, отправляя вредоносные ссылки через облачные сервисы — личные сообщения в мессенджерах, соцсети или подброшенные приглашения в календарь, — и пользователи по ним перешли.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "38",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Direct Messages via Chat Apps like Microsoft Teams or LinkedIn",
+   "Text Messaging",
+   "Calendar Event Injection",
+   "Modlishka",
+   "Evilginx"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Несколько сотрудников получили в Teams сообщение от «внешнего» пользователя «IT Support» со ссылкой «срочно подтвердить учётную запись»; почтовый фильтр при этом ничего не поймал.",
+   "У троих пользователей в календаре сама собой появилась встреча «Пересмотр зарплат» со ссылкой на страницу входа, а вскоре их сессии были использованы с чужого IP."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/10.webp"
+ },
+ {
+  "id": "cloud-11",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "AI Hacked Into Your Cloud Accounts",
+  "name_ru": "ИИ взломал ваши облачные учётки",
+  "desc_en": "You offended the sentient AI because you thought it was funny to tease it. Ask your AI chatbot of choice to determine if your Procedures work or not. No more die-rolling for your team. AI has your job now. AI is now overlord. Long live AI.",
+  "desc_ru": "Вы обидели разумный ИИ, потому что вам показалось смешным его подразнить. Теперь пусть ваш любимый ИИ-чатбот решает, сработали ваши процедуры или нет. Никаких больше бросков кубика. ИИ занял вашу должность. ИИ — ваш повелитель. Да здравствует ИИ!",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Шуточная вводная без игрового эффекта: броски по-прежнему делает компьютер.",
+  "image": "cards/cloud/11.webp"
+ },
+ {
+  "id": "cloud-12",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Cloud Provider Disabled Vulnerable Functionality",
+  "name_ru": "Провайдер отключил уязвимую функциональность",
+  "desc_en": "Your cloud provider disabled old legacy protocols, thereby making authentication to your environment more secure. Less attack surface is good, but it means that you have to ensure that legacy applications and functions are still working correctly. The Defenders receive a +2 modifier on all cloud-related Procedures for the rest of the session.",
+  "desc_ru": "Облачный провайдер отключил старые унаследованные протоколы, и аутентификация в вашей среде стала безопаснее. Меньше поверхность атаки — это хорошо, но теперь придётся проверить, что legacy-приложения и функции всё ещё работают. Защитники получают +2 ко всем облачным процедурам до конца игры.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": {
+     "procedures": [
+      "Cloud Event Log Analysis",
+      "Permissions Audit"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "+2 к «Анализ облачных журналов» и «Аудит прав доступа» до конца игры.",
+  "image": "cards/cloud/12.webp"
+ },
+ {
+  "id": "cloud-13",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Cloud Bill Due",
+  "name_ru": "Пришёл счёт за облако",
+  "desc_en": "It's time to pay up for your cloud provider services. You find that someone left too many resources running, resulting in sky-high costs. The Defenders lose capital in their budget. To determine how much they've lost, they must roll a D20: (1-10) means the team must decide which (2) Procedure Cards to disable for the next three turns. (11-20) means the team must decide which (1) Procedure Card to disable for the next two turns.",
+  "desc_ru": "Пора платить облачному провайдеру. Выясняется, что кто-то оставил запущенной кучу ресурсов, и счёт улетел в небеса. Защитники теряют часть бюджета. Чтобы понять, сколько именно, бросьте D20: (1–10) — команда сама выбирает 2 карты процедур, которые отключаются на 3 хода; (11–20) — команда выбирает 1 карту процедуры, которая отключается на 2 хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "roll_check",
+    "success_at": 11,
+    "on_success": [
+     {
+      "op": "remove_procedure",
+      "count": 1,
+      "which": "random",
+      "turns": 2
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "remove_procedure",
+      "count": 2,
+      "which": "random",
+      "turns": 3
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20: 11+ — одна процедура недоступна 2 хода; 1–10 — две процедуры недоступны 3 хода.",
+  "image": "cards/cloud/13.webp"
+ },
+ {
+  "id": "cloud-14",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Cloud Security Training",
+  "name_ru": "Обучение облачной безопасности",
+  "desc_en": "The Defenders attended cloud security training, where they learned about the latest threats to cloud environments. Yay! You're taking active steps to better your team. This has helped your organization understand threats and defend your assets better. The Incident Captain must reveal any attack card that is cloud related.",
+  "desc_ru": "Защитники прошли обучение по облачной безопасности и узнали о свежих угрозах для облачных сред. Ура! Вы активно прокачиваете команду — организация лучше понимает угрозы и лучше защищает активы. Раскрывается любая карта атаки, связанная с облаком.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "any"
+   }
+  ],
+  "effect_ru": "Раскрывается одна скрытая карта атаки.",
+  "image": "cards/cloud/14.webp"
+ },
+ {
+  "id": "cloud-15",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Cryptominer",
+  "name_ru": "Криптомайнер",
+  "desc_en": "The attackers have compromised your cloud account and spun up hundreds of virtual machines with cryptominers running on them. You're lucky that's all they did... or is it? The Defenders lose capital in their budget and must decide as a team which Procedure Card to disable for the rest of the session.",
+  "desc_ru": "Злоумышленники взломали ваш облачный аккаунт и подняли сотни виртуальных машин с криптомайнерами. Повезло, что этим всё и ограничилось… или нет? Защитники теряют часть бюджета и должны сообща выбрать одну карту процедуры, которая отключается до конца игры.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": "random"
+   }
+  ],
+  "effect_ru": "Одна случайная процедура отключена до конца игры.",
+  "image": "cards/cloud/15.webp"
+ },
+ {
+  "id": "cloud-16",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Dangling Domains",
+  "name_ru": "«Висячие» домены",
+  "desc_en": "One of your domains has been hijacked to host malware because a DNS entry was not removed after deleting a resource that it was pointed at. Your website is spewing malware to all visitors. The Defenders must play their Crisis Management procedure. If they are successful, they can move past this issue. If they aren't, they lose their most senior incident handler for the rest of the session as they speak to \"management.\"",
+  "desc_ru": "Один из ваших доменов захватили и раздают с него вредонос: после удаления ресурса никто не убрал указывавшую на него DNS-запись (dangling DNS). Ваш сайт осыпает малварью всех посетителей. Защитники обязаны применить процедуру «Кризисное управление». При успехе — инцидент исчерпан. При провале они до конца игры лишаются самого опытного специалиста по реагированию: он ушёл объясняться с «руководством».",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "force_procedure",
+    "procedure": "Crisis Management",
+    "on_fail": [
+     {
+      "op": "modifier",
+      "value": -1,
+      "target": "all"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Обязательно «Кризисное управление»; при провале −1 ко всем проверкам до конца игры.",
+  "image": "cards/cloud/16.webp"
+ },
+ {
+  "id": "cloud-17",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Exposed Cloud Access Keys During Public Presentation",
+  "name_ru": "Облачные ключи засветились на публичном докладе",
+  "desc_en": "One of your IT staff just gave an amazing presentation demoing an epic new open-source tool but forgot to redact live cloud access keys. Members of the audience quickly logged in and accessed your company resources. Accidents happen, but what do you do when someone exposes your organization inadvertently? The Incident Captain must draw an additional Pivot and Escalate card.",
+  "desc_ru": "Ваш ИТ-специалист блестяще выступил с демонстрацией крутого нового open-source инструмента, но забыл замазать на слайдах действующие облачные ключи доступа. Слушатели тут же зашли и добрались до ресурсов компании. Всякое бывает — но что делать, когда кто-то нечаянно подставил организацию? В игру добавляется ещё одна карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта повышения привилегий и перемещения.",
+  "image": "cards/cloud/17.webp"
+ },
+ {
+  "id": "cloud-18",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "I'm Not the Cloud Person",
+  "name_ru": "Я не по облакам",
+  "desc_en": "No one on your staff knows anything about cloud security. Seriously, you faked your resumes. Each of the Defenders must roll a D20 and the person with the lowest number will handle the next three turns by themselves while the others study up on cloud security.",
+  "desc_ru": "Никто в вашей команде ничего не смыслит в облачной безопасности. Серьёзно, вы приукрасили резюме. Каждый защитник бросает D20; тот, у кого выпало меньше всех, следующие три хода отдувается в одиночку, пока остальные зубрят облачную безопасность.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "Помеха на 3 хода: бросаются 2d20, берётся меньший результат.",
+  "image": "cards/cloud/18.webp"
+ },
+ {
+  "id": "cloud-19",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Regional Cloud Provider Data Center Outage",
+  "name_ru": "Авария в региональном ЦОД провайдера",
+  "desc_en": "Cloud providers use specific geographic regions to group real-world devices in datacenters. The region where your cloud resources are located is currently undergoing an unplanned outage. No cloud for you! Cloud Event Log Analysis and Permissions Audit procedures are unavailable for the next three turns.",
+  "desc_ru": "Облачные провайдеры группируют физическое оборудование в дата-центрах по географическим регионам. В регионе, где размещены ваши облачные ресурсы, сейчас незапланированный сбой. Облака не будет! Процедуры «Анализ облачных журналов» и «Аудит прав доступа» недоступны следующие три хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 2,
+    "which": {
+     "procedures": [
+      "Cloud Event Log Analysis",
+      "Permissions Audit"
+     ]
+    },
+    "turns": 3
+   }
+  ],
+  "effect_ru": "«Анализ облачных журналов» и «Аудит прав доступа» недоступны 3 хода.",
+  "image": "cards/cloud/19.webp"
+ },
+ {
+  "id": "cloud-20",
+  "deck": "cloud",
+  "type": "inject",
+  "name_en": "Third-Party Code Library Compromised",
+  "name_ru": "Скомпрометирована сторонняя библиотека",
+  "desc_en": "Your favorite infosec podcast (BHIS?) reported that your source code contains a third-party library that has been compromised to include malware. Since you have included this library as a dependency in your code, it is now running malicious commands on systems where it is implemented. The Defenders must play their Crisis Management procedure. If they are successful, they can move past this issue. If they aren't, they receive a -2 modifier on all procedures for the rest of the session.",
+  "desc_ru": "Ваш любимый ИБ-подкаст (BHIS?) сообщил, что в вашем коде есть сторонняя библиотека, в которую внедрили вредонос. Раз она подключена как зависимость, теперь она выполняет вредоносные команды везде, где развёрнута. Защитники обязаны применить процедуру «Кризисное управление». При успехе — инцидент исчерпан. При провале — −2 ко всем процедурам до конца игры.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "force_procedure",
+    "procedure": "Crisis Management",
+    "on_fail": [
+     {
+      "op": "modifier",
+      "value": -2,
+      "target": "all"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Обязательно «Кризисное управление»; при провале −2 ко всем проверкам до конца игры.",
+  "image": "cards/cloud/20.webp"
+ },
+ {
+  "id": "cloud-21",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Query of Cloud APIs",
+  "name_ru": "Опрос облачных API",
+  "desc_en": "The attackers run automated tools that authenticate to the cloud APIs. These tools collect verbose user and group information to determine the next point of attack.",
+  "desc_ru": "Злоумышленники запускают автоматизированные инструменты, которые аутентифицируются в облачных API и собирают подробные сведения о пользователях и группах, чтобы выбрать следующую цель атаки.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Cyber Deception",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "37",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "ROADtools",
+   "ScoutSuite",
+   "AzureHound",
+   "Prowler"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись менеджера по продажам за десять минут сделала десятки тысяч запросов к Microsoft Graph: списки всех пользователей, групп, ролей и приложений.",
+   "Срабатывает приманка: кто-то прочитал атрибуты фиктивной учётной записи «svc-backup-admin», о которой знает только SOC."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/21.webp"
+ },
+ {
+  "id": "cloud-22",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Credentials Exposed in Environment Variables",
+  "name_ru": "Учётные данные в переменных окружения",
+  "desc_en": "The attackers discover credentials that are hardcoded in environment variables for serverless functions or virtual machine instances.",
+  "desc_ru": "Злоумышленники находят учётные данные, жёстко прописанные в переменных окружения бессерверных функций или виртуальных машин.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Cyber Deception",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "37",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "env"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись с правами только на чтение запросила конфигурацию всех бессерверных функций в аккаунте, хотя раньше к ним вообще не обращалась.",
+   "Пароль от базы данных, который знает только одно приложение, внезапно используется для входа с рабочей станции, не относящейся к этому приложению."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/22.webp"
+ },
+ {
+  "id": "cloud-23",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Credential Store Compromise",
+  "name_ru": "Компрометация хранилища секретов",
+  "desc_en": "The attackers gain access to a cloud-hosted credential store containing various user and application credentials via a permissions misconfiguration.",
+  "desc_ru": "Используя ошибку в настройке прав, злоумышленники получают доступ к облачному хранилищу секретов (например, Azure Key Vault или AWS Secrets Manager) с учётными данными пользователей и приложений.",
+  "detections_en": [
+   "Permissions Audit",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "45",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Microburst"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись стажёра за минуту прочитала десятки секретов из облачного хранилища ключей — раньше она туда не заходила ни разу.",
+   "В течение часа после этого несколько сервисных учётных записей разных приложений начали входить с одного и того же незнакомого IP."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/23.webp"
+ },
+ {
+  "id": "cloud-24",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Instance Metadata Service Access",
+  "name_ru": "Доступ к сервису метаданных инстанса",
+  "desc_en": "The attackers exploit server-side request forgery (SSRF) on a cloud-hosted webapp to gain access to the Instance Metadata Service (IMDS). This ultimately allows them to gain temporary security credentials they use to pivot in your cloud environment.",
+  "desc_ru": "Злоумышленники эксплуатируют подделку серверных запросов (SSRF) в веб-приложении, размещённом в облаке, и получают доступ к сервису метаданных инстанса (IMDS). Так они добывают временные учётные данные, с которыми продвигаются по вашей облачной среде.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Firewall Log Review",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "35",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "curl",
+   "wget",
+   "env",
+   "Web Browser"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В логах веб-сервера — запросы с параметром url=, в которых фигурирует адрес 169.254.169.254.",
+   "Временные ключи роли, выданные веб-серверу, используются для API-вызовов с внешнего IP, а не с самого инстанса."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/24.webp"
+ },
+ {
+  "id": "cloud-25",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Malicious File Upload to Shared File Service",
+  "name_ru": "Вредоносный файл в общем файловом сервисе",
+  "desc_en": "The attackers upload a file to a shared file storage service that is accessible by all employees. Interacting with this file allows it to perform malicious activities.",
+  "desc_ru": "Злоумышленники загружают файл в общий файловый сервис, доступный всем сотрудникам. Стоит открыть или как-то взаимодействовать с этим файлом — и он выполняет вредоносные действия.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "43",
+   "34"
+  ],
+  "tools": [
+   "SharePoint"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В общей папке «Для всех сотрудников» появился документ «График отпусков 2025» с ярлыком, и несколько человек жалуются, что он «не открывается».",
+   "Антивирус на нескольких рабочих станциях почти одновременно поднял алерты на подозрительный процесс, запущенный из каталога синхронизации OneDrive/SharePoint."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/25.webp"
+ },
+ {
+  "id": "cloud-26",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Identity and Access Management (IAM) Policy Abuse",
+  "name_ru": "Злоупотребление политиками IAM",
+  "desc_en": "The attackers discover that policies enforced for certain roles and resources allow them to escalate privileges within the cloud account.",
+  "desc_ru": "Злоумышленники обнаруживают, что политики, назначенные некоторым ролям и ресурсам, позволяют им повысить привилегии в облачном аккаунте.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cyber Deception",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "45",
+   "37",
+   "39"
+  ],
+  "tools": [
+   "Pacu",
+   "AzureHound"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись разработчика сама себе прикрепила новую версию политики и через минуту выполнила действия, доступные только администраторам.",
+   "Кто-то попытался воспользоваться ролью-приманкой «admin-legacy-break-glass», которую SOC оставил специально для ловли любопытных."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/26.webp"
+ },
+ {
+  "id": "cloud-27",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Misconfigured Container Image Compromise",
+  "name_ru": "Компрометация через неправильно настроенный образ контейнера",
+  "desc_en": "A remote code execution (RCE) vulnerability is discovered in the implementation of virtual instances such as container images. The attackers compromise credentials after exploiting the issue, allowing them to pivot to additional resources.",
+  "desc_ru": "В реализации виртуальных инстансов, например образов контейнеров, обнаружена уязвимость удалённого выполнения кода (RCE). Проэксплуатировав её, злоумышленники крадут учётные данные и продвигаются к другим ресурсам.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "36",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Pacu"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Контейнер с публичным веб-сервисом начал устанавливать исходящие соединения на нестандартный порт к незнакомому хосту, хотя ему нужен только доступ к базе.",
+   "Управляемая идентичность этого контейнера вдруг начала перечислять хранилища и подписки, к которым её приложение никогда не обращалось."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/27.webp"
+ },
+ {
+  "id": "cloud-28",
+  "deck": "cloud",
+  "type": "pivot",
+  "name_en": "Search and Pillage Emails",
+  "name_ru": "Поиск и разграбление почты",
+  "desc_en": "The attackers search through a user's inbox for sensitive items like \"passwords,\" \"secrets,\" \"certificates,\" etc. They find credentials that allow them to access other services such as applications or VPNs.",
+  "desc_ru": "Злоумышленники ищут в почтовом ящике пользователя чувствительные данные по словам вроде «пароли», «секреты», «сертификаты» и т. п. и находят учётные данные для доступа к другим сервисам — приложениям или VPN.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "39"
+  ],
+  "tools": [
+   "MailSniper"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал аудита почты показывает сотни поисковых запросов в ящике одного сотрудника за несколько минут — по словам «password», «vpn», «пароль».",
+   "Через пару часов к VPN подключился тот же сотрудник, но с IP-адреса, с которого он никогда не работал, и в нерабочее время."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/28.webp"
+ },
+ {
+  "id": "cloud-29",
+  "deck": "cloud",
+  "type": "persist",
+  "name_en": "Backdoored Container Image",
+  "name_ru": "Образ контейнера с бэкдором",
+  "desc_en": "The attackers modify a container image to include malicious code that gets executed every time it is run.",
+  "desc_ru": "Злоумышленники модифицируют образ контейнера, добавляя в него вредоносный код, который выполняется при каждом запуске.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cloud Event Log Analysis",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "45",
+   "44",
+   "40"
+  ],
+  "tools": [
+   "CCAT",
+   "Pacu"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В реестре контейнеров тег latest для основного образа сервиса перезаписан ночью, хотя пайплайн сборки в это время не запускался.",
+   "После каждого перезапуска пода в нём появляется лишний процесс, который сразу стучится на внешний адрес."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/29.webp"
+ },
+ {
+  "id": "cloud-30",
+  "deck": "cloud",
+  "type": "persist",
+  "name_en": "Cross-Tenant Access",
+  "name_ru": "Межтенантный доступ",
+  "desc_en": "The attackers leverage role policies to provide access to an outside tenant, allowing them to assume a role in your tenant.",
+  "desc_ru": "Злоумышленники изменяют политики ролей так, чтобы открыть доступ внешнему тенанту и получать роль в вашем тенанте.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cloud Event Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "45",
+   "44",
+   "39"
+  ],
+  "tools": [
+   "Cloud-Specific Command Line Tools"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В политике доверия одной из ролей появился идентификатор чужого облачного аккаунта, о котором никто в компании не слышал.",
+   "В облачных журналах регулярно фиксируется принятие роли субъектом из внешнего аккаунта — даже после смены паролей у всех пользователей."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/30.webp"
+ },
+ {
+  "id": "cloud-31",
+  "deck": "cloud",
+  "type": "persist",
+  "name_en": "MFA Bypass: App Password Creation",
+  "name_ru": "Обход MFA: создание пароля приложения",
+  "desc_en": "The attackers create an app password for a compromised account, allowing them to maintain access without multi-factor authentication (MFA).",
+  "desc_ru": "Злоумышленники создают пароль приложения (app password) для скомпрометированной учётной записи и сохраняют доступ без многофакторной аутентификации (MFA).",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "39"
+  ],
+  "tools": [
+   "Web Browser"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Пользователю сбросили пароль после инцидента, но в его ящик по-прежнему кто-то входит через старый почтовый клиент без запроса второго фактора.",
+   "В журнале аудита у этой учётной записи — запись о регистрации нового метода аутентификации, которую сам сотрудник не делал."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/31.webp"
+ },
+ {
+  "id": "cloud-32",
+  "deck": "cloud",
+  "type": "persist",
+  "name_en": "Secondary Access Key Creation",
+  "name_ru": "Создание второго ключа доступа",
+  "desc_en": "The attackers create a second set of access keys for a user, allowing them to authenticate without their primary credentials.",
+  "desc_ru": "Злоумышленники создают пользователю второй набор ключей доступа и аутентифицируются, не используя его основные учётные данные.",
+  "detections_en": [
+   "Permissions Audit",
+   "Cloud Event Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "45",
+   "44",
+   "39"
+  ],
+  "tools": [
+   "Pacu",
+   "Cloud-Specific Command Line Tools"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "У сервисного пользователя в облаке теперь два активных ключа доступа, хотя по регламенту ротации он всегда один.",
+   "После отзыва скомпрометированного ключа API-вызовы от имени того же пользователя продолжаются с тех же адресов."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/32.webp"
+ },
+ {
+  "id": "cloud-33",
+  "deck": "cloud",
+  "type": "procedure",
+  "name_en": "Cloud Event Log Analysis",
+  "name_ru": "Анализ облачных журналов",
+  "desc_en": "Are you missing what should be in your cloud logs? Do you even know what cloud provider logs you need in an incident response situation? There are thousands of data connectors in your cloud service provider. Have any of them changed since the last time you reviewed them? Good luck hunting for a specific needle in a stack of needles.",
+  "desc_ru": "Защитники анализируют журналы облачного провайдера (аудит API, входы, изменения ресурсов). А всё ли нужное у вас вообще пишется? Знаете ли вы, какие журналы провайдера понадобятся при реагировании на инцидент? У провайдера тысячи коннекторов данных — менялось ли что-то с последней проверки? Удачи в поисках конкретной иголки в стоге иголок.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Check with your cloud provider and see what tools they provide. It's ok, you're paying them a ton of money for all this."
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/33.webp"
+ },
+ {
+  "id": "cloud-34",
+  "deck": "cloud",
+  "type": "procedure",
+  "name_en": "Permissions Audit",
+  "name_ru": "Аудит прав доступа",
+  "desc_en": "Users can have everything by default... which makes your organization vulnerable by design. Who gets to do what and why? Who is the magical unicorn that gets the exceptions? Are permissions open for convienence? When was the last time you fixed something a security audit didn't make you do? You can be the decider if you want--the power is yours!",
+  "desc_ru": "Защитники проверяют, у кого какие права в облаке и почему. По умолчанию пользователям часто доступно всё — организация уязвима by design. Кому что можно и зачем? Кто тот волшебный единорог, которому положены исключения? Не открыты ли права «для удобства»? Когда вы последний раз что-то исправили без указки аудиторов? Решать вам — власть в ваших руках!",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "ROADtools",
+   "ScoutSuite",
+   "AzureHound",
+   "Prowler"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/cloud/34.webp"
+ }
+]

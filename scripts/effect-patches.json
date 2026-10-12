@@ -1,0 +1,300 @@
+{
+ "cloud-13": {
+  "effects": [
+   {
+    "op": "roll_check",
+    "success_at": 11,
+    "on_success": [
+     {
+      "op": "remove_procedure",
+      "count": 1,
+      "which": "random",
+      "turns": 2
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "remove_procedure",
+      "count": 2,
+      "which": "random",
+      "turns": 3
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20: 11+ — одна процедура недоступна 2 хода; 1–10 — две процедуры недоступны 3 хода."
+ },
+ "cloud-17": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта повышения привилегий и перемещения."
+ },
+ "datadog-33": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта повышения привилегий и перемещения."
+ },
+ "coop-24": {
+  "effects": [
+   {
+    "op": "roll_check",
+    "success_at": 11,
+    "on_success": [
+     {
+      "op": "reveal_attack",
+      "category": "persist"
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "skip_turns",
+      "count": 2
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20: 11+ — раскрывается карта закрепления; 1–10 — вы теряете два хода."
+ },
+ "densecure-27": {
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Связь лежит: 2 хода бросаете 2d20 и берёте худший."
+ },
+ "densecure-30": {
+  "effects": [
+   {
+    "op": "disadvantage",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "Вы застряли в пробке: 3 хода бросаете 2d20 и берёте худший."
+ },
+ "expansion-19": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта закрепления."
+ },
+ "expansion-23": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "set"
+   },
+   {
+    "op": "extra_turns",
+    "count": 5
+   }
+  ],
+  "effect_ru": "В игру добавляется второй полный набор из 4 скрытых атак. Вы получаете +5 ходов."
+ },
+ "expansion-24": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта первоначального доступа."
+ },
+ "expansion-36": {
+  "effects": [
+   {
+    "op": "offer_consultant",
+    "count": 2
+   }
+  ],
+  "effect_ru": "Вы выбираете ещё двух консультантов."
+ },
+ "expansion-39": {
+  "effects": [
+   {
+    "op": "reveal_detected_by",
+    "procedure": "User and Entity Behavior Analytics (UEBA)",
+    "all": true
+   }
+  ],
+  "effect_ru": "Раскрываются все скрытые атаки, которые ловит поведенческая аналитика (UEBA)."
+ },
+ "expansion-40": {
+  "effects": [
+   {
+    "op": "inject_shield",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Следующая вводная будет отменена."
+ },
+ "huntress-15": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта первоначального доступа."
+ },
+ "huntress-20": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта повышения привилегий и перемещения."
+ },
+ "huntress-21": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта закрепления."
+ },
+ "huntress-23": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "c2"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта C2 и эксфильтрации."
+ },
+ "huntress-24": {
+  "effects": [
+   {
+    "op": "offer_consultant",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Вы выбираете консультанта без броска."
+ },
+ "huntress-26": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   },
+   {
+    "op": "add_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "В игру добавляются ещё две скрытые карты: перемещение и закрепление."
+ },
+ "redcanary-24": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "persist"
+   },
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляются ещё две скрытые карты: закрепление и перемещение."
+ },
+ "redcanary-25": {
+  "effects": [
+   {
+    "op": "extra_turns",
+    "count": 3
+   },
+   {
+    "op": "offer_consultant",
+    "count": 1
+   }
+  ],
+  "effect_ru": "+3 хода и консультант на ваш выбор без броска."
+ },
+ "redcanary-30": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "set"
+   },
+   {
+    "op": "extra_turns",
+    "count": 5
+   }
+  ],
+  "effect_ru": "В игру добавляется второй полный набор из 4 скрытых атак. Вы получаете +5 ходов."
+ },
+ "trimarc-24": {
+  "effects": [
+   {
+    "op": "roll_check",
+    "parity": "even",
+    "on_success": [
+     {
+      "op": "reveal_attack",
+      "category": "initial"
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "add_attack",
+      "category": "persist"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20: чёт — раскрывается первоначальный доступ; нечёт — добавляется ещё одна скрытая карта закрепления."
+ },
+ "trimarc-25": {
+  "effects": [
+   {
+    "op": "roll_check",
+    "success_at": 11,
+    "on_success": [
+     {
+      "op": "reveal_attack",
+      "category": "pivot"
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "add_attack",
+      "category": "pivot"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20 (смогли ли вы объяснить, что такое LAPS): 11+ — раскрывается перемещение; 1–10 — добавляется ещё одна скрытая карта перемещения."
+ },
+ "trimarc-28": {
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта первоначального доступа."
+ },
+ "trimarc-33": {
+  "effects": [
+   {
+    "op": "offer_consultant",
+    "count": 2
+   }
+  ],
+  "effect_ru": "Вы выбираете ещё двух консультантов."
+ }
+}

@@ -1,0 +1,893 @@
+[
+ {
+  "id": "huntress-01",
+  "deck": "huntress",
+  "type": "procedure",
+  "name_en": "Call a Consultant",
+  "name_ru": "Вызов консультанта",
+  "desc_en": "Do you want help? Feeling stuck? Rolling badly? Need a different perspective on the incident? Then maybe it's time to phone a friend. You can choose one Consultant Card to help your team with the incident. The Consultant Card's modifier is effective immediately.",
+  "desc_ru": "Нужна помощь? Зашли в тупик? Кубик не идёт? Нужен свежий взгляд на инцидент? Возможно, пора позвонить другу. Защитники выбирают одну карту консультанта, которая поможет команде в расследовании. Модификатор карты консультанта действует сразу.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/01.webp"
+ },
+ {
+  "id": "huntress-02",
+  "deck": "huntress",
+  "type": "initial",
+  "name_en": "Exchange Zero-Day Vulnerability Exploit",
+  "name_ru": "Эксплуатация уязвимости нулевого дня в Exchange",
+  "desc_en": "The attackers exploited a previously undisclosed vulnerability (known as a zero-day) on an unpatched Exchange server to gain remote access into the network.",
+  "desc_ru": "Злоумышленники проэксплуатировали ранее неизвестную уязвимость (так называемый «нулевой день», zero-day) на необновлённом сервере Exchange и получили удалённый доступ к сети.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "38",
+   "33"
+  ],
+  "tools": [
+   "Meterpreter",
+   "Webshell"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В каталоге веб-приложения почтового сервера появились свежие .aspx-файлы, которые никто из админов не создавал.",
+   "Процесс w3wp.exe на почтовом сервере ночью запускал cmd.exe и PowerShell — такого раньше в телеметрии не было."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/02.webp"
+ },
+ {
+  "id": "huntress-03",
+  "deck": "huntress",
+  "type": "initial",
+  "name_en": "Fake Software Updates",
+  "name_ru": "Поддельные обновления ПО",
+  "desc_en": "A user installed a fake software update, which instructed them to call a \"support\" number. The attackers established a remote support session in order to exfiltrate data.",
+  "desc_ru": "Пользователь установил поддельное обновление программы, которое предложило позвонить по номеру «техподдержки». Злоумышленники открыли сеанс удалённой поддержки и через него выкачали данные.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "36"
+  ],
+  "tools": [
+   "Social Engineering Toolkit",
+   "Social Engineer Framework",
+   "Nagware"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сотрудница бухгалтерии рассказала, что после всплывающего окна в учётной программе звонила «в поддержку», и ей «что-то настраивали» на компьютере.",
+   "С рабочей станции бухгалтерии около часа шёл непрерывный исходящий поток на незнакомый внешний адрес, объём отправленного заметно больше полученного."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/03.webp"
+ },
+ {
+  "id": "huntress-04",
+  "deck": "huntress",
+  "type": "initial",
+  "name_en": "Embedded Remote Access Trojan (RAT)",
+  "name_ru": "Встроенный троян удалённого доступа (RAT)",
+  "desc_en": "The attackers gained access to the network by exploiting multiple endpoints that were using pirated software that contained a Remote Access Trojan (RAT).",
+  "desc_ru": "Злоумышленники получили доступ к сети через несколько рабочих станций, на которых стояло пиратское ПО со встроенным трояном удалённого доступа (RAT).",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36"
+  ],
+  "tools": [
+   "File Sharing Methods",
+   "msfvenom"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сразу несколько компьютеров в разных отделах с регулярностью в пару минут обращаются к одному и тому же внешнему хосту.",
+   "При инвентаризации ПО на этих машинах нашли «крякнутый» графический редактор, скачанный с торрента — у всех одна и та же сборка."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/04.webp"
+ },
+ {
+  "id": "huntress-05",
+  "deck": "huntress",
+  "type": "initial",
+  "name_en": "Public-Facing Database Compromise",
+  "name_ru": "Компрометация общедоступной базы данных",
+  "desc_en": "The attackers discovered a database exposed to the public internet. Using known SQL injection techniques, the attackers executed a malicious script on the server, giving them access to the internal network.",
+  "desc_ru": "Злоумышленники обнаружили базу данных, доступную из интернета. С помощью известных техник SQL-инъекций они выполнили на сервере вредоносный скрипт и получили доступ во внутреннюю сеть.",
+  "detections_en": [
+   "Firewall Log Review",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "35",
+   "34"
+  ],
+  "tools": [
+   "runZero",
+   "Nmap",
+   "SQLmap"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журналах межсетевого экрана — волна сканирования портов с одного внешнего адреса, а затем сотни запросов к порту СУБД, открытому наружу.",
+   "В логах веб-формы поиска полно запросов с кавычками, «OR 1=1» и UNION, а сервер БД вскоре начал сам открывать соединения во внутреннюю сеть."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/05.webp"
+ },
+ {
+  "id": "huntress-06",
+  "deck": "huntress",
+  "type": "pivot",
+  "name_en": "Malware Propagation",
+  "name_ru": "Распространение вредоносного ПО",
+  "desc_en": "The attackers leverage a worm (a type of trojan designed to replicate and spread) that slithers through the network.",
+  "desc_ru": "Злоумышленники используют червя (вредонос, который сам себя копирует и распространяется), расползающегося по сети.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "38",
+   "34"
+  ],
+  "tools": [
+   "Cobalt Strike",
+   "Qakbot"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Антивирус за час поднял одинаковые алерты на двадцати машинах подряд — и с каждым часом их всё больше.",
+   "В SIEM видна лавина SMB-подключений и удалённых созданий служб между рабочими станциями, которые обычно друг с другом не общаются."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/06.webp"
+ },
+ {
+  "id": "huntress-07",
+  "deck": "huntress",
+  "type": "pivot",
+  "name_en": "Unpatched Critical Security Update",
+  "name_ru": "Неустановленное критическое обновление безопасности",
+  "desc_en": "The organization ignored a critical security patch because of the time and labor cost. The attackers exploit the vulnerability and elevate their privileges to administrator level.",
+  "desc_ru": "Организация отложила критический патч безопасности из-за затрат времени и сил. Злоумышленники эксплуатируют уязвимость и повышают привилегии до уровня администратора.",
+  "detections_en": [
+   "Server Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "33",
+   "38"
+  ],
+  "tools": [
+   "Nmap",
+   "Exploit-DB",
+   "Shodan.io"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На файловом сервере служба печати внезапно загрузила незнакомую DLL, после чего появился новый пользователь в группе локальных администраторов.",
+   "В тикет-системе висит заявка трёхмесячной давности «установить срочный патч» со статусом «отложено — нет окна обслуживания»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/07.webp"
+ },
+ {
+  "id": "huntress-08",
+  "deck": "huntress",
+  "type": "persist",
+  "name_en": "Living off the Land",
+  "name_ru": "Жизнь за счёт местных ресурсов (Living off the Land)",
+  "desc_en": "The attackers use a trusted Remote Monitoring & Management (RMM) application to maintain access.",
+  "desc_ru": "Злоумышленники используют доверенное приложение удалённого мониторинга и управления (RMM), чтобы сохранять доступ.",
+  "detections_en": [
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "40"
+  ],
+  "tools": [
+   "RMM Tools",
+   "Misconfigured EDR"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На нескольких серверах обнаружен агент удалённого администрирования, который ИТ-отдел не устанавливал, — EDR считает его доверенным и молчит.",
+   "Админ заметил, что ночью кто-то подключался к серверу через «легальную» консоль удалённой поддержки, хотя подрядчик клянётся, что не работал."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/08.webp"
+ },
+ {
+  "id": "huntress-09",
+  "deck": "huntress",
+  "type": "persist",
+  "name_en": "Hiding in Plain Sight",
+  "name_ru": "Прятки у всех на виду",
+  "desc_en": "The attackers set exclusions in the antivirus software allowing them to operate undetected with innocently-named scheduled tasks.",
+  "desc_ru": "Злоумышленники добавили исключения в настройки антивируса и действуют незамеченными через запланированные задачи с безобидными названиями.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "40",
+   "33"
+  ],
+  "tools": [
+   "PowerShell"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В политике антивируса на нескольких серверах появились исключения для папки C:\\ProgramData\\ — никто не помнит, кто и зачем их добавил.",
+   "В планировщике задач нашлась задача «GoogleUpdateTaskCore», которая каждые 15 минут запускает закодированную командную строку."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/09.webp"
+ },
+ {
+  "id": "huntress-10",
+  "deck": "huntress",
+  "type": "persist",
+  "name_en": "Registry Modification",
+  "name_ru": "Модификация реестра",
+  "desc_en": "The attackers set a script to run via a registry key. This creates a backdoor for future access using a built-in application and native scripting language. This will execute automatically as the user logs in.",
+  "desc_ru": "Злоумышленники прописали запуск скрипта через ключ реестра. Это создаёт бэкдор для будущего доступа с помощью встроенного приложения и штатного скриптового языка; скрипт запускается автоматически при входе пользователя в систему.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "33"
+  ],
+  "tools": [
+   "BabyShark Malware",
+   "Qakbot",
+   "Regini",
+   "TrickBot"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Каждый раз, когда пользователь входит в систему, на долю секунды мелькает чёрное окно консоли.",
+   "Сразу после входа пользователя wscript.exe/mshta.exe обращается к внешнему адресу — и так на каждой перезагрузке."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/10.webp"
+ },
+ {
+  "id": "huntress-11",
+  "deck": "huntress",
+  "type": "persist",
+  "name_en": "WMI Events",
+  "name_ru": "События WMI",
+  "desc_en": "The attackers set a Windows Management Instrumentation (WMI) event subscription that establishes remote system access five minutes after restarting the endpoint.",
+  "desc_ru": "Злоумышленники создали подписку на события Windows Management Instrumentation (WMI), которая открывает удалённый доступ к системе через пять минут после перезагрузки конечной точки.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "34"
+  ],
+  "tools": [
+   "Meterpreter",
+   "Empire",
+   "PowerPunch",
+   "Cobalt Strike"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После переустановки «зачищенного» ноутбука и перезагрузки ровно через пять минут снова появляется подозрительное исходящее соединение.",
+   "Процесс WmiPrvSE.exe порождает PowerShell без участия пользователя — в автозагрузке, службах и планировщике при этом пусто."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/11.webp"
+ },
+ {
+  "id": "huntress-12",
+  "deck": "huntress",
+  "type": "c2",
+  "name_en": "Clipboard Scrape",
+  "name_ru": "Кража данных из буфера обмена",
+  "desc_en": "The attackers scrape clipboard content and exfiltrate data.",
+  "desc_ru": "Злоумышленники считывают содержимое буфера обмена и выводят данные наружу.",
+  "detections_en": [
+   "Memory Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "43",
+   "39"
+  ],
+  "tools": [
+   "DarkComet",
+   "JHUHUGIT",
+   "Empire"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Финансовый директор жалуется: пароли, которые он копирует из менеджера паролей, будто кто-то узнаёт — по его учётке были входы из другой страны.",
+   "Фоновый процесс без окна на рабочей станции бухгалтерии каждые несколько секунд опрашивает систему и периодически шлёт небольшие порции текста наружу."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/12.webp"
+ },
+ {
+  "id": "huntress-13",
+  "deck": "huntress",
+  "type": "c2",
+  "name_en": "Rotating C2 Server Location",
+  "name_ru": "Плавающий адрес сервера C2",
+  "desc_en": "The attackers place an encoded URL within the comment section of a celebrity's social media account allowing them to obfuscate the location of their C2 server.",
+  "desc_ru": "Злоумышленники размещают закодированный URL в комментариях к аккаунту знаменитости в соцсети, скрывая так реальное расположение своего сервера C2.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "36",
+   "39"
+  ],
+  "tools": [
+   "Out of Band C2"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Серверная учётная запись, которой нечего делать в соцсетях, регулярно ходит на страницу поп-звезды в Instagram.",
+   "Сразу после каждого такого обращения хост подключается к новому, ранее не встречавшемуся адресу — и адрес каждый раз меняется."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/huntress/13.webp"
+ },
+ {
+  "id": "huntress-14",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Security Awareness Training for the Win!",
+  "name_ru": "Обучение безопасности — это победа!",
+  "desc_en": "The Defenders had Security Awareness Training set up for the employees. This raised the general security posture of the organization. Good job! The Defenders receive a +3 modifier for the next three turns.",
+  "desc_ru": "Защитники организовали для сотрудников обучение основам информационной безопасности. Общий уровень защищённости компании вырос. Так держать! Защитники получают модификатор +3 на следующие три хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": "all",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "+3 ко всем броскам на 3 хода.",
+  "image": "cards/huntress/14.webp"
+ },
+ {
+  "id": "huntress-15",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Ignore Those Pesky Open Ports",
+  "name_ru": "Да плевать на эти открытые порты",
+  "desc_en": "A server has Remote Desktop Protocol (RDP) exposed on the internet and nobody checked Huntress External Recon to identify this threat. A new attacker has come in during the middle of the incident. The Incident Captain draws an additional Initial Compromise card.",
+  "desc_ru": "На сервере RDP торчит в интернет, и никто не заглянул в Huntress External Recon, чтобы заметить эту угрозу. Посреди инцидента в сеть зашёл ещё один злоумышленник. В игру добавляется ещё одна карта первоначального доступа.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта первоначального доступа.",
+  "image": "cards/huntress/15.webp"
+ },
+ {
+  "id": "huntress-16",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "A Bad Day Made Worse",
+  "name_ru": "Плохой день стал ещё хуже",
+  "desc_en": "The Threat Research team at Huntress discloses a zero-day vulnerability in the Defenders' business-critical software package and it must be addressed immediately. The Defenders lose 1 turn.",
+  "desc_ru": "Команда исследования угроз Huntress раскрывает уязвимость нулевого дня в критически важном для бизнеса ПО защитников, и её нужно закрывать немедленно. Защитники теряют 1 ход.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Защитники пропускают следующий ход.",
+  "image": "cards/huntress/16.webp"
+ },
+ {
+  "id": "huntress-17",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Haste Makes Waste",
+  "name_ru": "Поспешишь — людей насмешишь",
+  "desc_en": "The Defenders didn't consult their cyber insurance provider before starting the incident response (IR) plan. Remediation efforts are delayed while the preferred IR vendor is brought up to speed. The Defenders lose 1 turn and must explain how they will proceed.",
+  "desc_ru": "Защитники не связались со своим киберстраховщиком, прежде чем запустить план реагирования на инциденты (IR). Устранение последствий откладывается, пока рекомендованного страховщиком IR-подрядчика вводят в курс дела. Защитники теряют 1 ход и должны объяснить, как будут действовать дальше.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Защитники пропускают следующий ход.",
+  "image": "cards/huntress/17.webp"
+ },
+ {
+  "id": "huntress-18",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Alert Fatigue is Real",
+  "name_ru": "Усталость от алертов — это реально",
+  "desc_en": "The Defenders' endpoint detection and response (EDR) solution was not managed. The Defenders receive a -3 modifier on Endpoint Security Protection Analysis for the rest of the session.",
+  "desc_ru": "EDR-решение (обнаружение и реагирование на конечных точках) у защитников никто не сопровождал. Защитники получают модификатор −3 на «Анализ средств защиты конечных точек» до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -3,
+    "target": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "−3 к «Анализу средств защиты конечных точек» до конца игры.",
+  "image": "cards/huntress/18.webp"
+ },
+ {
+  "id": "huntress-19",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Knowledge is Power",
+  "name_ru": "Знание — сила",
+  "desc_en": "The Defenders attended a recent Huntress Tradecraft Tuesday episode about \"Quick Forensics for the Lazy Investigator.\" This taught the Defenders the latest persistence techniques used by attackers. The Incident Captain must reveal the Persistence card.",
+  "desc_ru": "Защитники посмотрели свежий выпуск Huntress Tradecraft Tuesday «Быстрая криминалистика для ленивого расследователя» и узнали о новейших техниках закрепления злоумышленников. Раскрывается карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "Раскрывается карта закрепления.",
+  "image": "cards/huntress/19.webp"
+ },
+ {
+  "id": "huntress-20",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "That Was a Bad Idea",
+  "name_ru": "Это была плохая идея",
+  "desc_en": "The host isolation feature in the Huntress platform was disabled by the Defenders, allowing the attackers to move freely through the environment. The Incident Captain draws an additional Pivot and Escalate card.",
+  "desc_ru": "Защитники отключили функцию изоляции хостов в платформе Huntress, и злоумышленники свободно перемещаются по инфраструктуре. В игру добавляется ещё одна карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта повышения привилегий и перемещения.",
+  "image": "cards/huntress/20.webp"
+ },
+ {
+  "id": "huntress-21",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Read to the End",
+  "name_ru": "Дочитай до конца",
+  "desc_en": "The Defenders neglected to perform a root cause analysis (RCA) and the attackers easily regain control. The Incident Captain draws an additional Persistence card.",
+  "desc_ru": "Защитники не провели анализ первопричин (RCA), и злоумышленники без труда вернули контроль. В игру добавляется ещё одна карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта закрепления.",
+  "image": "cards/huntress/21.webp"
+ },
+ {
+  "id": "huntress-22",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Back to Basics",
+  "name_ru": "Назад к основам",
+  "desc_en": "The Defenders configured their monitoring tools to alert when security tools stop working. The attackers disabled the endpoint detection and response (EDR) solution and the Defenders were alerted immediately. The Defenders receive a +3 modifier on Endpoint Security Protection Analysis for the next time it's used.",
+  "desc_ru": "Защитники настроили мониторинг так, чтобы получать алерт, когда средства защиты перестают работать. Злоумышленники отключили EDR — и защитники сразу же об этом узнали. Защитники получают модификатор +3 на «Анализ средств защиты конечных точек» при следующем его использовании.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    },
+    "turns": 1
+   }
+  ],
+  "effect_ru": "+3 к «Анализу средств защиты конечных точек» на следующий ход.",
+  "image": "cards/huntress/22.webp"
+ },
+ {
+  "id": "huntress-23",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Rookie Mistake",
+  "name_ru": "Ошибка новичка",
+  "desc_en": "An entry-level tech neglected to read an incident report that instructed them to block a known C2 server IP address at the firewall. Dammit, Bobby! The Incident Captain draws an additional C2 and Exfil card.",
+  "desc_ru": "Младший техник не дочитал отчёт об инциденте, где было указание заблокировать на межсетевом экране IP-адрес известного сервера C2. Ну Бобби, ну ёлки-палки! В игру добавляется ещё одна карта управления и контроля (C2), эксфильтрации.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "c2"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта C2 и эксфильтрации.",
+  "image": "cards/huntress/23.webp"
+ },
+ {
+  "id": "huntress-24",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "A Little Help From My Friends",
+  "name_ru": "С небольшой помощью друзей",
+  "desc_en": "The Defenders have been investing time and resources into cybersecurity peer groups, developing relationships with fellow professionals to help each other in times of need. The Defenders draw a Consultant card of their choosing.",
+  "desc_ru": "Защитники вкладывали время и ресурсы в профессиональные сообщества по кибербезопасности и наладили связи с коллегами, чтобы выручать друг друга в трудную минуту. Защитники берут карту консультанта на свой выбор.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "offer_consultant",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Вы выбираете консультанта без броска.",
+  "image": "cards/huntress/24.webp"
+ },
+ {
+  "id": "huntress-25",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Risk Accepted",
+  "name_ru": "Риск принят",
+  "desc_en": "Turns out the endpoint detection and response (EDR) solution was only installed on “business critical” servers. Management wouldn't approve the cost of covering all devices. Endpoint Security Protection Analysis is unavailable for the rest of the session.",
+  "desc_ru": "Оказалось, что EDR установлен только на «критически важных для бизнеса» серверах: руководство не согласовало бюджет на покрытие всех устройств. «Анализ средств защиты конечных точек» недоступен до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "«Анализ средств защиты конечных точек» недоступен до конца игры.",
+  "image": "cards/huntress/25.webp"
+ },
+ {
+  "id": "huntress-26",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Major Failure Alert",
+  "name_ru": "Тревога: крупный провал",
+  "desc_en": "The Defenders disabled multi-factor authentication (MFA) for a third-party vendor's service account to access the internal network. This allows attackers to spread further throughout the organization. The Incident Captain draws an additional Pivot and Escalate card AND Persistence card.",
+  "desc_ru": "Защитники отключили многофакторную аутентификацию (MFA) для сервисной учётной записи стороннего подрядчика, чтобы тот мог попасть во внутреннюю сеть. Это позволяет злоумышленникам распространиться по организации ещё дальше. В игру добавляются ещё одна карта повышения привилегий и перемещения И карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   },
+   {
+    "op": "add_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "В игру добавляются ещё две скрытые карты: перемещение и закрепление.",
+  "image": "cards/huntress/26.webp"
+ },
+ {
+  "id": "huntress-27",
+  "deck": "huntress",
+  "type": "inject",
+  "name_en": "Let's ROCK!!",
+  "name_ru": "Зажигаем!!",
+  "desc_en": "The Defenders' Lead Incident Responder decides to reinvent themselves as a rock musician and goes on tour. All procedures receive a -1 modifier for the rest of the session.",
+  "desc_ru": "Ведущий специалист защитников по реагированию на инциденты решил начать новую жизнь рок-музыкантом и уехал на гастроли. Все процедуры получают модификатор −1 до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -1,
+    "target": "all"
+   }
+  ],
+  "effect_ru": "−1 ко всем броскам до конца игры.",
+  "image": "cards/huntress/27.webp"
+ },
+ {
+  "id": "huntress-28",
+  "deck": "huntress",
+  "type": "consultant",
+  "name_en": "Kyle Hanslovan",
+  "name_ru": "Kyle Hanslovan",
+  "desc_en": "(+3) Modifier for dice rolls for the next (3) turns",
+  "desc_ru": "Модификатор +3 к броскам кубика на следующие 3 хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Разработка ядра",
+   "Эксперт по троллингу",
+   "Постоянный доступ",
+   "Ценитель вредоносного ПО",
+   "Реагирование на инциденты",
+   "Археология лазеек",
+   "Сторителлинг",
+   "Клининговые услуги",
+   "Любитель крепких выражений"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": "all",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "+3 ко всем броскам на 3 хода.",
+  "image": "cards/huntress/28.webp"
+ },
+ {
+  "id": "huntress-29",
+  "deck": "huntress",
+  "type": "consultant",
+  "name_en": "John Hammond",
+  "name_ru": "John Hammond",
+  "desc_en": "The Incident Captain must reveal the Pivot and Escalate Card",
+  "desc_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Передаёт знания и делает обучение понятным",
+   "Охота за IOC и деобфускация вредоносов",
+   "Поиск и проверка уязвимостей и эксплойтов",
+   "Заклинатель собак",
+   "Безнадёжный кулинар",
+   "Мастер покемонов",
+   "Работает на энергетике Monster™",
+   "Соавтор динозавров"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "image": "cards/huntress/29.webp"
+ },
+ {
+  "id": "huntress-30",
+  "deck": "huntress",
+  "type": "consultant",
+  "name_en": "Matthew Brennan",
+  "name_ru": "Matthew Brennan",
+  "desc_en": "The Incident Captain must reveal the C2 and Exfil Card",
+  "desc_ru": "Раскрывается карта управления и контроля (C2), эксфильтрации.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Исследователь вредоносного ПО и экспериментатор",
+   "Истребитель обфусцированных инструментов",
+   "Делится материалами с сообществом",
+   "Фанат буррито",
+   "Заядлый скалолаз",
+   "Домашний шеф-повар",
+   "Видящий невидимое"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "c2"
+   }
+  ],
+  "effect_ru": "Раскрывается карта управления и контроля (C2), эксфильтрации.",
+  "image": "cards/huntress/30.webp"
+ },
+ {
+  "id": "huntress-31",
+  "deck": "huntress",
+  "type": "consultant",
+  "name_en": "Jamie Levy",
+  "name_ru": "Jamie Levy",
+  "desc_en": "The Incident Captain must reveal the Persistence Card",
+  "desc_ru": "Раскрывается карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Эксперт по криминалистике памяти",
+   "Реагирование на инциденты",
+   "Анализ вредоносного ПО",
+   "Любит фермерство, рыбалку и музыку",
+   "Автор публикаций",
+   "Технический преподаватель"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "Раскрывается карта закрепления.",
+  "image": "cards/huntress/31.webp"
+ },
+ {
+  "id": "huntress-32",
+  "deck": "huntress",
+  "type": "consultant",
+  "name_en": "Harlan Carvey",
+  "name_ru": "Harlan Carvey",
+  "desc_en": "For the next (2) turns, each of the Defenders roll a D20 and use the highest number",
+  "desc_ru": "Следующие 2 хода каждый защитник бросает D20, и засчитывается наибольший результат.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Криминалистический анализ Windows",
+   "Реагирование на инциденты",
+   "Автор публикаций",
+   "Анализ реестра Windows",
+   "Педантичность",
+   "Энтузиаст дневного сна"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "advantage",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Следующие 2 хода бросок с преимуществом (2d20, берётся больший).",
+  "image": "cards/huntress/32.webp"
+ },
+ {
+  "id": "huntress-33",
+  "deck": "huntress",
+  "type": "consultant",
+  "name_en": "Cat Contillo",
+  "name_ru": "Cat Contillo",
+  "desc_en": "The Defenders receive an extra (3) turns to complete the session",
+  "desc_ru": "Защитники получают 3 дополнительных хода на завершение сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Охотник за угрозами",
+   "Волшебник сложных идей",
+   "Спикер о нейроразнообразии",
+   "Находит скрытые паттерны закрепления",
+   "Ценитель замороженного заварного крема",
+   "Поборник разнообразия, равенства, инклюзивности и сопричастности",
+   "Печёт отменный банановый хлеб"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "extra_turns",
+    "count": 3
+   }
+  ],
+  "effect_ru": "+3 хода к лимиту игры.",
+  "image": "cards/huntress/33.webp"
+ }
+]

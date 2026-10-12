@@ -1,0 +1,1379 @@
+[
+ {
+  "id": "01",
+  "type": "initial",
+  "name_en": "Phishing",
+  "name_ru": "Фишинг",
+  "desc_en": "The attackers gained access to your organization's network through a deceptive email.",
+  "desc_ru": "Злоумышленники получили доступ к сети вашей организации с помощью мошеннического электронного письма.",
+  "detections": [
+   "34",
+   "33",
+   "44",
+   "39"
+  ],
+  "tools": [
+   "Modlishka",
+   "Evilginx",
+   "Gophish",
+   "Social-Engineer Toolkit (SET)"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/01.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Несколько сотрудников бухгалтерии утром переслали в SOC «странное письмо от банка» — но кто-то, похоже, успел по ссылке перейти.",
+   "Пользователь жалуется, что ввёл пароль на «обновлённой странице входа в почту», а потом его выкинуло из сессии."
+  ]
+ },
+ {
+  "id": "02",
+  "type": "initial",
+  "name_en": "Compromised Web Server",
+  "name_ru": "Скомпрометированный веб-сервер",
+  "desc_en": "The attackers exploited vulnerabilities in an external web server to gain unauthorized access to your organization's internal network.",
+  "desc_ru": "Злоумышленники проэксплуатировали уязвимости внешнего веб-сервера и получили несанкционированный доступ к внутренней сети вашей организации.",
+  "detections": [
+   "33",
+   "34",
+   "35",
+   "38"
+  ],
+  "tools": [
+   "Burp Suite",
+   "Caido",
+   "sqlmap",
+   "Nuclei"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/02.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Нагрузка на публичный веб-сервер ночью скакнула, а в каталоге загрузок появились файлы с расширением .aspx, которых никто не выкладывал.",
+   "Веб-приложение отвечает медленнее обычного, а процесс веб-сервера порождает cmd.exe."
+  ]
+ },
+ {
+  "id": "03",
+  "type": "initial",
+  "name_en": "Unauthorized Cloud Access",
+  "name_ru": "Несанкционированный доступ к облаку",
+  "desc_en": "The attackers gained unauthorized access to your organization's cloud infrastructure or Software as a Service (SaaS) applications.",
+  "desc_ru": "Злоумышленники получили несанкционированный доступ к облачной инфраструктуре вашей организации или к используемым SaaS-приложениям (программное обеспечение как услуга).",
+  "detections": [
+   "34",
+   "44",
+   "45",
+   "39"
+  ],
+  "tools": [
+   "GraphRunner",
+   "ROADtools",
+   "ScoutSuite",
+   "Pacu"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/03.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Облачный счёт за месяц вырос втрое, а в консоли видны входы из стран, где у нас нет сотрудников.",
+   "Кто-то создал новые ключи доступа к облачному хранилищу в три часа ночи."
+  ]
+ },
+ {
+  "id": "04",
+  "type": "initial",
+  "name_en": "Insider Threat",
+  "name_ru": "Внутренний нарушитель",
+  "desc_en": "The attacker was a trusted individual who performed unauthorized actions within your organization.",
+  "desc_ru": "Злоумышленником оказался доверенный сотрудник, который совершил несанкционированные действия внутри вашей организации.",
+  "detections": [
+   "39",
+   "37",
+   "40",
+   "34",
+   "45"
+  ],
+  "tools": [
+   "Company-Issued Equipment"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card lists 5 detections. Tool is not software: 'Company-Issued Equipment' = корпоративное оборудование.",
+  "image": "cards/04.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Сотрудник, который на прошлой неделе подал заявление об уходе, внезапно стал очень активно работать с файловыми шарами.",
+   "HR сообщает о конфликте в одном из отделов, а DLP фиксирует массовое копирование документов на личную флешку."
+  ]
+ },
+ {
+  "id": "05",
+  "type": "initial",
+  "name_en": "External Password Spray",
+  "name_ru": "Внешний перебор распространённых паролей (Password Spraying)",
+  "desc_en": "The attackers gained access to your internal network by spraying commonly used passwords (like SeasonYear!) across multiple accounts.",
+  "desc_ru": "Злоумышленники получили доступ к вашей внутренней сети, перебирая распространённые пароли (вроде «Сезон+Год!», например Summer2025!) сразу по множеству учётных записей (password spraying).",
+  "detections": [
+   "34",
+   "37",
+   "39",
+   "44"
+  ],
+  "tools": [
+   "CredMaster",
+   "MSOLSpray",
+   "FireProx",
+   "FindMeAccess"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/05.webp",
+  "deck": "core",
+  "clues_ru": [
+   "В журналах VPN-шлюза — сотни неудачных входов, по одному-два на каждую учётку, с разных IP-адресов.",
+   "Утром полдюжины пользователей получили блокировку учётной записи, хотя никто из них не ошибался с паролем."
+  ]
+ },
+ {
+  "id": "06",
+  "type": "initial",
+  "name_en": "Compromised Trusted Relationship",
+  "name_ru": "Компрометация через доверенного партнёра",
+  "desc_en": "The attackers exploited a relationship between your organization and a third-party (e.g., vendor, partner, contractor) that has a service-level account within your organization and gained unauthorized access.",
+  "desc_ru": "Злоумышленники воспользовались доверительными отношениями между вашей организацией и третьей стороной (поставщиком, партнёром, подрядчиком), у которой есть сервисная учётная запись в вашей инфраструктуре, и получили несанкционированный доступ.",
+  "detections": [
+   "34",
+   "39",
+   "35",
+   "44",
+   "45"
+  ],
+  "tools": [
+   "Gato-X",
+   "Compromised Service Accounts",
+   "Publicly Available Breach Data"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card lists 5 detections. Non-software tools: 'Compromised Service Accounts' = скомпрометированные сервисные учётные записи; 'Publicly Available Breach Data' = общедоступные данные утечек.",
+  "image": "cards/06.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Подрядчик, который обслуживает наши кассовые системы, сообщил, что у них «небольшой инцидент». Подробностей не дают.",
+   "Учётная запись внешнего интегратора залогинилась ночью — хотя договор с ними на паузе."
+  ]
+ },
+ {
+  "id": "07",
+  "type": "initial",
+  "name_en": "Social Engineering",
+  "name_ru": "Социальная инженерия",
+  "desc_en": "The attackers manipulated and deceived a user in your organization to bypass technical controls and gained access to sensitive information, credentials, and/or systems.",
+  "desc_ru": "Злоумышленники обманом и манипуляциями вынудили пользователя вашей организации обойти технические средства защиты и получили доступ к конфиденциальной информации, учётным данным и/или системам.",
+  "detections": [
+   "38",
+   "36",
+   "39",
+   "44"
+  ],
+  "tools": [
+   "Open-Source Intelligence Gathering (OSINT)",
+   "Manipulation of Human Feelings",
+   "Sense of Urgency"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Non-software tools: OSINT = разведка по открытым источникам; 'Manipulation of Human Feelings' = манипуляция чувствами; 'Sense of Urgency' = создание ощущения срочности.",
+  "image": "cards/07.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Сервис-деск вчера сбросил пароль руководителю по телефонному звонку. Руководитель утверждает, что никуда не звонил.",
+   "Секретарь на ресепшене пропустил «курьера», который полчаса провёл в переговорке с сетевой розеткой."
+  ]
+ },
+ {
+  "id": "08",
+  "type": "initial",
+  "name_en": "Bring Your Own (Exploited) Device",
+  "name_ru": "Принеси своё (взломанное) устройство (BYOD)",
+  "desc_en": "Your organization allows users to bring their own devices. The attackers compromised a user's personal device to connect to your organization's network.",
+  "desc_ru": "Ваша организация разрешает сотрудникам использовать личные устройства (BYOD). Злоумышленники скомпрометировали личное устройство пользователя и через него подключились к сети организации.",
+  "detections": [
+   "35",
+   "36",
+   "34"
+  ],
+  "tools": [
+   "Malware",
+   "Remote Access Trojan (RAT)",
+   "Malicious Web Ads"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card lists only 3 detections. Tools: Malware = ВПО; RAT = троян удалённого доступа; Malicious Web Ads = вредоносная реклама (малвертайзинг).",
+  "image": "cards/08.webp",
+  "deck": "core",
+  "clues_ru": [
+   "В сети появилось незнакомое устройство — по MAC-адресу это потребительский ноутбук, такие мы не закупали.",
+   "Сотрудник признался, что подключал к рабочей сети домашний планшет, «чтобы скачать отчёт»."
+  ]
+ },
+ {
+  "id": "09",
+  "type": "initial",
+  "name_en": "Exploited External Service",
+  "name_ru": "Эксплуатация внешнего сервиса",
+  "desc_en": "The attackers targeted misconfigurations or unpatched vulnerabilities using publicly available exploits and gained access to your organization's internal resources.",
+  "desc_ru": "Злоумышленники атаковали ошибки конфигурации или незакрытые уязвимости с помощью общедоступных эксплойтов и получили доступ к внутренним ресурсам вашей организации.",
+  "detections": [
+   "35",
+   "33",
+   "34"
+  ],
+  "tools": [
+   "Nuclei",
+   "Metasploit",
+   "Exploit-db",
+   "Shodan"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card lists only 3 detections.",
+  "image": "cards/09.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Вчера вышел бюллетень о критической уязвимости в продукте, который смотрит у нас в интернет. Патч ещё не накатили.",
+   "Сканер внешнего периметра нашёл открытый сервис, о котором ИТ «давно забыли»."
+  ]
+ },
+ {
+  "id": "10",
+  "type": "initial",
+  "name_en": "Credential Stuffing",
+  "name_ru": "Подстановка учётных данных (Credential Stuffing)",
+  "desc_en": "The attackers used stolen username and password pairs (obtained from data breaches) and gained access to accounts on different systems.",
+  "desc_ru": "Злоумышленники использовали украденные пары «логин — пароль» (полученные из утечек данных) и получили доступ к учётным записям в различных системах.",
+  "detections": [
+   "33",
+   "39",
+   "44",
+   "34"
+  ],
+  "tools": [
+   "CredMaster",
+   "Burp Suite",
+   "Hashcat",
+   "Hydra"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/10.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Сервис поддержки получил жалобы клиентов: «кто-то зашёл в мой личный кабинет» — и у всех пароли совпадали с паролями от утёкшего форума.",
+   "Резко выросло число успешных входов в личный кабинет с хостинговых IP-адресов."
+  ]
+ },
+ {
+  "id": "11",
+  "type": "pivot",
+  "name_en": "Internal Password Spray",
+  "name_ru": "Внутренний перебор распространённых паролей (Password Spraying)",
+  "desc_en": "The attackers enumerate accounts and spray commonly used passwords (like SeasonYear!) within the rest of your organization.",
+  "desc_ru": "Злоумышленники перечисляют учётные записи и перебирают распространённые пароли (вроде «Сезон+Год!», например Summer2025!) по всей остальной инфраструктуре организации.",
+  "detections": [
+   "39",
+   "37",
+   "34",
+   "38"
+  ],
+  "tools": [
+   "Kerbrute",
+   "NetExec",
+   "net use",
+   "LOLBins"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/11.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Внутри сети с одной рабочей станции идут попытки входа по SMB на десятки серверов подряд.",
+   "Контроллер домена фиксирует волну событий 4625 — неудачные входы с одного внутреннего хоста."
+  ]
+ },
+ {
+  "id": "12",
+  "type": "pivot",
+  "name_en": "Kerberoasting",
+  "name_ru": "Керберостинг (Kerberoasting)",
+  "desc_en": "The attackers compromise additional systems by using a \"feature\" of Service Principal Names (SPNs) to extract and crack service passwords.",
+  "desc_ru": "Злоумышленники компрометируют дополнительные системы, используя «особенность» имён участников-служб (SPN) Kerberos, чтобы извлечь хеши паролей сервисных учётных записей и взломать их офлайн.",
+  "detections": [
+   "34",
+   "39",
+   "37",
+   "38"
+  ],
+  "tools": [
+   "Rubeus",
+   "Impacket",
+   "Hashcat",
+   "NetExec"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/12.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Контроллер домена выдал аномально много TGS-билетов с шифрованием RC4 за пару минут.",
+   "Пароль сервисной учётки SQL не менялся с 2016 года, а сегодня с ней залогинились на чужой сервер."
+  ]
+ },
+ {
+  "id": "13",
+  "type": "pivot",
+  "name_en": "Broadcast/Multicast Protocol Poisoning",
+  "name_ru": "Отравление широковещательных/мультикаст-протоколов (LLMNR/NBT-NS/mDNS poisoning)",
+  "desc_en": "The attackers exploit vulnerabilities in network protocols to intercept, redirect, or manipulate traffic to access sensitive data, impersonate devices, or disrupt communication.",
+  "desc_ru": "Злоумышленники эксплуатируют слабости сетевых протоколов, чтобы перехватывать, перенаправлять или подменять трафик — для доступа к конфиденциальным данным, выдачи себя за другие устройства или нарушения связи.",
+  "detections": [
+   "37",
+   "39",
+   "35",
+   "38"
+  ],
+  "tools": [
+   "Responder",
+   "Impacket",
+   "MITM6",
+   "Inveigh"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "name_ru parenthetical (LLMNR/NBT-NS/mDNS) is an explanatory addition, not printed on the card.",
+  "image": "cards/13.webp",
+  "deck": "core",
+  "clues_ru": [
+   "В сегменте пользователей кто-то отвечает на широковещательные запросы разрешения имён раньше, чем DNS-сервер.",
+   "Пользователи жалуются на повторные запросы пароля при открытии сетевых папок."
+  ]
+ },
+ {
+  "id": "14",
+  "type": "pivot",
+  "name_en": "Weaponizing Active Directory",
+  "name_ru": "Использование Active Directory как оружия",
+  "desc_en": "The attackers map Domain Trust Relationships, Group Policies, user/group privileges, and Object Access Control Lists (ACLs) in order to take full control of the Domain or network infrastructure.",
+  "desc_ru": "Злоумышленники выявляют доверительные отношения между доменами, групповые политики (GPO), привилегии пользователей и групп, а также списки управления доступом к объектам (ACL), чтобы получить полный контроль над доменом или сетевой инфраструктурой.",
+  "detections": [
+   "34",
+   "39",
+   "38",
+   "37"
+  ],
+  "tools": [
+   "BloodHound",
+   "PlumHound",
+   "Adminer",
+   "SCCMHunter"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/14.webp",
+  "deck": "core",
+  "clues_ru": [
+   "В AD появились изменения групповых политик, автора которых никто не может назвать.",
+   "Кто-то выполнил массовые LDAP-запросы ко всем объектам домена — похоже на картографирование."
+  ]
+ },
+ {
+  "id": "15",
+  "type": "pivot",
+  "name_en": "Credential Harvesting",
+  "name_ru": "Сбор учётных данных",
+  "desc_en": "The attackers collect and exploit username and password pairs found in open shares and files within your environment providing access to more valuable systems and data.",
+  "desc_ru": "Злоумышленники собирают и используют пары «логин–пароль», найденные в открытых сетевых папках и файлах внутри вашей инфраструктуры, получая доступ к более ценным системам и данным.",
+  "detections": [
+   "34",
+   "39",
+   "37"
+  ],
+  "tools": [
+   "GraphRunner",
+   "DonPAPI",
+   "Snaffler",
+   "Mimikatz"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/15.webp",
+  "deck": "core",
+  "clues_ru": [
+   "На одном из серверов процесс неизвестного происхождения обращался к памяти LSASS.",
+   "В кэше браузеров нескольких машин кто-то копался: файлы сохранённых паролей открывались не браузером."
+  ]
+ },
+ {
+  "id": "16",
+  "type": "pivot",
+  "name_en": "New Service Creation/Modification",
+  "name_ru": "Создание/изменение служб",
+  "desc_en": "The attackers create new services or modify existing ones to evade detection by launching malicious payloads at startup or altering legitimate services to execute unauthorized commands.",
+  "desc_ru": "Злоумышленники создают новые службы или изменяют существующие, чтобы избежать обнаружения: запускают вредоносную нагрузку при загрузке системы или модифицируют легитимные службы для выполнения несанкционированных команд.",
+  "detections": [
+   "40",
+   "38",
+   "34"
+  ],
+  "tools": [
+   "PsExec",
+   "PowerShell",
+   "ServiceController",
+   "Malware"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/16.webp",
+  "deck": "core",
+  "clues_ru": [
+   "На сервере приложений появилась служба с неброским именем, запускающаяся от SYSTEM.",
+   "Журнал событий показывает установку новой службы (событие 7045) посреди рабочего дня."
+  ]
+ },
+ {
+  "id": "17",
+  "type": "pivot",
+  "name_en": "Local Privilege Escalation (LPE)",
+  "name_ru": "Локальное повышение привилегий (LPE)",
+  "desc_en": "The attackers use a misconfiguration or vulnerability in local software to gain administrative access.",
+  "desc_ru": "Злоумышленники используют ошибку конфигурации или уязвимость в локальном ПО, чтобы получить права администратора.",
+  "detections": [
+   "40",
+   "37",
+   "38"
+  ],
+  "tools": [
+   "Impacket",
+   "Seatbelt",
+   "SharpUp",
+   "PEASS-ng"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/17.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Обычный пользователь вдруг выполнил команду, требующую прав администратора.",
+   "На рабочей станции бухгалтера запустился эксплойт-подобный бинарник из папки Temp."
+  ]
+ },
+ {
+  "id": "18",
+  "type": "persist",
+  "name_en": "Malicious Service",
+  "name_ru": "Вредоносная служба",
+  "desc_en": "The attackers create or modify system services in order to maintain long-term access to a compromised system.",
+  "desc_ru": "Злоумышленники создают или изменяют системные службы, чтобы сохранить долгосрочный доступ к скомпрометированной системе.",
+  "detections": [
+   "38",
+   "43",
+   "40",
+   "34"
+  ],
+  "tools": [
+   "SharpStay",
+   "SharPersist",
+   "StayKit",
+   "PsExec"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/18.webp",
+  "deck": "core",
+  "clues_ru": [
+   "После перезагрузки сервера странная активность возобновилась — что-то стартует вместе с системой.",
+   "Среди служб Windows есть одна, у которой исполняемый файл лежит в пользовательском профиле."
+  ]
+ },
+ {
+  "id": "19",
+  "type": "persist",
+  "name_en": "Dynamic Link Library (DLL) Hijacking",
+  "name_ru": "Подмена DLL (DLL hijacking)",
+  "desc_en": "The attackers inject malicious code into existing DLL files, often with elevated privileges, to maintain access to the system even after it is rebooted.",
+  "desc_ru": "Злоумышленники внедряют вредоносный код в существующие DLL-библиотеки (нередко загружаемые с повышенными привилегиями), чтобы сохранять доступ к системе даже после её перезагрузки.",
+  "detections": [
+   "38",
+   "43",
+   "40"
+  ],
+  "tools": [
+   "DLLHijackTest",
+   "PowerSploit",
+   "FaceDancer",
+   "PersistBOF"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/19.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Легитимная программа после обновления стала устанавливать сетевые соединения, которых раньше не было.",
+   "Рядом с исполняемым файлом популярного приложения обнаружена библиотека с недавней датой изменения."
+  ]
+ },
+ {
+  "id": "20",
+  "type": "persist",
+  "name_en": "Malicious Driver",
+  "name_ru": "Вредоносный драйвер",
+  "desc_en": "The attackers install or modify a device driver on a compromised system to retain control even after the system reboots.",
+  "desc_ru": "Злоумышленники устанавливают или изменяют драйвер устройства на скомпрометированной системе, чтобы сохранить контроль над ней даже после перезагрузки.",
+  "detections": [
+   "38",
+   "43",
+   "40"
+  ],
+  "tools": [
+   "Impacket",
+   "PowerShell",
+   "Metasploit",
+   "Kernel Driver Utility (KDU)",
+   "SharpStay"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/20.webp",
+  "deck": "core",
+  "clues_ru": [
+   "EDR кратко сообщил о загрузке неподписанного компонента ядра, после чего на машине пропала телеметрия.",
+   "На хосте антивирус «сам собой» выключился и не включается обратно."
+  ]
+ },
+ {
+  "id": "21",
+  "type": "persist",
+  "name_en": "New User Added",
+  "name_ru": "Добавление нового пользователя",
+  "desc_en": "The attackers create a user account to maintain access and ensure persistence, even if the original compromised account is discovered or disabled.",
+  "desc_ru": "Злоумышленники создают учётную запись пользователя, чтобы сохранить доступ и закрепиться в системе, даже если исходная скомпрометированная учётная запись будет обнаружена или отключена.",
+  "detections": [
+   "38",
+   "40",
+   "34",
+   "45"
+  ],
+  "tools": [
+   "Metasploit",
+   "Impacket",
+   "Havok",
+   "Mythic"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/21.webp",
+  "deck": "core",
+  "clues_ru": [
+   "В локальной группе администраторов на трёх серверах появилась незнакомая учётная запись.",
+   "Аудит показывает создание учётки с именем, похожим на служебное, — «svc_backup2»."
+  ]
+ },
+ {
+  "id": "22",
+  "type": "persist",
+  "name_en": "Application Shimming",
+  "name_ru": "Шимминг приложений (Application Shimming)",
+  "desc_en": "The attackers use the Application Compatibility Toolkit (ACT) to trick applications into not seeing ports, directories, files, and services to evade detection.",
+  "desc_ru": "Злоумышленники используют Application Compatibility Toolkit (ACT — набор средств совместимости приложений Windows), чтобы заставить приложения «не видеть» порты, каталоги, файлы и службы и тем самым избежать обнаружения.",
+  "detections": [
+   "38",
+   "40",
+   "43"
+  ],
+  "tools": [
+   "Metasploit",
+   "PowerShell",
+   "Shim Generator (shimgen)",
+   "sdb-explorer",
+   "Atomic Red Team (ART)"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Иллюстрация содержит шутку: «These are not the ports you're looking for.» («Это не те порты, которые вы ищете»).",
+  "image": "cards/22.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Старое бизнес-приложение при каждом запуске подгружает что-то лишнее, хотя файлы самого приложения не менялись.",
+   "В системной базе совместимости приложений появились свежие записи."
+  ]
+ },
+ {
+  "id": "23",
+  "type": "persist",
+  "name_en": "Malicious Browser Plugins",
+  "name_ru": "Вредоносные расширения браузера",
+  "desc_en": "The attackers install a browser plugin that executes malicious code and tracks activity while evading detection.",
+  "desc_ru": "Злоумышленники устанавливают расширение браузера, которое выполняет вредоносный код и отслеживает действия пользователя, оставаясь незамеченным.",
+  "detections": [
+   "38",
+   "40",
+   "35",
+   "43"
+  ],
+  "tools": [
+   "Metasploit",
+   "PowerShell",
+   "Chromebackdoor",
+   "Browser Exploitation Framework (BeEF)",
+   "Evilginx"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/23.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Пользователи жалуются, что у них в браузере сама собой меняется стартовая страница и появилась «полезная панель».",
+   "Браузер на рабочих машинах шлёт запросы на незнакомый домен даже в режиме простоя."
+  ]
+ },
+ {
+  "id": "24",
+  "type": "persist",
+  "name_en": "Logon Scripts",
+  "name_ru": "Сценарии входа в систему (logon scripts)",
+  "desc_en": "The attackers add or modify scripts to your system's logon process. This allows them to maintain access, escalate privileges, and perform malicious actions each time a user logs in.",
+  "desc_ru": "Злоумышленники добавляют или изменяют сценарии, выполняемые при входе в систему. Это позволяет им сохранять доступ, повышать привилегии и выполнять вредоносные действия при каждом входе пользователя.",
+  "detections": [
+   "38",
+   "40"
+  ],
+  "tools": [
+   "Metasploit",
+   "Impacket",
+   "Havok",
+   "Mythic"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/24.webp",
+  "deck": "core",
+  "clues_ru": [
+   "При каждом входе пользователей на машинах на долю секунды мелькает чёрное окно консоли.",
+   "В атрибутах нескольких пользовательских объектов AD появился путь к сценарию на сетевой шаре."
+  ]
+ },
+ {
+  "id": "25",
+  "type": "persist",
+  "name_en": "Malicious Firmware",
+  "name_ru": "Вредоносная прошивка",
+  "desc_en": "The attackers update the firmware of network cards, video cards, and Basic Input/Output System (BIOS) or Unified Extensible Firmware Interface (UEFI) with malicious code, which allows them to survive reboots or operating system reinstalls, often evading detection.",
+  "desc_ru": "Злоумышленники внедряют вредоносный код в прошивку сетевых карт, видеокарт и BIOS или UEFI. Это позволяет им переживать перезагрузки и даже переустановку операционной системы, зачастую оставаясь незамеченными.",
+  "detections": [
+   "38",
+   "40",
+   "43"
+  ],
+  "tools": [
+   "CHIPSEC",
+   "Flashrom",
+   "Impacket",
+   "PowerShell",
+   "Metasploit"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/25.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Мы переустановили систему на заражённой машине, но подозрительная активность вернулась.",
+   "Хеш образа BIOS/UEFI на одном из серверов не совпадает с эталоном производителя."
+  ]
+ },
+ {
+  "id": "26",
+  "type": "persist",
+  "name_en": "Accessibility Features",
+  "name_ru": "Злоупотребление специальными возможностями ОС",
+  "desc_en": "The attackers hijack Operating System Accessibility features like Sticky Keys and On-Screen Keyboard.",
+  "desc_ru": "Злоумышленники подменяют специальные возможности операционной системы, такие как залипание клавиш (Sticky Keys) и экранная клавиатура, чтобы получить доступ к системе (в т.ч. с экрана входа).",
+  "detections": [
+   "38",
+   "40"
+  ],
+  "tools": [
+   "Bash Bunny",
+   "USB Rubber Ducky",
+   "OMGCable"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "В desc_ru добавлено краткое пояснение цели («чтобы получить доступ…»), которого нет в оригинале.",
+  "image": "cards/26.webp",
+  "deck": "core",
+  "clues_ru": [
+   "На экране входа одного из серверов кто-то нажал Shift пять раз — и получил консоль.",
+   "Файл sethc.exe на сервере совпадает по размеру с cmd.exe."
+  ]
+ },
+ {
+  "id": "27",
+  "type": "c2",
+  "name_en": "HTTP as Exfil",
+  "name_ru": "Эксфильтрация через HTTP",
+  "desc_en": "The attackers use normal web ports and protocols to send stolen data from a compromised system to their servers.",
+  "desc_ru": "Злоумышленники передают украденные данные со скомпрометированной системы на свои серверы через обычные веб-порты и протоколы.",
+  "detections": [
+   "36",
+   "35",
+   "34",
+   "38"
+  ],
+  "tools": [
+   "Sliver",
+   "Havok",
+   "Mythic"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/27.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Межсетевой экран видит устойчивый поток незашифрованных POST-запросов с одного хоста на облачный VPS.",
+   "Прокси фиксирует регулярные обращения к странному URL каждые 60 секунд — как по часам."
+  ]
+ },
+ {
+  "id": "28",
+  "type": "c2",
+  "name_en": "HTTPS as Exfil",
+  "name_ru": "Эксфильтрация через HTTPS",
+  "desc_en": "The attackers use normal encrypted web ports and protocols to send stolen data from a compromised system to their servers.",
+  "desc_ru": "Злоумышленники передают украденные данные со скомпрометированной системы на свои серверы через обычные зашифрованные веб-порты и протоколы.",
+  "detections": [
+   "36",
+   "35",
+   "34",
+   "38"
+  ],
+  "tools": [
+   "Sliver",
+   "Havok",
+   "Mythic"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/28.webp",
+  "deck": "core",
+  "clues_ru": [
+   "С рабочей станции раз в минуту уходит зашифрованный трафик на домен, зарегистрированный неделю назад.",
+   "Объём исходящего HTTPS-трафика с файлового сервера ночью вырос в десятки раз."
+  ]
+ },
+ {
+  "id": "29",
+  "type": "c2",
+  "name_en": "Domain Name System (DNS) as C2",
+  "name_ru": "DNS как канал C2",
+  "desc_en": "The attackers maintain communication with compromised systems and exfiltrate data using the standard DNS protocol.",
+  "desc_ru": "Злоумышленники поддерживают связь со скомпрометированными системами и выводят данные через стандартный протокол DNS (DNS-туннелирование).",
+  "detections": [
+   "36",
+   "35",
+   "34"
+  ],
+  "tools": [
+   "Havok",
+   "Mythic"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/29.webp",
+  "deck": "core",
+  "clues_ru": [
+   "DNS-сервер получает тысячи запросов к длинным поддоменам с бессмысленными именами.",
+   "Один хост отправляет TXT-запросы к внешнему домену значительно чаще, чем все остальные вместе взятые."
+  ]
+ },
+ {
+  "id": "30",
+  "type": "c2",
+  "name_en": "Background Intelligent Transfer Service (BITS) as Exfil",
+  "name_ru": "Эксфильтрация через BITS",
+  "desc_en": "The attackers use a legitimate service to send stolen data to a remote server.",
+  "desc_ru": "Злоумышленники используют легитимную службу Windows BITS (фоновая интеллектуальная служба передачи) для отправки украденных данных на удалённый сервер.",
+  "detections": [
+   "36",
+   "35",
+   "40",
+   "38"
+  ],
+  "tools": [
+   "Leviathan",
+   "UBoatRAT"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/30.webp",
+  "deck": "core",
+  "clues_ru": [
+   "На машинах есть фоновые задания передачи файлов, которые никто из ИТ не создавал.",
+   "Системная служба Windows по ночам скачивает и отправляет файлы на внешний адрес."
+  ]
+ },
+ {
+  "id": "31",
+  "type": "c2",
+  "name_en": "Cloud-Based Services as Exfil",
+  "name_ru": "Эксфильтрация через облачные сервисы",
+  "desc_en": "The attackers use common cloud services to blend in with legitimate traffic to send sensitive data from a compromised system to their servers.",
+  "desc_ru": "Злоумышленники используют популярные облачные сервисы, чтобы замаскироваться под легитимный трафик и передать конфиденциальные данные со скомпрометированной системы на свои серверы.",
+  "detections": [
+   "36",
+   "35",
+   "40",
+   "34"
+  ],
+  "tools": [
+   "Gcat",
+   "Sneaky Creeper",
+   "Gost"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/31.webp",
+  "deck": "core",
+  "clues_ru": [
+   "С файлового сервера ушли гигабайты данных в облачное хранилище, которым компания официально не пользуется.",
+   "Корпоративный прокси видит загрузки в публичный файлообменник от служебной учётки."
+  ]
+ },
+ {
+  "id": "32",
+  "type": "c2",
+  "name_en": "Domain Fronting as C2",
+  "name_ru": "Доменный фронтинг (domain fronting) как канал C2",
+  "desc_en": "The attackers route requests destined for their server through legitimate web services like Content Delivery Networks (CDNs).",
+  "desc_ru": "Злоумышленники направляют запросы к своему серверу через легитимные веб-сервисы, например сети доставки контента (CDN), скрывая реальный адрес назначения.",
+  "detections": [
+   "36",
+   "35",
+   "34"
+  ],
+  "tools": [
+   "Sliver",
+   "Havok",
+   "Mythic"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/32.webp",
+  "deck": "core",
+  "clues_ru": [
+   "Трафик выглядит как обращения к крупному CDN, но заголовок Host в запросах не совпадает с SNI.",
+   "Хост общается «с известным облачным сервисом», но характер трафика — короткие регулярные сигналы."
+  ]
+ },
+ {
+  "id": "33",
+  "type": "procedure",
+  "name_en": "Server Analysis",
+  "name_ru": "Анализ серверов",
+  "desc_en": "The Defenders monitor server activity, logs, and configurations to detect abnormal behaviors, such as unauthorized access, unusual traffic, or process anomalies.",
+  "desc_ru": "Защитники изучают активность, журналы и конфигурацию серверов, выявляя аномалии: несанкционированный доступ, необычный трафик, подозрительные процессы.",
+  "detections": [],
+  "tools": [
+   "DeepBlueCLI",
+   "Velociraptor",
+   "Sysinternals Suite"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 2RP' (competitive-mode cost).",
+  "image": "cards/33.webp",
+  "deck": "core"
+ },
+ {
+  "id": "34",
+  "type": "procedure",
+  "name_en": "Security Information and Event Management (SIEM) Log Analysis",
+  "name_ru": "Анализ журналов SIEM",
+  "desc_en": "The Defenders use SIEM to aggregate logs from systems and devices to identify abnormal patterns, such as unusual access, traffic, or attack signatures.",
+  "desc_ru": "Защитники собирают в SIEM журналы систем и устройств и ищут в них аномальные закономерности: нетипичный доступ, подозрительный трафик или сигнатуры атак.",
+  "detections": [],
+  "tools": [
+   "Security Onion",
+   "OSSIM",
+   "Wazuh",
+   "JPCERT Tool Analysis"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 4RP' (competitive-mode cost).",
+  "image": "cards/34.webp",
+  "deck": "core"
+ },
+ {
+  "id": "35",
+  "type": "procedure",
+  "name_en": "Firewall Log Analysis",
+  "name_ru": "Анализ журналов межсетевого экрана",
+  "desc_en": "The Defenders analyze logs generated by the firewall to monitor network traffic patterns, detect unauthorized access, and identify anomalies such as unusual connections or high traffic volumes.",
+  "desc_ru": "Защитники анализируют журналы межсетевого экрана: отслеживают характер сетевого трафика, выявляют несанкционированный доступ и аномалии вроде необычных соединений или всплесков объёма трафика.",
+  "detections": [],
+  "tools": [
+   "Wazuh",
+   "Graylog Open",
+   "ELK Stack",
+   "Security Onion",
+   "Kiwi Syslog Server"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 3RP' (competitive-mode cost).",
+  "image": "cards/35.webp",
+  "deck": "core"
+ },
+ {
+  "id": "36",
+  "type": "procedure",
+  "name_en": "Network Threat Hunting",
+  "name_ru": "Сетевой поиск угроз",
+  "desc_en": "The Defenders analyze network traffic to actively hunt for signs of malicious activity, such as unusual protocols, C2 communication, or data exfil.",
+  "desc_ru": "Защитники анализируют сетевой трафик, проактивно разыскивая признаки вредоносной активности: нетипичные протоколы, связь с C2-серверами или эксфильтрацию данных.",
+  "detections": [],
+  "tools": [
+   "Real Intelligence Threat Analytics (RITA)",
+   "Security Onion",
+   "Passer",
+   "espy"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 2RP' (competitive-mode cost).",
+  "image": "cards/36.webp",
+  "deck": "core"
+ },
+ {
+  "id": "37",
+  "type": "procedure",
+  "name_en": "Active Defense and Cyber Deception",
+  "name_ru": "Активная защита и киберобман",
+  "desc_en": "The Defenders simulate real systems and services, luring attackers to interact with them, carefully monitoring and alerting on those interactions.",
+  "desc_ru": "Защитники размещают имитации реальных систем и сервисов (ханипоты, ханитокены), заманивают злоумышленников взаимодействовать с ними и поднимают тревогу при любом обращении к приманкам.",
+  "detections": [],
+  "tools": [
+   "CanaryTokens",
+   "HoneyBadger",
+   "Active Defense Harbinger Distribution (ADHD)",
+   "MITRE Engage"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 2RP' (competitive-mode cost).",
+  "image": "cards/37.webp",
+  "deck": "core"
+ },
+ {
+  "id": "38",
+  "type": "procedure",
+  "name_en": "Endpoint Security Protection Analysis",
+  "name_ru": "Анализ средств защиты конечных точек",
+  "desc_en": "The Defenders deploy and monitor endpoint security solutions to detect and prevent unauthorized access and activity on endpoints.",
+  "desc_ru": "Защитники разворачивают средства защиты конечных точек (антивирус, EDR) и анализируют их срабатывания, чтобы выявлять и блокировать несанкционированный доступ и активность на рабочих станциях и серверах.",
+  "detections": [],
+  "tools": [
+   "Elastic Security",
+   "OpenEDR",
+   "Velociraptor",
+   "OSSEC",
+   "Wazuh"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 4RP' (competitive-mode cost).",
+  "image": "cards/38.webp",
+  "deck": "core"
+ },
+ {
+  "id": "39",
+  "type": "procedure",
+  "name_en": "User and Entity Behavior Analytics (UEBA)",
+  "name_ru": "Поведенческая аналитика (UEBA)",
+  "desc_en": "The Defenders leverage advanced analytics to detect anomalies in user behavior, identifying potential insider threats, compromised accounts, or unusual activity patterns.",
+  "desc_ru": "Защитники применяют продвинутую аналитику для выявления аномалий в поведении пользователей и сущностей, обнаруживая возможные внутренние угрозы, скомпрометированные учётные записи или нетипичные шаблоны активности.",
+  "detections": [],
+  "tools": [
+   "LogonTracer",
+   "DeepBlueCLI",
+   "OpenUBA",
+   "Hayabusa"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 3RP' (competitive-mode cost).",
+  "image": "cards/39.webp",
+  "deck": "core"
+ },
+ {
+  "id": "40",
+  "type": "procedure",
+  "name_en": "Endpoint Analysis",
+  "name_ru": "Анализ конечных точек",
+  "desc_en": "The Defenders investigate endpoint devices to identify indicators of compromise, unauthorized changes, or suspicious activities.",
+  "desc_ru": "Защитники исследуют конечные устройства (рабочие станции, серверы), чтобы выявить индикаторы компрометации (IoC), несанкционированные изменения или подозрительную активность.",
+  "detections": [],
+  "tools": [
+   "DeepBlueCLI",
+   "Velociraptor",
+   "Incident Response Cheat Sheets",
+   "osquery"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 3RP' (competitive-mode cost), not included in desc.",
+  "image": "cards/40.webp",
+  "deck": "core"
+ },
+ {
+  "id": "41",
+  "type": "procedure",
+  "name_en": "Isolation",
+  "name_ru": "Изоляция",
+  "desc_en": "The Defenders quarantine compromised systems or network segments to prevent further spread of malicious activity, containing threats while enabling secure investigation and remediation.",
+  "desc_ru": "Защитники помещают скомпрометированные системы или сегменты сети в карантин, чтобы остановить распространение вредоносной активности: угроза локализуется, а расследование и устранение последствий проводятся в безопасных условиях.",
+  "detections": [],
+  "tools": [
+   "Switch and Router Commands",
+   "Host Firewall",
+   "Endpoint Detection and Response (EDR) Tools"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 1RP' (competitive-mode cost), not included in desc.",
+  "image": "cards/41.webp",
+  "deck": "core"
+ },
+ {
+  "id": "42",
+  "type": "procedure",
+  "name_en": "Crisis Management",
+  "name_ru": "Кризисное управление",
+  "desc_en": "The Defenders coordinate response efforts during cybersecurity incidents, ensuring effective communication and swift containment.",
+  "desc_ru": "Защитники координируют действия по реагированию на инцидент ИБ, обеспечивая эффективную коммуникацию и быструю локализацию угрозы.",
+  "detections": [],
+  "tools": [
+   "Incident Response Plans (IRP)",
+   "Disaster Recovery Plans (DRP)"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 1RP' (competitive-mode cost), not included in desc.",
+  "image": "cards/42.webp",
+  "deck": "core"
+ },
+ {
+  "id": "43",
+  "type": "procedure",
+  "name_en": "Memory Analysis",
+  "name_ru": "Анализ памяти",
+  "desc_en": "The Defenders pull the memory from the suspect system and review it for possible malicious activity, such as running malware, hidden processes, or unauthorized code execution.",
+  "desc_ru": "Защитники снимают дамп оперативной памяти с подозрительной системы и анализируют его на признаки вредоносной активности: запущенное ВПО, скрытые процессы или несанкционированное выполнение кода.",
+  "detections": [],
+  "tools": [
+   "Volatility",
+   "Velociraptor",
+   "Endpoint Detection and Response (EDR) Tools"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 2RP' (competitive-mode cost), not included in desc.",
+  "image": "cards/43.webp",
+  "deck": "core"
+ },
+ {
+  "id": "44",
+  "type": "procedure",
+  "name_en": "Cloud Event Log Analysis",
+  "name_ru": "Анализ облачных журналов",
+  "desc_en": "The Defenders monitor, collect, and examine event logs generated by cloud-based systems and services to identify potential security incidents, misconfigurations, and unusual or unauthorized activities.",
+  "desc_ru": "Защитники собирают, отслеживают и анализируют журналы событий облачных систем и сервисов, чтобы выявить возможные инциденты ИБ, ошибки конфигурации, а также необычную или несанкционированную активность.",
+  "detections": [],
+  "tools": [
+   "Wazuh",
+   "Security Onion",
+   "Graylog Open",
+   "Falco",
+   "Hawk"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 2RP' (competitive-mode cost), not included in desc.",
+  "image": "cards/44.webp",
+  "deck": "core"
+ },
+ {
+  "id": "45",
+  "type": "procedure",
+  "name_en": "Permissions Audit",
+  "name_ru": "Аудит прав доступа",
+  "desc_en": "The Defenders examine configurations such as Identity and Access Management (IAM) roles in Microsoft Active Directory, Amazon Web Services (AWS), Azure AD permissions, or file access controls to detect excessive privileges, unauthorized access, or potential insider threats.",
+  "desc_ru": "Защитники проверяют конфигурации доступа — роли IAM в Microsoft Active Directory и Amazon Web Services (AWS), разрешения Azure AD, права доступа к файлам — чтобы выявить избыточные привилегии, несанкционированный доступ или признаки внутренней угрозы.",
+  "detections": [],
+  "tools": [
+   "AD Users and Computers",
+   "BloodHound",
+   "ScoutSuite",
+   "Prowler"
+  ],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card also shows 'Competitive Price: 2RP' (competitive-mode cost), not included in desc.",
+  "image": "cards/45.webp",
+  "deck": "core"
+ },
+ {
+  "id": "46",
+  "type": "inject",
+  "name_en": "False Alarm: It was a Penetration Test",
+  "name_ru": "Ложная тревога: это был пентест",
+  "desc_en": "Relax, it wasn't an APT, or any T for that matter — It was the External Pentesting firm the Defenders' CEO hired. They've breached everything, and now the Defenders are paying them to be told how bad it was.\n\nThe Incident Captain ends the session and the Defenders discuss how they would have detected the Attack Techniques and Procedures of the Penetration Testers.",
+  "desc_ru": "Расслабьтесь, это была не APT и вообще не «T» — это внешние пентестеры, которых нанял CEO. Они взломали всё подряд, и теперь защитники платят им за то, чтобы услышать, насколько всё плохо.\n\nСессия завершается, а защитники обсуждают, как бы они обнаружили техники и процедуры атаки пентестеров.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card does not state win or loss — session simply ends followed by discussion.",
+  "image": "cards/46.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "end_game",
+    "result": "neutral"
+   }
+  ],
+  "effect_ru": "Игра заканчивается. Вся цепочка атаки раскрывается, переходим к разбору."
+ },
+ {
+  "id": "47",
+  "type": "inject",
+  "name_en": "Data Uploaded to Pastebin",
+  "name_ru": "Данные слиты на Pastebin",
+  "desc_en": "Surprise! The attackers spilled sensitive customer data all over Pastebin. Now customers are learning about the breach over their morning coffee... from The News.\n\nThe Defenders must play their Crisis Management Detection. If they are successful, they can move past this issue. If they aren't, they receive a -2 modifier on all Detections for the rest of the session.",
+  "desc_ru": "Сюрприз! Злоумышленники вывалили конфиденциальные данные клиентов на Pastebin. Теперь клиенты узнают об утечке за утренним кофе… из новостей.\n\nЗащитники обязаны разыграть процедуру «Кризисное управление». При успехе проблема снята. При неудаче — модификатор −2 ко всем броскам обнаружения до конца сессии.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Unclear whether playing Crisis Management consumes the defenders' turn, and what happens if Crisis Management is unavailable/on cooldown or not in their hand; 'successful' presumably means the roll succeeds (11+ with modifiers) even though Crisis Management may not reveal any attack card.",
+  "image": "cards/47.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "force_procedure",
+    "procedure": "Crisis Management",
+    "on_fail": [
+     {
+      "op": "modifier",
+      "value": -2,
+      "target": "all"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Следующий ход — только «Кризисное управление». Провал: −2 ко всем броскам, пока «Кризисное управление» не сработает успешно."
+ },
+ {
+  "id": "48",
+  "type": "inject",
+  "name_en": "Analyst Returns from Incident Response Training",
+  "name_ru": "Аналитик вернулся с курсов по реагированию на инциденты",
+  "desc_en": "Armed with newfound Splunk-fu, the Defenders' Security Information and Event Management (SIEM) analyst is now a log-sifting ninja. Attackers, beware! The regex game just leveled up.\n\nThe Defenders get a +2 modifier for all Detections until the end of the session.",
+  "desc_ru": "Овладев новым Splunk-фу, SIEM-аналитик защитников стал настоящим ниндзя по просеиванию логов. Злоумышленники, трепещите! Регулярки вышли на новый уровень.\n\nЗащитники получают модификатор +2 ко всем броскам обнаружения до конца сессии.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/48.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": "all"
+   }
+  ],
+  "effect_ru": "+2 ко всем броскам до конца игры."
+ },
+ {
+  "id": "49",
+  "type": "inject",
+  "name_en": "\"Policy? What Policy?\"",
+  "name_ru": "«Политика? Какая политика?»",
+  "desc_en": "Oops, that Detection just vanished faster than the Defenders' budget during Q4. Good luck explaining this one!\n\nThe Incident Captain must remove a Detection Card.",
+  "desc_ru": "Упс, эта процедура обнаружения испарилась быстрее, чем бюджет защитников в четвёртом квартале. Удачи с объяснениями!\n\nОдна карта процедуры обнаружения убирается со стола.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card does not say which procedure (Established or regular), who chooses, or whether removal is permanent; most natural reading: Captain removes one of the defenders' procedure cards for the rest of the game.",
+  "image": "cards/49.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": "captain"
+   }
+  ],
+  "effect_ru": "Одна процедура обнаружения выбывает до конца игры."
+ },
+ {
+  "id": "50",
+  "type": "inject",
+  "name_en": "Luck of the SOC",
+  "name_ru": "Удача SOC",
+  "desc_en": "Congrats! The Defenders hit the Detection Roulette Jackpot. Let's hope it's more useful than a phishing awareness poster.\n\nThe Incident Captain must reveal one of the Attack Cards.",
+  "desc_ru": "Поздравляем! Защитники сорвали джекпот в рулетке обнаружения. Будем надеяться, это полезнее плаката о фишинге.\n\nРаскрывается одна из карт атаки.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Card does not specify which attack card; presumably Captain's choice among still-hidden ones.",
+  "image": "cards/50.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "any"
+   }
+  ],
+  "effect_ru": "Раскрывается одна из карт атаки."
+ },
+ {
+  "id": "51",
+  "type": "inject",
+  "name_en": "Bobby the Intern Kills the System You are Reviewing",
+  "name_ru": "Стажёр Бобби вырубил систему, которую вы исследуете",
+  "desc_en": "In a bold move of intern ingenuity, Bobby decides \"reboot\" means \"unplug everything.\" The Defenders' investigation is now as dead as the server.\n\nThe Defenders lose their next turn.",
+  "desc_ru": "Проявив чудеса стажёрской смекалки, Бобби решил, что «перезагрузить» значит «выдернуть всё из розеток». Расследование защитников теперь так же мертво, как и сервер.\n\nЗащитники пропускают следующий ход.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "",
+  "image": "cards/51.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Вы пропускаете следующий ход."
+ },
+ {
+  "id": "52",
+  "type": "inject",
+  "name_en": "Legal Takes Your Most Skilled Handler into a Meeting to Explain the Incident",
+  "name_ru": "Юристы утащили вашего лучшего специалиста на совещание объяснять инцидент",
+  "desc_en": "Who brought a lawyer to the party? There's always one person who pretty much runs the whole IR process — that \"One Essential Person.\" Well, the legal team just took that person away for \"Very Important Reasons.\"\n\nThe Defenders lose the +3 modifier on Established Detections for 2 turns.",
+  "desc_ru": "Кто позвал юриста на вечеринку? Всегда есть один человек, на котором держится весь процесс реагирования, — тот самый «Незаменимый». Так вот, юристы только что забрали его по «Очень Важным Причинам».\n\nЗащитники теряют модификатор +3 для установленных (Established) процедур обнаружения на 2 хода.",
+  "detections": [],
+  "tools": [],
+  "links": [
+   "https://backdoorsandbreaches.com/coredeck/v3"
+  ],
+  "notes": "Russian term for 'Established' procedures should match the glossary used for other cards (here: 'установленные (Established)').",
+  "image": "cards/52.webp",
+  "deck": "core",
+  "effects": [
+   {
+    "op": "no_established_bonus",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Установленные процедуры 2 хода работают без бонуса."
+ }
+]

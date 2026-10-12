@@ -1,0 +1,985 @@
+[
+ {
+  "id": "datadog-01",
+  "deck": "datadog",
+  "type": "procedure",
+  "name_en": "Application Runtime Analysis",
+  "name_ru": "Анализ среды выполнения приложений",
+  "desc_en": "The Defenders use their Application Runtime Security solution to view process tree traces of attacks against their applications.",
+  "desc_ru": "Защитники используют решение для защиты приложений во время выполнения (Runtime Application Security), чтобы просматривать трассировки дерева процессов при атаках на свои приложения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Datadog Code Security",
+   "OpenTelemetry"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/01.webp"
+ },
+ {
+  "id": "datadog-02",
+  "deck": "datadog",
+  "type": "procedure",
+  "name_en": "Cloud Security Information and Event Management (SIEM) Log Analysis",
+  "name_ru": "Анализ журналов облачного SIEM",
+  "desc_en": "The Defenders use Cloud SIEM to aggregate logs from the cloud provider, applications, and devices to identify abnormal patterns, such as unusual access, traffic, or attack signatures.",
+  "desc_ru": "Защитники используют облачный SIEM, чтобы собирать журналы облачного провайдера, приложений и устройств и выявлять аномалии: необычные обращения, нетипичный трафик или сигнатуры атак.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Datadog Cloud SIEM"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/02.webp"
+ },
+ {
+  "id": "datadog-03",
+  "deck": "datadog",
+  "type": "procedure",
+  "name_en": "Cloud Identity and Entitlement Management (CIEM)",
+  "name_ru": "Управление облачными идентификаторами и правами (CIEM)",
+  "desc_en": "The Defenders use CIEM (pronounced kim) to determine the potential overprivileged paths to sensitive access. They learn the names of the roles and the Identity and Access Management (IAM) users that are risky.",
+  "desc_ru": "Защитники используют CIEM (произносится «ким»), чтобы найти возможные пути к чувствительным ресурсам через избыточные привилегии. Они узнают имена рискованных ролей и пользователей IAM (управление идентификацией и доступом).",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Datadog Identity Risks",
+   "IAMSpy"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/03.webp"
+ },
+ {
+  "id": "datadog-04",
+  "deck": "datadog",
+  "type": "procedure",
+  "name_en": "Workload Protection",
+  "name_ru": "Защита рабочих нагрузок",
+  "desc_en": "The Defenders use their cloud-native workload protection software to understand commands that were executed on the compromised workload.",
+  "desc_ru": "Защитники используют облачное (cloud-native) средство защиты рабочих нагрузок (CWPP), чтобы выяснить, какие команды выполнялись на скомпрометированной нагрузке — контейнере, ВМ или функции.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Datadog Workload Protection"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/04.webp"
+ },
+ {
+  "id": "datadog-05",
+  "deck": "datadog",
+  "type": "procedure",
+  "name_en": "Software Bill of Materials (SBOM) Analysis",
+  "name_ru": "Анализ перечня компонентов ПО (SBOM)",
+  "desc_en": "The Defenders use an inventory of SBOM to correlate whether or not a specific software package is present in their environment.",
+  "desc_ru": "Защитники используют инвентаризацию SBOM (перечень программных компонентов), чтобы установить, присутствует ли конкретный программный пакет в их инфраструктуре.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Datadog Code Security"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/05.webp"
+ },
+ {
+  "id": "datadog-06",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Compromised Single Sign-On (SSO) Federated Identity",
+  "name_ru": "Компрометация федеративной учётной записи единого входа (SSO)",
+  "desc_en": "The attackers compromised an SSO federated identity and leveraged that identity to authenticate to your organization's cloud environments.",
+  "desc_ru": "Злоумышленники скомпрометировали федеративную учётную запись SSO и с её помощью аутентифицировались в облачных средах вашей организации.",
+  "detections_en": [
+   "Cloud Identity and Entitlement Management (CIEM)",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis"
+  ],
+  "detections": [
+   "datadog-03",
+   "39",
+   "datadog-02",
+   "34"
+  ],
+  "tools": [
+   "CursedChrome",
+   "Evilgnix"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сотрудник отдела продаж вчера вечером входил в облачную консоль из Москвы, а через 20 минут — из Амстердама, хотя сам говорит, что весь вечер был дома.",
+   "Провайдер удостоверений зафиксировал успешные входы без запроса MFA у пользователя, который накануне жаловался на «странную страницу входа, которая два раза попросила пароль»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/06.webp"
+ },
+ {
+  "id": "datadog-07",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Poisoned Cloud Image Supply Chain",
+  "name_ru": "Отравленная цепочка поставок облачных образов",
+  "desc_en": "The attackers created a malicious cloud image with a doppelgänger name for the legitimate image and your Infrastructure as Code (IaC) tools used it instead of the intended artifact, resulting in their full control of your virtual machine.",
+  "desc_ru": "Злоумышленники создали вредоносный облачный образ с именем-двойником легитимного, и ваши инструменты «инфраструктуры как кода» (IaC) развернули его вместо нужного артефакта — в результате злоумышленники получили полный контроль над вашей виртуальной машиной.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "33"
+  ],
+  "tools": [
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После очередного деплоя Terraform новая ВМ ссылается на ID образа, принадлежащий чужому, незнакомому аккаунту облачного провайдера.",
+   "Свежеразвёрнутый сервер сразу после старта начал устанавливать исходящие соединения на неизвестный IP, хотя на нём ещё даже не запущено приложение."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/07.webp"
+ },
+ {
+  "id": "datadog-08",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Cloud-Native Serverless Function Compromised",
+  "name_ru": "Компрометация облачной serverless-функции",
+  "desc_en": "The attackers compromised a serverless function via an injection. They gained access to the credentials for the functions role, any data it has access to, and network resources in the same Virtual Private Cloud (VPC).",
+  "desc_ru": "Злоумышленники скомпрометировали serverless-функцию через инъекцию. Они получили учётные данные роли функции, доступ ко всем данным, доступным этой роли, и к сетевым ресурсам в том же виртуальном частном облаке (VPC).",
+  "detections_en": [
+   "Application Runtime Analysis",
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis"
+  ],
+  "detections": [
+   "datadog-01",
+   "datadog-02",
+   "34"
+  ],
+  "tools": [
+   "Browser",
+   "Censys/Shodan"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журналах API-шлюза появились запросы к функции обработки заказов, в параметрах которых передаются фрагменты shell-команд.",
+   "Ключи доступа, выданные роли одной из облачных функций, внезапно используются для API-вызовов с внешнего IP-адреса, а не из среды выполнения функции."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/08.webp"
+ },
+ {
+  "id": "datadog-09",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Confused Deputy Attack",
+  "name_ru": "Атака «запутавшегося заместителя» (Confused Deputy)",
+  "desc_en": "The attackers abused a misconfiguration found in a role created by the cloud service provider allowing them to assume roles to gain access and read/write data.",
+  "desc_ru": "Злоумышленники воспользовались ошибкой конфигурации в роли, созданной облачным провайдером, что позволило им принимать (assume) роли и получить доступ к данным на чтение и запись.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Cloud Identity Entitlement Management (CIEM)",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-03",
+   "39"
+  ],
+  "tools": [
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журнале облачного аудита видны вызовы AssumeRole к служебной роли, созданной самим провайдером, — причём инициатор находится в чужом аккаунте.",
+   "Служебная роль, которая обычно лишь пишет метрики, вдруг начала читать и перезаписывать объекты в хранилище с клиентскими данными."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/09.webp"
+ },
+ {
+  "id": "datadog-10",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "GitHub Action Compromised",
+  "name_ru": "Компрометация GitHub Action",
+  "desc_en": "The attackers backdoored your self-hosted GitHub Action runner, compromising the runtime of your CI/CD job giving them access to read code, environment variables, and secrets that are sensitive.",
+  "desc_ru": "Злоумышленники внедрили бэкдор в ваш self-hosted раннер GitHub Actions и скомпрометировали среду выполнения CI/CD-заданий, получив доступ к коду, переменным окружения и чувствительным секретам.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Workload Protection"
+  ],
+  "detections": [
+   "datadog-02",
+   "39",
+   "datadog-04"
+  ],
+  "tools": [
+   "Gato",
+   "Manual security research"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сборочный сервер в собственном ЦОДе между заданиями запускает какой-то процесс, который раз в минуту обращается к внешнему хосту.",
+   "Токен развёртывания, который используется только в пайплайне, был применён с домашнего IP-адреса в другой стране в 3 часа ночи."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/10.webp"
+ },
+ {
+  "id": "datadog-11",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Backdoored Software Supply Chain",
+  "name_ru": "Бэкдор в цепочке поставок ПО",
+  "desc_en": "The attackers modified an open-source library that downloads malicious code on a developer's machine.",
+  "desc_ru": "Злоумышленники модифицировали библиотеку с открытым исходным кодом так, что она скачивает вредоносный код на машину разработчика.",
+  "detections_en": [
+   "Software Bill of Materials (SBOM) Analysis",
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "datadog-05",
+   "38",
+   "40"
+  ],
+  "tools": [
+   "Git"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сразу после обновления зависимостей проекта антивирус на ноутбуке разработчика ругнулся на подозрительный файл во временной папке.",
+   "Во время установки пакетов скрипт сборки неожиданно скачивает бинарник с незнакомого домена, хотя в коде проекта такого шага нет."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/11.webp"
+ },
+ {
+  "id": "datadog-12",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Cloud Application Compromised",
+  "name_ru": "Компрометация облачного приложения",
+  "desc_en": "A web application running an enterprise-class framework has a maximum level Common Vulnerability Exposure (CVE) that allows an attacker to execute arbitrary code.",
+  "desc_ru": "Веб-приложение на корпоративном фреймворке содержит уязвимость (CVE) максимального уровня критичности, позволяющую злоумышленнику выполнить произвольный код.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Application Runtime Analysis",
+   "Workload Protection"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-01",
+   "datadog-04"
+  ],
+  "tools": [
+   "Browser",
+   "Censys/Shodan",
+   "Application scanners"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Процесс веб-сервера в продуктиве породил дочерний процесс bash, который выполнил whoami и curl.",
+   "Вчера вендор фреймворка выпустил экстренный бюллетень с оценкой 10.0, а сегодня WAF фиксирует массовые запросы со странными сериализованными объектами к нашему порталу."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/12.webp"
+ },
+ {
+  "id": "datadog-13",
+  "deck": "datadog",
+  "type": "initial",
+  "name_en": "Exposed Cloud Credentials via Unauthenticated Kubernetes Dashboard",
+  "name_ru": "Утечка облачных учётных данных через Kubernetes Dashboard без аутентификации",
+  "desc_en": "The attackers discovered an exposed Kubernetes Dashboard allowing unauthenticated access to the API, allowing them to launch workloads and access data.",
+  "desc_ru": "Злоумышленники обнаружили открытую в интернет панель Kubernetes Dashboard, дающую доступ к API без аутентификации, что позволило им запускать рабочие нагрузки и получать доступ к данным.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Workload Protection"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-04"
+  ],
+  "tools": [
+   "Browser",
+   "Censys/Shodan",
+   "badPods"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В продуктивном кластере появился под с привилегированным режимом и смонтированной файловой системой узла — никто из команды его не создавал.",
+   "Счёт за облако за выходные вырос втрое: на узлах кластера неизвестные контейнеры круглосуточно грузят CPU на 100%."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/13.webp"
+ },
+ {
+  "id": "datadog-14",
+  "deck": "datadog",
+  "type": "pivot",
+  "name_en": "Credentials Exposed in Storage Bucket",
+  "name_ru": "Учётные данные в открытом хранилище (бакете)",
+  "desc_en": "The attackers enumerate buckets and identify long-lived credentials in files that allow authentication as a cloud administrator.",
+  "desc_ru": "Злоумышленники перебирают бакеты объектного хранилища и находят в файлах долгоживущие учётные данные, позволяющие аутентифицироваться как облачный администратор.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Cloud Identity and Entitlement Management (CIEM)",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "datadog-02",
+   "datadog-03",
+   "39",
+   "37"
+  ],
+  "tools": [
+   "CloudFox buckets command",
+   "Pacu download_bucket module",
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал облачного аудита показывает сотни вызовов ListBucket и GetObject за пару минут от одной учётной записи — она прошлась почти по всем хранилищам.",
+   "Ключ доступа старой учётки «deploy-admin», не использовавшийся больше года, вдруг выполнил вход и начал вызывать административные API."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/14.webp"
+ },
+ {
+  "id": "datadog-15",
+  "deck": "datadog",
+  "type": "pivot",
+  "name_en": "Instance Takeover via User Data",
+  "name_ru": "Захват инстанса через user data",
+  "desc_en": "The attackers identify an overly privileged compute workload and modify user data to gain shell access, allowing them to leverage the Instance Metadata Service (IMDS) to retrieve an administrative credential.",
+  "desc_ru": "Злоумышленники находят вычислительную нагрузку с избыточными привилегиями и изменяют её user data (скрипт начальной настройки ВМ), чтобы получить shell-доступ, а затем через службу метаданных инстанса (IMDS) получают административные учётные данные.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Cloud Identity and Entitlement Management (CIEM)",
+   "Workload Protection",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "datadog-02",
+   "datadog-03",
+   "datadog-04",
+   "37"
+  ],
+  "tools": [
+   "Pacu ec2_startup_shell_script",
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Одну из продуктивных ВМ кто-то остановил и через минуту снова запустил — вне окна обслуживания и без заявки.",
+   "После перезагрузки сервер при старте выполнил незнакомый скрипт, который открыл исходящее соединение на внешний IP."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/15.webp"
+ },
+ {
+  "id": "datadog-16",
+  "deck": "datadog",
+  "type": "pivot",
+  "name_en": "Kubernetes Service Account PrivEsc",
+  "name_ru": "Повышение привилегий через сервисный аккаунт Kubernetes",
+  "desc_en": "The attackers compromise a high-privileged service account mounted in a Kubernetes pod.",
+  "desc_ru": "Злоумышленники компрометируют высокопривилегированный сервисный аккаунт, смонтированный в под Kubernetes.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Workload Protection",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-04",
+   "37"
+  ],
+  "tools": [
+   "kubectl",
+   "curl",
+   "kdigger"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал аудита Kubernetes API: учётка, принадлежащая приложению мониторинга, вдруг запросила список секретов во всех пространствах имён.",
+   "Внутри контейнера веб-приложения кто-то прочитал токен из /var/run/secrets и запустил curl к API-серверу кластера."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/16.webp"
+ },
+ {
+  "id": "datadog-17",
+  "deck": "datadog",
+  "type": "pivot",
+  "name_en": "Instance Metadata Service (IMDS) Access",
+  "name_ru": "Доступ к службе метаданных инстанса (IMDS)",
+  "desc_en": "The attackers exploit Server-Side Request Forgery (SSRF) on a cloud-hosted web app to gain access to the Instance Metadata Service (IMDS). This allows them to gain temporary security credentials they use to pivot in your cloud environment.",
+  "desc_ru": "Злоумышленники эксплуатируют подделку запросов на стороне сервера (SSRF) в облачном веб-приложении, чтобы получить доступ к службе метаданных инстанса (IMDS). Так они получают временные учётные данные и с их помощью продвигаются по вашей облачной среде.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Active Defense and Cyber Deception",
+   "Application Runtime Analysis",
+   "Workload Protection"
+  ],
+  "detections": [
+   "datadog-02",
+   "37",
+   "datadog-01",
+   "datadog-04"
+  ],
+  "tools": [
+   "CloudFox instances command",
+   "Pacu ec2_download_userdata module",
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журналах веб-приложения появились запросы, где параметр url указывает на адрес 169.254.169.254.",
+   "Временные ключи роли веб-сервера начали использоваться для API-вызовов с IP-адреса, не принадлежащего нашему облаку."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/17.webp"
+ },
+ {
+  "id": "datadog-18",
+  "deck": "datadog",
+  "type": "pivot",
+  "name_en": "Credential Store Compromise",
+  "name_ru": "Компрометация хранилища учётных данных",
+  "desc_en": "The attackers gain access to a cloud-hosted credential store containing various user and application credentials via a permissions misconfiguration.",
+  "desc_ru": "Злоумышленники из-за ошибки в настройке прав получают доступ к облачному хранилищу учётных данных, в котором лежат пароли и ключи пользователей и приложений.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "39",
+   "37"
+  ],
+  "tools": [
+   "CloudFox secrets command",
+   "Pacu secrets_enum",
+   "CloudAPIs",
+   "Native CLIs",
+   "MicroBurst"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал облачного аудита: учётная запись тестового стенда за несколько минут прочитала значения десятков секретов, включая пароли продуктивных БД.",
+   "Сработал «сторожевой» секрет-приманка, к которому не обращается ни одно приложение: кто-то запросил его значение."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/18.webp"
+ },
+ {
+  "id": "datadog-19",
+  "deck": "datadog",
+  "type": "pivot",
+  "name_en": "Identity and Access Management (IAM) Policy Abuse",
+  "name_ru": "Злоупотребление политиками IAM",
+  "desc_en": "The attackers discover that policies enforced for certain roles and resources allow them to escalate privileges within the cloud account.",
+  "desc_ru": "Злоумышленники обнаруживают, что политики, применяемые к определённым ролям и ресурсам, позволяют им повысить привилегии в облачном аккаунте.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "User and Entity Behavior Analytics (UEBA)",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "39",
+   "37"
+  ],
+  "tools": [
+   "PMapper",
+   "CloudFox",
+   "Pacu",
+   "AzureHound"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал облачного аудита: техническая учётка сервиса отчётности сама себе прикрепила новую политику, а затем создала новую версию этой политики.",
+   "Учётная запись стажёра, у которой были права только на чтение, сегодня утром создала роль с правами администратора."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/19.webp"
+ },
+ {
+  "id": "datadog-20",
+  "deck": "datadog",
+  "type": "persist",
+  "name_en": "Backdoored Container Image",
+  "name_ru": "Бэкдор в образе контейнера",
+  "desc_en": "The attackers modify a container image to include malicious code that gets executed every time it is started.",
+  "desc_ru": "Злоумышленники модифицируют образ контейнера, добавив в него вредоносный код, который выполняется при каждом запуске.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Workload Protection",
+   "Software Bill of Materials (SBOM) Analysis"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-04",
+   "datadog-05"
+  ],
+  "tools": [
+   "Docker",
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В реестре образов тег «latest» базового образа перезаписан ночью с учётки, которая обычно ничего не публикует, — а пайплайн сборки в это время не запускался.",
+   "Каждый раз, когда автоскейлинг поднимает новый под сервиса платежей, в первые секунды он обращается к незнакомому внешнему домену."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/20.webp"
+ },
+ {
+  "id": "datadog-21",
+  "deck": "datadog",
+  "type": "persist",
+  "name_en": "Additional Credential Creation",
+  "name_ru": "Создание дополнительных учётных данных",
+  "desc_en": "The attackers create a second set of credentials for a user.",
+  "desc_ru": "Злоумышленники создают пользователю второй набор учётных данных.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "User and Entity Behavior Analytics (UEBA)"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Pacu iam_backdoor_users_keys",
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "У сервисной учётки CI в облаке теперь два активных ключа доступа, хотя по регламенту у неё всегда один — и второй никто из команды не выпускал.",
+   "Журнал облачного аудита: вызов CreateAccessKey для пользователя-администратора выполнен с IP-адреса, не принадлежащего офису или VPN."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/21.webp"
+ },
+ {
+  "id": "datadog-22",
+  "deck": "datadog",
+  "type": "persist",
+  "name_en": "Cloned Kubernetes Credentials",
+  "name_ru": "Клонированные учётные данные Kubernetes",
+  "desc_en": "The attackers clone privileged system accounts with long-lasting credentials.",
+  "desc_ru": "Злоумышленники клонируют привилегированные системные учётные записи, создавая для них долгоживущие учётные данные.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis"
+  ],
+  "detections": [
+   "datadog-02",
+   "34"
+  ],
+  "tools": [
+   "kubectl",
+   "teisteanas"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал аудита Kubernetes API: кто-то подписал запрос на сертификат (CSR) с именем, почти совпадающим с системным компонентом кластера.",
+   "После ротации всех токенов кластера к API-серверу продолжает подключаться клиент с правами cluster-admin, которого нет в нашем перечне."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/22.webp"
+ },
+ {
+  "id": "datadog-23",
+  "deck": "datadog",
+  "type": "persist",
+  "name_en": "Backdoored Role Trust Policy",
+  "name_ru": "Бэкдор в политике доверия роли",
+  "desc_en": "The attackers update the trust policy for an AWS Identity and Access Management (IAM) role, allowing them to assume the role from an account you do not control.",
+  "desc_ru": "Злоумышленники изменяют политику доверия (trust policy) роли AWS IAM, что позволяет им принимать эту роль из аккаунта, который вы не контролируете.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Cloud Identity and Entitlement Management (CIEM)"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-03"
+  ],
+  "tools": [
+   "Pacu",
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал CloudTrail: вызов UpdateAssumeRolePolicy для административной роли, сделанный в субботу ночью.",
+   "Административная роль стала регулярно использоваться сессиями, пришедшими из AWS-аккаунта с незнакомым 12-значным номером."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/23.webp"
+ },
+ {
+  "id": "datadog-24",
+  "deck": "datadog",
+  "type": "c2",
+  "name_en": "Living Off the Cloud as Exfil",
+  "name_ru": "«Жизнь за счёт облака» для эксфильтрации",
+  "desc_en": "The attackers use cloud provider Command Line Interface (CLI) tools to exfiltrate data.",
+  "desc_ru": "Злоумышленники используют штатные утилиты командной строки (CLI) облачного провайдера для вывода данных.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Workload Protection"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "datadog-04"
+  ],
+  "tools": [
+   "CloudAPIs",
+   "Native CLIs"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На сервере базы данных, где никто никогда не работал вручную, запущена утилита синхронизации файлов с объектным хранилищем.",
+   "Исходящий трафик с сервера приложений в сторону облачного хранилища за ночь составил 400 ГБ — бакет-получатель не принадлежит нашей организации."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/24.webp"
+ },
+ {
+  "id": "datadog-25",
+  "deck": "datadog",
+  "type": "c2",
+  "name_en": "Snapshotting Resources as Exfil",
+  "name_ru": "Эксфильтрация через снапшоты ресурсов",
+  "desc_en": "The attackers take a snapshot of a virtual machine or database and replicate to an account you do not control.",
+  "desc_ru": "Злоумышленники делают снимок (снапшот) виртуальной машины или базы данных и копируют его в аккаунт, который вы не контролируете.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Security Information and Event Management (SIEM) Log Analysis",
+   "Active Defense and Cyber Deception"
+  ],
+  "detections": [
+   "datadog-02",
+   "34",
+   "37"
+  ],
+  "tools": [
+   "Pacu",
+   "Cloud CLI Tools (AWS, az, gcloud)"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал облачного аудита: ночью созданы копии дисков продуктивной СУБД, а затем у них изменены атрибуты доступа — добавлен внешний номер аккаунта.",
+   "Служба резервного копирования ничего не запускала, но в консоли появились свежие копии дисков с безликими именами вроде «tmp-0423»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/25.webp"
+ },
+ {
+  "id": "datadog-26",
+  "deck": "datadog",
+  "type": "c2",
+  "name_en": "Software as a Service (SaaS) Tunneling Virtual Private Network (VPN) as C2",
+  "name_ru": "Туннельный SaaS-VPN как канал управления (C2)",
+  "desc_en": "The attackers deploy a commercial tunneling VPN client to the compromised asset.",
+  "desc_ru": "Злоумышленники устанавливают на скомпрометированный актив коммерческий клиент туннельного VPN.",
+  "detections_en": [
+   "Cloud Security Information and Event Management (SIEM) Log Analysis",
+   "Workload Protection",
+   "Endpoint Analysis",
+   "Network Threat Hunting"
+  ],
+  "detections": [
+   "datadog-02",
+   "datadog-04",
+   "40",
+   "36"
+  ],
+  "tools": [
+   "Tailscale",
+   "WireGuard",
+   "LogMeIn"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На облачной ВМ появился новый виртуальный сетевой интерфейс и служба, которая держит постоянное соединение по UDP с координационным сервером в интернете.",
+   "Сетевой мониторинг видит, что сервер, у которого нет публичного IP, стабильно обменивается зашифрованным трафиком с внешними узлами, а к нему кто-то подключается «изнутри»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/datadog/26.webp"
+ },
+ {
+  "id": "datadog-27",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Undocumented Application Programming Interfaces (API)",
+  "name_ru": "Недокументированные API",
+  "desc_en": "The attackers have performed their actions using undocumented cloud provider APIs, and none of their activity is showing up in your SIEM solution. Your Cloud SIEM can no longer trust the data coming from your cloud provider. The Cloud Security Information and Event Management (SIEM) Log Analysis Detection is unavailable for the next 3 turns.",
+  "desc_ru": "Злоумышленники действовали через недокументированные API облачного провайдера, и ничего из их активности не попало в ваш SIEM. Облачный SIEM больше не может доверять данным от провайдера. Процедура «Анализ журналов облачного SIEM» недоступна в течение следующих 3 ходов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Cloud Security Information and Event Management (SIEM) Log Analysis"
+     ]
+    },
+    "turns": 3
+   }
+  ],
+  "effect_ru": "«Анализ журналов облачного SIEM» недоступен 3 хода.",
+  "image": "cards/datadog/27.webp"
+ },
+ {
+  "id": "datadog-28",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Attacker Stops Cloud Logging",
+  "name_ru": "Злоумышленник отключил облачное журналирование",
+  "desc_en": "The attackers stop control plane logging altogether, making the security team blind to future attacker behavior. Choose one Defender to skip 2 turns while they deal with the high-severity incident.",
+  "desc_ru": "Злоумышленники полностью отключили журналирование уровня управления (control plane), и команда безопасности теперь слепа к их дальнейшим действиям. Выберите одного защитника — он пропускает 2 хода, пока разбирается с инцидентом высокой критичности.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Защитники пропускают 1 ход.",
+  "image": "cards/datadog/28.webp"
+ },
+ {
+  "id": "datadog-29",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Cloud Security Training",
+  "name_ru": "Обучение облачной безопасности",
+  "desc_en": "Your security engineers downloaded Stratus Red Team and have simulated dozens of attacks in a controlled setting. They identified gaps in their current Detections and made improvements. The Defenders get a +3 modifier for the Cloud Security Information and Event Management (SIEM) Log Analysis card for the remainder of the session.",
+  "desc_ru": "Ваши инженеры по безопасности скачали Stratus Red Team и в контролируемой среде смоделировали десятки атак. Они нашли пробелы в текущих детектах и устранили их. Защитники получают модификатор +3 к карте «Анализ журналов облачного SIEM» до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": {
+     "procedures": [
+      "Cloud Security Information and Event Management (SIEM) Log Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "+3 к «Анализу журналов облачного SIEM» до конца игры.",
+  "image": "cards/datadog/29.webp"
+ },
+ {
+  "id": "datadog-30",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Instance Metadata Service Version 2 (IMDSv2) Project Complete",
+  "name_ru": "Проект перехода на IMDSv2 завершён",
+  "desc_en": "Your security engineers completed a year-long project that removed all use of IMDSv1 in your environment, eliminating the chance that a Server-Side Request Forgery (SSRF) can be used to gain access to cloud credentials. The Incident Captain must reveal the Pivot and Escalate card while eating a celebratory slice of New York pizza.",
+  "desc_ru": "Ваши инженеры завершили годовой проект и полностью избавились от IMDSv1 в инфраструктуре — теперь подделкой запросов на стороне сервера (SSRF) облачные учётные данные не достать. Раскрывается карта повышения привилегий и перемещения — под праздничный кусок нью-йоркской пиццы.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "image": "cards/datadog/30.webp"
+ },
+ {
+  "id": "datadog-31",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Supply Chain Firewall",
+  "name_ru": "Межсетевой экран для цепочки поставок",
+  "desc_en": "Your team has introduced the supply chain firewall into all developer and continuous integration (CI) workstreams reducing the likelihood that one of your developers can be compromised by a supply chain attack. The Incident Captain must reveal the Persistence card.",
+  "desc_ru": "Ваша команда внедрила Supply Chain Firewall (фильтр вредоносных пакетов) во все процессы разработки и непрерывной интеграции (CI), снизив вероятность того, что кого-то из разработчиков скомпрометируют через атаку на цепочку поставок. Раскрывается карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "Раскрывается карта закрепления.",
+  "image": "cards/datadog/31.webp"
+ },
+ {
+  "id": "datadog-32",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Public Storage Bucket Exposed",
+  "name_ru": "Публичный бакет хранилища в открытом доступе",
+  "desc_en": "A cloud storage service was misconfigured to allow public access. The bucket contained Personally Identifiable Information (PII) for thousands of your customers. The Defenders must play their Crisis Management Detection. If they are successful, they can move past this issue. If they aren't, they receive a -2 modifier on all detections for the rest of the session.",
+  "desc_ru": "Облачное хранилище по ошибке настроили на публичный доступ. В бакете лежали персональные данные (ПДн) тысяч ваших клиентов. Защитники должны сыграть процедуру «Кризисное управление». При успехе инцидент исчерпан; при провале — модификатор −2 ко всем проверкам до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "force_procedure",
+    "procedure": "Crisis Management",
+    "on_fail": [
+     {
+      "op": "modifier",
+      "value": -2,
+      "target": "all"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Обязательно «Кризисное управление»; при провале −2 ко всем проверкам до конца игры.",
+  "image": "cards/datadog/32.webp"
+ },
+ {
+  "id": "datadog-33",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Exposed Software as a Service (SaaS) Application Programming Interface (API) Key During Public Presentation",
+  "name_ru": "Утечка API-ключа SaaS во время публичного выступления",
+  "desc_en": "One of your engineers just gave an amazing presentation, sharing an epic story about how your company uses a SaaS product. Unfortunately, they forgot to redact their SaaS API key. Members of the audience quickly logged in and accessed your company resources. Accidents happen, but what do you do when someone exposes your organization inadvertently? The Incident Captain must draw an additional Pivot and Escalate card.",
+  "desc_ru": "Один из ваших инженеров блестяще выступил на конференции с эпичным рассказом о том, как компания использует SaaS-продукт. Увы, он забыл замазать на слайдах свой API-ключ — слушатели тут же залогинились и добрались до ресурсов компании. Всякое бывает, но что вы делаете, когда кто-то нечаянно подставил организацию? В игру добавляется ещё одна карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта повышения привилегий и перемещения.",
+  "image": "cards/datadog/33.webp"
+ },
+ {
+  "id": "datadog-34",
+  "deck": "datadog",
+  "type": "inject",
+  "name_en": "Third-Party Code Library Compromised",
+  "name_ru": "Компрометация сторонней библиотеки кода",
+  "desc_en": "Your developer proactively ran GuardDog Command Line Interface (CLI) scans on a Python package before using it, and flagged the package as malicious, thereby avoiding a compromise. This encouraged more developers in your organization to also use GuardDog before integrating new packages into their software. The Defenders get a +3 modifier for the Software Bill of Materials (SBOM) card for the remainder of the session.",
+  "desc_ru": "Ваш разработчик заранее прогнал Python-пакет через CLI-сканер GuardDog перед использованием и пометил его как вредоносный — компрометации удалось избежать. Глядя на него, и другие разработчики стали проверять GuardDog'ом новые пакеты перед подключением. Защитники получают модификатор +3 к карте «Анализ перечня компонентов ПО (SBOM)» до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": {
+     "procedures": [
+      "Software Bill of Materials (SBOM) Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "+3 к «Анализу перечня компонентов ПО (SBOM)» до конца игры.",
+  "image": "cards/datadog/34.webp"
+ }
+]

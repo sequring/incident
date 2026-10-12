@@ -1,0 +1,1004 @@
+[
+ {
+  "id": "trimarc-01",
+  "deck": "trimarc",
+  "type": "procedure",
+  "name_en": "Cloud Event Log Analysis",
+  "name_ru": "Анализ облачных журналов",
+  "desc_en": "Are you missing what should be in your cloud logs? Do you even know what cloud provider logs you need in an incident response situation? There are thousands of data connectors in your cloud service provider. Have any of them changed since the last time you reviewed them? Good luck hunting for a specific needle in a stack of needles.",
+  "desc_ru": "Защитники разбирают журналы облачного провайдера: всё ли, что должно логироваться, действительно попадает в журналы? Знаете ли вы, какие облачные логи нужны при реагировании на инцидент? У провайдера тысячи коннекторов данных — менялись ли они с момента последней проверки? Удачи в поиске конкретной иголки в стоге иголок.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Check with your cloud provider and see what tools they provide. It's ok, you're paying them a ton of money for all this."
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/01.webp"
+ },
+ {
+  "id": "trimarc-02",
+  "deck": "trimarc",
+  "type": "procedure",
+  "name_en": "Permissions Audit",
+  "name_ru": "Аудит прав доступа",
+  "desc_en": "Users can have everything by default... which makes your organization vulnerable by design. Who gets to do what and why? Who is the magical unicorn that gets the exceptions? Are permissions open for convenience? When was the last time you fixed something a security audit didn't make you do? You can be the decider if you want--the power is yours!",
+  "desc_ru": "Защитники проверяют, кто и какие права имеет. По умолчанию пользователям доступно всё — значит, организация уязвима «by design». Кто что может делать и почему? Кто тот волшебный единорог, которому положены исключения? Не открыты ли права «для удобства»? Когда вы в последний раз исправляли что-то без требования аудитора? Решать вам — власть в ваших руках!",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "ROADtools",
+   "ScoutSuite",
+   "AzureHound",
+   "Prowler"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/02.webp"
+ },
+ {
+  "id": "trimarc-03",
+  "deck": "trimarc",
+  "type": "procedure",
+  "name_en": "Call a Consultant",
+  "name_ru": "Вызов консультанта",
+  "desc_en": "Do you want help? Feeling stuck? Rolling badly? Need a different perspective on the incident? Then maybe it's time to phone a friend. You can choose one Consultant Card to help your team with the incident. The Consultant Card's modifier is effective immediately.",
+  "desc_ru": "Нужна помощь? Застряли? Кубик не идёт? Нужен свежий взгляд на инцидент? Пора звонить другу. Защитники выбирают одну карту консультанта, которая поможет команде с инцидентом. Эффект консультанта вступает в силу немедленно.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/03.webp"
+ },
+ {
+  "id": "trimarc-04",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "Forest Trusts",
+  "name_ru": "Доверительные отношения лесов",
+  "desc_en": "Despite your protests, your parent company insisted on maintaining an admin account in your forest (which resides in their forest). The attackers compromised your parent company's forest and pivoted into your forest. Thanks, parent company.",
+  "desc_ru": "Несмотря на ваши протесты, материнская компания настояла на сохранении админской учётной записи в вашем лесу AD (сама учётка живёт в их лесу). Злоумышленники скомпрометировали лес материнской компании и через него перешли в ваш. Спасибо, материнская компания.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Cyber Deception",
+   "SIEM Log Analysis",
+   "Permissions Audit"
+  ],
+  "detections": [
+   "39",
+   "37",
+   "34",
+   "45"
+  ],
+  "tools": [
+   "Get-ADTrust",
+   "PsExec",
+   "PowerSploit",
+   "CrackMapExec"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На контроллерах домена появились успешные входы администратора из чужого домена — учётка принадлежит головной компании, но её владелец клянётся, что ничего не делал.",
+   "Ночью с одного сервера пошли удалённые запуски служб на десятках рабочих станций, причём под учётной записью, которой у вас обычно никто не пользуется."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/04.webp"
+ },
+ {
+  "id": "trimarc-05",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "AI-Generated Script",
+  "name_ru": "Скрипт, написанный ИИ",
+  "desc_en": "ChatGPT (and other LLMs) \"cannot provide scripts or advice for illegal activities,\" but the attackers are smarter than the bot. They used a unique AI-generated script to bypass security controls and gain access to the environment.",
+  "desc_ru": "ChatGPT (и другие LLM) «не может предоставлять скрипты или советы для незаконной деятельности», но злоумышленники оказались умнее бота. Они использовали уникальный скрипт, сгенерированный ИИ, чтобы обойти средства защиты и получить доступ к среде.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "36",
+   "39"
+  ],
+  "tools": [
+   "LLMs (ex: PrivateGPT)",
+   "Jasper",
+   "AI-powered Bing",
+   "Good ole' fashion Googlin'"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На нескольких рабочих станциях запустился PowerShell-скрипт, хэш которого не встречается ни в одной базе угроз, — антивирус промолчал, а сразу после этого отключилось логирование.",
+   "Скрипт в пересланном вложении написан подозрительно аккуратно: подробные комментарии, ровные отступы и вежливые сообщения об ошибках — совсем не похоже на привычный мусорный код атакующих."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/05.webp"
+ },
+ {
+  "id": "trimarc-06",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "SSO Provider Compromise",
+  "name_ru": "Компрометация провайдера SSO",
+  "desc_en": "The attackers -- some cheeky teenagers -- vished their way into your single sign-on (SSO) provider's system and pivoted into your internal network, email, and SaaS applications.",
+  "desc_ru": "Злоумышленники — какие-то дерзкие подростки — с помощью вишинга (голосового фишинга) проникли в систему вашего провайдера единого входа (SSO) и оттуда перешли во внутреннюю сеть, почту и SaaS-приложения.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "SIEM Log Analysis",
+   "Cyber Deception"
+  ],
+  "detections": [
+   "39",
+   "34",
+   "37"
+  ],
+  "tools": [
+   "MFA Alert Fatigue",
+   "Social Engineering",
+   "MSOLSpray",
+   "MFA Checker"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сразу несколько сотрудников пожаловались, что ночью им пришли десятки push-запросов на подтверждение входа, и кто-то в итоге нажал «Разрешить», лишь бы они прекратились.",
+   "Сторонний поставщик сервиса аутентификации прислал короткое письмо о «инциденте у их сотрудника поддержки», а у вас тем временем пошли входы в почту и SaaS из незнакомых стран."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/06.webp"
+ },
+ {
+  "id": "trimarc-07",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "Weaponized Hardware Security Key",
+  "name_ru": "Аппаратный ключ безопасности как оружие",
+  "desc_en": "The attackers visited your corporate headquarters and found a domain-joined computer sitting in the lobby in \"locked down\" kiosk mode. What's not locked down? USB ports. The attackers gained access to your network using their customized hardware security key to bypass kiosk mode.",
+  "desc_ru": "Злоумышленники пришли в головной офис и нашли в холле доменный компьютер в «заблокированном» режиме киоска. А что не заблокировано? USB-порты. С помощью собственного модифицированного аппаратного ключа безопасности они обошли режим киоска и получили доступ к сети.",
+  "detections_en": [
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "40",
+   "38",
+   "39"
+  ],
+  "tools": [
+   "Weaponized YubiKey"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Журнал на информационном терминале в холле показывает подключение нового USB-устройства «клавиатура» и мгновенный набор длинной команды — быстрее, чем способен печатать человек.",
+   "Охрана вспомнила, что днём у стойки в лобби долго крутились двое «курьеров», а вскоре с этого терминала пошли сетевые подключения к внешнему адресу."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/07.webp"
+ },
+ {
+  "id": "trimarc-08",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "Compromised Virtual Host",
+  "name_ru": "Скомпрометированный хост виртуализации",
+  "desc_en": "The management port for a virtual host was not segmented from the corporate network and the attackers used the default credentials to gain access to all guest hosts running on the hypervisor.",
+  "desc_ru": "Порт управления хоста виртуализации не был отделён от корпоративной сети, и злоумышленники вошли с учётными данными по умолчанию, получив доступ ко всем гостевым машинам на гипервизоре.",
+  "detections_en": [
+   "Server Analysis",
+   "Memory Analysis",
+   "SIEM Log Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "33",
+   "43",
+   "34",
+   "36"
+  ],
+  "tools": [
+   "ESXi CLI",
+   "Browser",
+   "Hydra"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сетевой мониторинг заметил веб-сессии из пользовательского VLAN на интерфейс управления одного из серверов виртуализации — раньше туда ходили только админы из выделенной сети.",
+   "Несколько виртуальных машин одновременно ушли в перезагрузку, а у одной появились снапшоты, которые никто из админов не создавал."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/08.webp"
+ },
+ {
+  "id": "trimarc-09",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "Corrupted Employee",
+  "name_ru": "Подкупленный сотрудник",
+  "desc_en": "The attackers are part of a ransomware gang that solicited employees of your company to willfully give over their credentials in exchange for a portion of the ransom paid. Bobby took the bait.",
+  "desc_ru": "Злоумышленники — участники группировки вымогателей, которая предлагала сотрудникам вашей компании добровольно передать свои учётные данные в обмен на долю от выкупа. Бобби клюнул.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "SIEM Log Analysis",
+   "Firewall Log Review",
+   "Permissions Audit"
+  ],
+  "detections": [
+   "39",
+   "34",
+   "35",
+   "45"
+  ],
+  "tools": [
+   "LinkedIn",
+   "Social Media",
+   "Email",
+   "Monero"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись одного из инженеров активно работает по ночам с незнакомого VPN-адреса, хотя сам он в это время, по словам коллег, в отпуске и выходил в сеть только из дома.",
+   "Пара сотрудников рассказала HR, что им в соцсетях писали незнакомцы с «выгодным предложением подработки» за доступ к рабочей учётке."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/09.webp"
+ },
+ {
+  "id": "trimarc-10",
+  "deck": "trimarc",
+  "type": "initial",
+  "name_en": "Malicious Extension",
+  "name_ru": "Вредоносное расширение",
+  "desc_en": "An Entra ID Global Admin unknowingly installed a malicious browser extension created by the attackers then authenticated to the Entra ID portal. The attackers hijacked the session token, impersonated the admin, and compromised Entra ID.",
+  "desc_ru": "Глобальный администратор Entra ID, сам того не зная, установил вредоносное браузерное расширение, созданное злоумышленниками, а затем вошёл в портал Entra ID. Злоумышленники перехватили токен сессии, выдали себя за администратора и скомпрометировали Entra ID.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Endpoint Analysis",
+   "Endpoint Security Protection Analysis"
+  ],
+  "detections": [
+   "44",
+   "40",
+   "38"
+  ],
+  "tools": [
+   "Malicious-Browser-Extension"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журнале входов облачного каталога одна и та же сессия глобального администратора используется одновременно из офиса и с IP-адреса в другой стране — без повторного прохождения MFA.",
+   "Администратор недавно жаловался, что браузер стал «подтормаживать», а на его ноутбуке нашлось недавно добавленное дополнение «для удобной работы с вкладками»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/10.webp"
+ },
+ {
+  "id": "trimarc-11",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "Golden Ticket Attack",
+  "name_ru": "Атака «золотой билет»",
+  "desc_en": "The attackers, W1llyW0nka and his 00mpa L00mpas, discover a backup of the ntds.dit and system hive files in a directory that is accessible by everyone. The attackers use these files to generate forged Kerberos tickets that allow them to impersonate any user in your domain.",
+  "desc_ru": "Злоумышленники, W1llyW0nka и его 00mpa L00mpas, находят резервную копию ntds.dit и куста реестра SYSTEM в каталоге, доступном всем. С помощью этих файлов они создают поддельные билеты Kerberos, позволяющие выдавать себя за любого пользователя домена.",
+  "detections_en": [
+   "SIEM Log Analysis",
+   "Server Analysis",
+   "Cyber Deception",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "34",
+   "33",
+   "37",
+   "43"
+  ],
+  "tools": [
+   "Mimikatz"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В журналах контроллера домена встречаются билеты со сроком жизни 10 лет и обращения к ресурсам без предшествующего запроса TGT для этой учётки.",
+   "Общий файловый ресурс с правами «Все: чтение» содержит папку старых бэкапов контроллера домена — и её недавно кто-то скопировал целиком."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/11.webp"
+ },
+ {
+  "id": "trimarc-12",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "Misconfigured Certificate Templates (ESC1)",
+  "name_ru": "Ошибочно настроенные шаблоны сертификатов (ESC1)",
+  "desc_en": "Years ago, a client authentication certificate template was created for a development environment. Not soon after, that template was forgotten. But don't worry; the friendly attackers just found it for you and are currently impersonating your Domain Admin.",
+  "desc_ru": "Много лет назад для среды разработки создали шаблон сертификата для аутентификации клиентов. Вскоре о нём забыли. Не волнуйтесь: дружелюбные злоумышленники только что нашли его за вас и прямо сейчас выдают себя за администратора домена.",
+  "detections_en": [
+   "SIEM Log Analysis",
+   "Cyber Deception",
+   "Server Analysis",
+   "Permissions Audit"
+  ],
+  "detections": [
+   "34",
+   "37",
+   "33",
+   "45"
+  ],
+  "tools": [
+   "Invoke-Locksmith.ps1",
+   "Certify",
+   "Certipy",
+   "PSPKIAudit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Центр сертификации выдал обычному пользователю сертификат, в котором в поле субъекта указан администратор домена.",
+   "Администратор домена получил уведомление о входе с рабочей станции стажёра, хотя пароль никто не менял и сам он в это время был на совещании."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/12.webp"
+ },
+ {
+  "id": "trimarc-13",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "Overprivileged Group Policy/High Profile GPO",
+  "name_ru": "Избыточные права на групповую политику / критичный GPO",
+  "desc_en": "The attackers find a Group Policy Object (GPO) linked to the domain root which allows \"Authenticated Users\" to modify it. They use Restricted Groups to elevate to the domain's Administrator.",
+  "desc_ru": "Злоумышленники находят объект групповой политики (GPO), привязанный к корню домена, который могут изменять «Прошедшие проверку» (Authenticated Users). С помощью Restricted Groups («Группы с ограниченным доступом») они повышают свои права до администратора домена.",
+  "detections_en": [
+   "Permissions Audit",
+   "SIEM Log Analysis",
+   "Endpoint Analysis",
+   "Server Analysis"
+  ],
+  "detections": [
+   "45",
+   "34",
+   "40",
+   "33"
+  ],
+  "tools": [
+   "LOLBins",
+   "Empire",
+   "BloodHound",
+   "ACLight"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После очередного обновления политик на всех машинах домена в локальной группе администраторов внезапно появилась учётка рядового сотрудника.",
+   "Версия одного из объектов в SYSVOL выросла за ночь, а в журнале изменений автором правки значится обычный пользователь из отдела продаж."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/13.webp"
+ },
+ {
+  "id": "trimarc-14",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "Passwords in AD Attribute",
+  "name_ru": "Пароли в атрибутах AD",
+  "desc_en": "The attackers dump all user attributes from Active Directory and discover an admin user's password in a non-standard attribute field which allows them to log in as Domain Admin.",
+  "desc_ru": "Злоумышленники выгружают все атрибуты пользователей из Active Directory и находят пароль администратора в нестандартном поле атрибута, что позволяет им войти как администратор домена.",
+  "detections_en": [
+   "Cyber Deception",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "37",
+   "34",
+   "39"
+  ],
+  "tools": [
+   "Powersploit",
+   "PsExec",
+   "LDAP"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "С одной рабочей станции ушёл огромный LDAP-запрос, вытянувший все свойства всех пользователей домена за несколько секунд.",
+   "Учётка администратора, которой пользуются раз в квартал, вдруг вошла на сервер с ноутбука бухгалтера; админ признался, что «пароль где-то в карточке пользователя записан, чтобы не забыть»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/14.webp"
+ },
+ {
+  "id": "trimarc-15",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "Overprivileged Cloud Application",
+  "name_ru": "Облачное приложение с избыточными правами",
+  "desc_en": "The attackers discover that a standard user owns an application that has \"Directory.ReadWrite.All\" permissions to your company's Entra ID tenant and leverages them to gain full admin rights.",
+  "desc_ru": "Злоумышленники обнаруживают, что рядовой пользователь владеет приложением с правами «Directory.ReadWrite.All» в арендаторе (tenant) Entra ID вашей компании, и используют их для получения полных прав администратора.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "Permissions Audit",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "44",
+   "45",
+   "34"
+  ],
+  "tools": [
+   "Microsoft GraphAPI"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "В облачном каталоге появилась новая учётка с ролью глобального администратора, а в журнале аудита инициатором указан не человек, а служебный принципал старого приложения.",
+   "Обычный сотрудник маркетинга вдруг добавил новые секреты к давно забытой регистрации приложения в облаке."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/15.webp"
+ },
+ {
+  "id": "trimarc-16",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "vCenter Console Coercion",
+  "name_ru": "Перехват консоли vCenter",
+  "desc_en": "The attackers gain access to vCenter and perform a Denial of Service (DOS) attack against Remote Desktop Protocol (RDP) on a Domain Controller (DC). A Domain Admin logs in to troubleshoot using vCenter, allowing the attackers to share the session.",
+  "desc_ru": "Злоумышленники получают доступ к vCenter и проводят атаку «отказ в обслуживании» (DoS) на RDP контроллера домена (DC). Администратор домена заходит через консоль vCenter, чтобы разобраться, — и злоумышленники разделяют с ним эту сессию.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "36",
+   "34",
+   "38",
+   "43"
+  ],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Удалённый рабочий стол на одном из контроллеров домена перестал отвечать, и админ полез чинить его «через консоль виртуалки».",
+   "В журнале платформы виртуализации видно, что к консоли того же контроллера домена в то же время была подключена ещё одна сессия с незнакомого адреса."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/16.webp"
+ },
+ {
+  "id": "trimarc-17",
+  "deck": "trimarc",
+  "type": "pivot",
+  "name_en": "Server Management Compromise",
+  "name_ru": "Компрометация средств управления сервером",
+  "desc_en": "The attackers scan the network and discover that a dedicated remote management channel is available and running outdated server firmware. They utilize a known vulnerability to give them control over your server.",
+  "desc_ru": "Злоумышленники сканируют сеть и обнаруживают доступный выделенный канал удалённого управления сервером с устаревшей прошивкой. Через известную уязвимость они получают контроль над сервером.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Firewall Log Review"
+  ],
+  "detections": [
+   "36",
+   "35"
+  ],
+  "tools": [
+   "iLOBleed",
+   "Metasploit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Межсетевой экран зафиксировал сканирование подсети, где живут служебные интерфейсы серверного «железа», а затем HTTP-запросы с очень длинным заголовком к одному из них.",
+   "Физический сервер в стойке перезагрузился посреди дня, хотя ОС ничего об этом не знает, а в журнале встроенного контроллера появилась новая учётная запись."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/17.webp"
+ },
+ {
+  "id": "trimarc-18",
+  "deck": "trimarc",
+  "type": "c2",
+  "name_en": "GIFs as C2",
+  "name_ru": "GIF-картинки как C2",
+  "desc_en": "The attackers use malicious GIFs within the enterprise messaging application to relay reverse shell communications. Laugh now, cry later. :D",
+  "desc_ru": "Злоумышленники используют вредоносные GIF-картинки в корпоративном мессенджере для передачи команд обратной оболочки (reverse shell). Смейтесь сейчас — плакать будете потом. :D",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Endpoint Security Protection Analysis",
+   "Memory Analysis"
+  ],
+  "detections": [
+   "36",
+   "38",
+   "43"
+  ],
+  "tools": [
+   "Covenant",
+   "Cobalt Strike",
+   "Merlin"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Один сотрудник регулярно «получает» в рабочем чате анимированные картинки от незнакомого внешнего контакта, хотя сам говорит, что ни с кем не переписывается.",
+   "Процесс корпоративного мессенджера на одном ноутбуке каждые пару минут запускает cmd.exe, а трафик к сервису мессенджера у него в десятки раз выше, чем у коллег."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/18.webp"
+ },
+ {
+  "id": "trimarc-19",
+  "deck": "trimarc",
+  "type": "c2",
+  "name_en": "Living Off Trusted Sites (LOTS)",
+  "name_ru": "Жизнь за счёт доверенных сайтов (LOTS)",
+  "desc_en": "The attackers exfiltrate data from your network using a site in your trusted sites list that is also on the Living Off Trusted Sites (LOTS) Project.",
+  "desc_ru": "Злоумышленники выводят данные из сети через сайт из вашего списка доверенных, который также фигурирует в проекте Living Off Trusted Sites (LOTS).",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "SIEM Log Analysis",
+   "Firewall Log Review",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "36",
+   "34",
+   "35",
+   "39"
+  ],
+  "tools": [
+   "Covenant",
+   "Cobalt Strike",
+   "Merlin"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "С сервера, на котором никто не работает в браузере, уходят гигабайты на популярный облачный сервис хранения — прокси пропускает, ведь домен в белом списке.",
+   "Аналитик заметил ровные, по расписанию, обращения одного хоста к известному публичному сервису заметок, причём всегда с отправкой данных, а не загрузкой."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/19.webp"
+ },
+ {
+  "id": "trimarc-20",
+  "deck": "trimarc",
+  "type": "persist",
+  "name_en": "AdminSDHolder Rights Modification",
+  "name_ru": "Изменение прав на AdminSDHolder",
+  "desc_en": "The AdminSDHolder process is designed to protect sensitive groups. The attackers grant themselves access to modify the AdminSDHolder object, allowing them to regain access even when permissions are removed.",
+  "desc_ru": "Механизм AdminSDHolder предназначен для защиты привилегированных групп. Злоумышленники выдают себе права на изменение объекта AdminSDHolder и поэтому восстанавливают доступ, даже когда их права отзывают.",
+  "detections_en": [
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics",
+   "Server Analysis"
+  ],
+  "detections": [
+   "34",
+   "39",
+   "33"
+  ],
+  "tools": [
+   "Add-GroupMember",
+   "Impacket - dacledit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Админы уже дважды удаляли лишние права у подозрительной учётки на группу Domain Admins, но примерно через час права каждый раз возвращаются сами.",
+   "В журнале контроллера домена зафиксировано изменение списка доступа у системного объекта в контейнере System — инициатор обычный пользователь."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/20.webp"
+ },
+ {
+  "id": "trimarc-21",
+  "deck": "trimarc",
+  "type": "persist",
+  "name_en": "Cloud Application Impersonation",
+  "name_ru": "Выдача себя за облачное приложение",
+  "desc_en": "The attackers find a cloud application that is using a password key with access to a Managed Identity in your Entra ID instance. The admin stored the key in the application's description field, which allows the attackers to maintain a foothold in your environment.",
+  "desc_ru": "Злоумышленники находят облачное приложение, использующее ключ-пароль с доступом к управляемому удостоверению (Managed Identity) в вашем Entra ID. Администратор сохранил ключ в поле описания приложения, что позволяет злоумышленникам удерживаться в вашей среде.",
+  "detections_en": [
+   "Cloud Event Log Analysis",
+   "SIEM Log Analysis",
+   "User and Entity Behavior Analytics"
+  ],
+  "detections": [
+   "44",
+   "34",
+   "39"
+  ],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Даже после сброса паролей всех пользователей в облачном журнале продолжаются входы — но не от людей, а от служебного принципала одного из приложений, с незнакомых IP.",
+   "Аудитор, просматривая регистрации приложений в облачном каталоге, наткнулся на странную длинную строку в поле, где обычно пишут «для чего это приложение»."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/trimarc/21.webp"
+ },
+ {
+  "id": "trimarc-22",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Bear vs. Powerstation",
+  "name_ru": "Медведь против подстанции",
+  "desc_en": "A bear attacked the power substation for your datacenter. Don't worry, he's down, but so is your datacenter. The only thing worse than the smell is not having a hot backup facility. The defenders lose 1 turn as they discuss the difference between a hot backup and a cold backup.",
+  "desc_ru": "Медведь напал на подстанцию, питающую ваш ЦОД. Не волнуйтесь, он повержен — но и ЦОД тоже лёг. Хуже запаха только отсутствие горячей резервной площадки. Защитники теряют 1 ход, обсуждая разницу между горячим и холодным резервом.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "skip_turns",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Защитники пропускают следующий ход.",
+  "image": "cards/trimarc/22.webp"
+ },
+ {
+  "id": "trimarc-23",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Ghosted by AV",
+  "name_ru": "Антивирус-призрак",
+  "desc_en": "A recent unverified update caused all endpoints to alarm on false positives. A useless antivirus is as good as no AV at all. Do you shut it down or keep it running while sifting through all the noise? The Defenders receive a -3 modifier on Endpoint Security Protection Analysis for the rest of the session.",
+  "desc_ru": "Свежее непроверенное обновление заставило все конечные точки сыпать ложными срабатываниями. Бесполезный антивирус — всё равно что никакого. Отключить его или терпеть и разгребать шум? Защитники получают −3 к Анализу средств защиты конечных точек до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -3,
+    "target": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "−3 к Анализу средств защиты конечных точек до конца игры.",
+  "image": "cards/trimarc/23.webp"
+ },
+ {
+  "id": "trimarc-24",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "DiscountConsultant.lol",
+  "name_ru": "DiscountConsultant.lol",
+  "desc_en": "Ever since hiring Scott, this incident response has gone from bad to worse. He had us chasing the wrong lead the whole time. Turns out, our consultant has no real IR experience despite a senior title. Luckily, he has red team experience and recognizes the TTPs. The Defenders must roll a die. If the die is even, the Incident Captain must reveal the Initial Compromise card. If the die is odd, the Incident Captain must draw another Persistence card.",
+  "desc_ru": "С тех пор как наняли Скотта, реагирование на инцидент идёт всё хуже: он всё время заставлял нас гоняться за ложным следом. Оказалось, при «сеньорной» должности у нашего консультанта нет реального опыта IR. К счастью, у него есть опыт red team, и он узнаёт TTP атакующих. Защитники бросают кубик. Чётное — раскрывается карта первоначального доступа. Нечётное — в игру добавляется ещё одна карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "roll_check",
+    "parity": "even",
+    "on_success": [
+     {
+      "op": "reveal_attack",
+      "category": "initial"
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "add_attack",
+      "category": "persist"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20: чёт — раскрывается первоначальный доступ; нечёт — добавляется ещё одна скрытая карта закрепления.",
+  "image": "cards/trimarc/24.webp"
+ },
+ {
+  "id": "trimarc-25",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Trimarc123!",
+  "name_ru": "Trimarc123!",
+  "desc_en": "The attackers' access to your network just fell into their laps. The local admin account on all workstations share the same password, so if the attackers gained admin on one workstation, they can now log in to them all. If one of the Defenders can accurately explain LAPS, the Incident Captain must reveal the Pivot & Escalate card. Otherwise, the Incident Captain must draw an additional Pivot & Escalate card.",
+  "desc_ru": "Доступ к вашей сети сам упал злоумышленникам в руки (LAPS — «laps», «колени»). У локального администратора на всех рабочих станциях один и тот же пароль, так что, захватив одну машину, злоумышленники могут войти на все. Если кто-то из защитников сможет точно объяснить, что такое LAPS (Local Administrator Password Solution — решение Microsoft для уникальных паролей локальных админов), раскрывается карта повышения привилегий и перемещения. Иначе в игру добавляется ещё одна карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "roll_check",
+    "success_at": 11,
+    "on_success": [
+     {
+      "op": "reveal_attack",
+      "category": "pivot"
+     }
+    ],
+    "on_fail": [
+     {
+      "op": "add_attack",
+      "category": "pivot"
+     }
+    ]
+   }
+  ],
+  "effect_ru": "Бросок d20 (смогли ли вы объяснить, что такое LAPS): 11+ — раскрывается перемещение; 1–10 — добавляется ещё одна скрытая карта перемещения.",
+  "image": "cards/trimarc/25.webp"
+ },
+ {
+  "id": "trimarc-26",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Dude, Where's Our Docs?",
+  "name_ru": "Чувак, где наша документация?",
+  "desc_en": "The project to fully document important incident response procedures was not started on time and never finished. The Defenders no longer have a +3 modifier on their Established Procedure cards.",
+  "desc_ru": "Проект по полному документированию важных процедур реагирования на инциденты не начали вовремя и так и не закончили. Защитники больше не получают +3 к установленным процедурам.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "no_established_bonus"
+   }
+  ],
+  "effect_ru": "Установленные процедуры теряют бонус +3 до конца игры.",
+  "image": "cards/trimarc/26.webp"
+ },
+ {
+  "id": "trimarc-27",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Click, Click, Boom",
+  "name_ru": "Щёлк, щёлк, бум",
+  "desc_en": "Instead of buying new hard drives, you decided to save some money on \"refurbished\" drives. Don't worry, you didn't use those drives on anything important -- only your SIEM -- ya know, that system you spend all that money on and don't use. SIEM Log Analysis is unavailable to the Defenders for the rest of the session.",
+  "desc_ru": "Вместо покупки новых жёстких дисков вы решили сэкономить на «восстановленных». Не волнуйтесь, вы не ставили их ни во что важное — только в SIEM, ну, ту систему, на которую тратите кучу денег и не пользуетесь. Анализ журналов SIEM недоступен защитникам до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Security Information and Event Management (SIEM) Log Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "Анализ журналов SIEM недоступен до конца игры.",
+  "image": "cards/trimarc/27.webp"
+ },
+ {
+  "id": "trimarc-28",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Peekaboo",
+  "name_ru": "Ку-ку",
+  "desc_en": "Remember that DIY security camera you set up to keep an eye on your servers? Well, you forgot to secure it and change the default password, so now the bad guys know all of your secrets. The Incident Captain must draw an additional Initial Compromise card.",
+  "desc_ru": "Помните самодельную камеру видеонаблюдения, которую вы поставили присматривать за серверами? Вы забыли её защитить и сменить пароль по умолчанию, так что теперь злодеи знают все ваши секреты. В игру добавляется ещё одна карта первоначального доступа.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта первоначального доступа.",
+  "image": "cards/trimarc/28.webp"
+ },
+ {
+  "id": "trimarc-29",
+  "deck": "trimarc",
+  "type": "inject",
+  "name_en": "Product Trials and Tribulations",
+  "name_ru": "Пробные версии и злоключения",
+  "desc_en": "Your marketing team is demoing a new piece of software without letting the security group know. Your EDR lights up like a Christmas tree with unusual activity, slowing its analysis to a crawl. Endpoint Security Protection Analysis is unavailable for the next 3 turns.",
+  "desc_ru": "Отдел маркетинга тестирует новый софт, не предупредив безопасников. EDR светится, как новогодняя ёлка, от необычной активности, и анализ ползёт черепашьим шагом. Анализ средств защиты конечных точек недоступен следующие 3 хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    },
+    "turns": 3
+   }
+  ],
+  "effect_ru": "Анализ средств защиты конечных точек недоступен 3 хода.",
+  "image": "cards/trimarc/29.webp"
+ },
+ {
+  "id": "trimarc-30",
+  "deck": "trimarc",
+  "type": "consultant",
+  "name_en": "Jake Hildreth",
+  "name_ru": "Jake Hildreth",
+  "desc_en": "The Defenders get an extra (3) turns to complete the session",
+  "desc_ru": "Защитники получают 3 дополнительных хода на завершение сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Blue Team (защита)",
+   "Безопасность и администрирование учётных записей",
+   "Active Directory Certificate Services",
+   "Автоматизация на PowerShell",
+   "Публичные выступления",
+   "Поднятие тяжестей"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "extra_turns",
+    "count": 3
+   }
+  ],
+  "effect_ru": "+3 хода к лимиту игры.",
+  "image": "cards/trimarc/30.webp"
+ },
+ {
+  "id": "trimarc-31",
+  "deck": "trimarc",
+  "type": "consultant",
+  "name_en": "Dev Badlu",
+  "name_ru": "Dev Badlu",
+  "desc_en": "The Defenders must reveal the C2 and Exfil card",
+  "desc_ru": "Раскрывается карта управления и контроля (C2), эксфильтрации.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Наступательная безопасность",
+   "Разработка инструментов для red и blue team",
+   "Преподаватель ИБ",
+   "Создание инструментов для борьбы с торговлей людьми",
+   "Настольные игры"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "c2"
+   }
+  ],
+  "effect_ru": "Раскрывается карта управления и контроля (C2), эксфильтрации.",
+  "image": "cards/trimarc/31.webp"
+ },
+ {
+  "id": "trimarc-32",
+  "deck": "trimarc",
+  "type": "consultant",
+  "name_en": "Sean Metcalf",
+  "name_ru": "Sean Metcalf",
+  "desc_en": "The Defenders choose any one of the scenario cards to be revealed",
+  "desc_ru": "Защитники выбирают любую одну карту сценария, которая будет раскрыта.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Сертифицированный мастер Active Directory",
+   "Гуру идентификации и доступа",
+   "Архитектура безопасности",
+   "Публичные выступления",
+   "Поддержка сообщества"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "any"
+   }
+  ],
+  "effect_ru": "Раскрывается одна карта атаки на выбор защитников.",
+  "image": "cards/trimarc/32.webp"
+ },
+ {
+  "id": "trimarc-33",
+  "deck": "trimarc",
+  "type": "consultant",
+  "name_en": "Brandon Colley",
+  "name_ru": "Brandon Colley",
+  "desc_en": "The Defenders get to choose an additional (2) Consultant Cards",
+  "desc_ru": "Защитники выбирают ещё 2 карты консультантов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Решение проблем",
+   "Blue Team (защита)",
+   "Безопасность и администрирование учётных записей",
+   "Публичные выступления",
+   "Вклад в сообщество",
+   "Пивовар"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "offer_consultant",
+    "count": 2
+   }
+  ],
+  "effect_ru": "Вы выбираете ещё двух консультантов.",
+  "image": "cards/trimarc/33.webp"
+ },
+ {
+  "id": "trimarc-34",
+  "deck": "trimarc",
+  "type": "consultant",
+  "name_en": "SEANbot",
+  "name_ru": "SEANbot",
+  "desc_en": "The Defenders choose between one and three turns and receive a +3 modifier but also lose that number of turns",
+  "desc_ru": "Защитники выбирают от одного до трёх ходов: на это время они получают +3 к броскам, но и лимит игры сокращается на столько же ходов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Обработка естественного языка",
+   "Машинное обучение",
+   "Анализ данных",
+   "Немного всезнайка",
+   "Инфлюенсер",
+   "Генератор контента"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": "all",
+    "turns": 2
+   },
+   {
+    "op": "extra_turns",
+    "count": -2
+   }
+  ],
+  "effect_ru": "+3 ко всем броскам на 2 хода, но лимит игры сокращается на 2 хода.",
+  "image": "cards/trimarc/34.webp"
+ }
+]

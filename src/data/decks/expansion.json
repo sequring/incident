@@ -1,0 +1,1122 @@
+[
+ {
+  "id": "expansion-01",
+  "deck": "expansion",
+  "type": "initial",
+  "name_en": "Missing HTTP Strict Transport Security (HSTS) Protection",
+  "name_ru": "Отсутствие защиты HSTS (HTTP Strict Transport Security)",
+  "desc_en": "By having HTTP to HTTPS redirects, the attackers can \"strip\" SSL from a session. The attackers need to be on the same network for this to work. So, think coffee shops... evil, coffee shops.",
+  "desc_ru": "Если сайт перенаправляет с HTTP на HTTPS без HSTS, злоумышленники могут «срезать» SSL с сессии (SSL stripping) и видеть трафик в открытом виде. Для этого им нужно находиться в той же сети. Так что думайте о кофейнях… злых кофейнях.",
+  "detections_en": [
+   "Firewall Log Review",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "35",
+   "36"
+  ],
+  "tools": [
+   "SSLStrip",
+   "SSLSplit"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сотрудник, работавший из кафе, жалуется: на корпоративном портале не было «замочка» в адресной строке, но он всё равно ввёл логин и пароль.",
+   "В журналах веб-портала видно, что часть входов приходит по обычному HTTP, хотя сайт давно должен работать только по HTTPS."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/01.webp"
+ },
+ {
+  "id": "expansion-02",
+  "deck": "expansion",
+  "type": "initial",
+  "name_en": "Supply Chain Attack",
+  "name_ru": "Атака на цепочку поставок",
+  "desc_en": "The attackers insert malware in the update process of one of your key enterprise management tools. This gives them direct access to the heart of your infrastructure.",
+  "desc_ru": "Злоумышленники внедряют вредоносный код в процесс обновления одного из ваших ключевых корпоративных инструментов управления. Это даёт им прямой доступ к самому сердцу вашей инфраструктуры.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "Network Threat Hunting - Zeek/RITA Analysis"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "36"
+  ],
+  "tools": [
+   "SUNBURST",
+   "SUPERNOVA"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После планового обновления системы мониторинга сети её сервер начал периодически обращаться к незнакомому домену, замаскированному под облачный сервис вендора.",
+   "Антивирус на сервере управления выдал срабатывание на DLL, подписанную действительным сертификатом поставщика ПО."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/02.webp"
+ },
+ {
+  "id": "expansion-03",
+  "deck": "expansion",
+  "type": "initial",
+  "name_en": "Physical Access",
+  "name_ru": "Физический доступ",
+  "desc_en": "The attackers gain physical access to your organization and use this to pivot to your internal networks.",
+  "desc_ru": "Злоумышленники получают физический доступ в здание организации и используют его, чтобы проникнуть во внутреннюю сеть.",
+  "detections_en": [
+   "Physical Security Review",
+   "User Awareness Training"
+  ],
+  "detections": [
+   "expansion-16"
+  ],
+  "tools": [
+   "Clipboard",
+   "Crowbar",
+   "RFID Badge Cloner",
+   "Lockpicks",
+   "Stolen Keys",
+   "Counterfeit Work ID",
+   "Brick",
+   "Ladder"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На ресепшене вспомнили «нового подрядчика с планшетом», которого никто не заказывал, — он провёл в здании около часа.",
+   "Коммутатор в переговорной на третьем этаже зафиксировал подключение неизвестного устройства к порту, который обычно не используется."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/03.webp"
+ },
+ {
+  "id": "expansion-04",
+  "deck": "expansion",
+  "type": "pivot",
+  "name_en": "SMB Weakness",
+  "name_ru": "Слабости SMB",
+  "desc_en": "The attackers take advantage of a number of different Server Message Block (SMB) issues that can be used for post-exploitation. From SMB Signing disabled to using SMBv1.",
+  "desc_ru": "Злоумышленники используют целый ряд проблем протокола SMB (Server Message Block) для постэксплуатации — от отключённой подписи SMB до работы по устаревшему SMBv1.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "SIEM Log Analysis",
+   "Firewall Log Review"
+  ],
+  "detections": [
+   "39",
+   "34",
+   "35"
+  ],
+  "tools": [
+   "NTLMRelayX",
+   "CrackMapExec",
+   "Responder",
+   "Inveigh"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сервисная учётная запись внезапно аутентифицировалась сразу на десятках серверов, причём все входы шли с одной рабочей станции бухгалтерии.",
+   "Межсетевой экран фиксирует всплеск соединений на порт 445 между пользовательскими сегментами, где такого трафика раньше не было."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/04.webp"
+ },
+ {
+  "id": "expansion-05",
+  "deck": "expansion",
+  "type": "pivot",
+  "name_en": "Internal Spearphishing",
+  "name_ru": "Внутренний целевой фишинг",
+  "desc_en": "The attackers leverage existing access to users' email to send attack emails to other targets. Because they come from the inside, the attack emails tend to bypass security controls.",
+  "desc_ru": "Злоумышленники пользуются уже захваченными почтовыми ящиками сотрудников, чтобы рассылать вредоносные письма другим жертвам. Поскольку письма приходят изнутри, они часто обходят средства защиты.",
+  "detections_en": [
+   "Server Analysis",
+   "SIEM Log Analysis",
+   "User Awareness Training"
+  ],
+  "detections": [
+   "33",
+   "34"
+  ],
+  "tools": [
+   "Internal Existing Email Services",
+   "Gamaredon Group"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Несколько сотрудников получили от коллеги из отдела закупок письмо «Срочно: обновлённый прайс» с вложением — сам коллега утверждает, что ничего не отправлял.",
+   "Почтовый сервер показывает, что один ящик за полчаса отправил внутренние письма более чем сотне адресатов, хотя обычно пишет пять писем в день."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/05.webp"
+ },
+ {
+  "id": "expansion-06",
+  "deck": "expansion",
+  "type": "pivot",
+  "name_en": "Access Token Manipulation",
+  "name_ru": "Манипуляция токенами доступа",
+  "desc_en": "The attackers conduct actions under other user/service account tokens.",
+  "desc_ru": "Злоумышленники выполняют действия, используя токены доступа других пользователей или сервисных учётных записей.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "Cyber Deception"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "37"
+  ],
+  "tools": [
+   "PowerSploit",
+   "Empire",
+   "PoshC2"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "EDR показывает процесс, запущенный от имени SYSTEM, родителем которого оказался обычный пользовательский процесс без прав администратора.",
+   "В журнале безопасности сервера видны действия от имени администратора домена, хотя сам администратор в это время был в отпуске и в систему не входил."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/06.webp"
+ },
+ {
+  "id": "expansion-07",
+  "deck": "expansion",
+  "type": "pivot",
+  "name_en": "Stale Network Address Configurations (SNAC) Attack",
+  "name_ru": "Атака на устаревшие сетевые адреса (SNAC)",
+  "desc_en": "The attackers take advantage of a system or a network service that has been configured with a hard-coded IP address or fully qualified domain name (FQDN) that is no longer associated with a live host.",
+  "desc_ru": "Злоумышленники используют систему или сетевой сервис, в настройках которого жёстко прописан IP-адрес или полное доменное имя (FQDN), уже не принадлежащее ни одному работающему хосту.",
+  "detections_en": [
+   "Network Threat Hunting - Zeek/RITA Analysis",
+   "Firewall Log Review"
+  ],
+  "detections": [
+   "36",
+   "35"
+  ],
+  "tools": [
+   "Eavesarp"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Сетевая команда замечает, что на IP-адрес, принадлежавший давно списанному серверу печати, снова кто-то отвечает — и к нему идут подключения.",
+   "Скрипты резервного копирования вдруг начали успешно отправлять данные на адрес, который полгода назад был выведен из эксплуатации."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/07.webp"
+ },
+ {
+  "id": "expansion-08",
+  "deck": "expansion",
+  "type": "pivot",
+  "name_en": "Cleartext Passwords in Files",
+  "name_ru": "Пароли открытым текстом в файлах",
+  "desc_en": "The attackers love people who share and save passwords in files everyone else can read. This attack works because people (often admins and developers) create documents and spreadsheets with passwords in them. Then, they put them on shares that are readable to everyone in the domain.",
+  "desc_ru": "Злоумышленники обожают тех, кто хранит пароли в файлах, доступных всем. Атака работает, потому что люди (часто администраторы и разработчики) создают документы и таблицы с паролями и выкладывают их на общие ресурсы, доступные на чтение всему домену.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Cyber Deception",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "39",
+   "37",
+   "40"
+  ],
+  "tools": [
+   "Snaffler",
+   "PowerShellEmpire"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Учётная запись стажёра за ночь открыла тысячи файлов на общих сетевых папках разных отделов — хотя раньше заходила только в свою папку.",
+   "Сработала приманка: кто-то открыл файл «пароли_админов.xlsx», специально подложенный на общий ресурс."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/08.webp"
+ },
+ {
+  "id": "expansion-09",
+  "deck": "expansion",
+  "type": "persist",
+  "name_en": "Event Triggered Malware",
+  "name_ru": "Вредонос, срабатывающий по событию",
+  "desc_en": "The attackers' malware triggers only when specific events occur. For example, when a specific DLL or service is started.",
+  "desc_ru": "Вредоносное ПО злоумышленников активируется только при наступлении определённых событий — например, при загрузке конкретной DLL или запуске службы.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "34"
+  ],
+  "tools": [
+   "Tsunami",
+   "WMI Malware"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "После каждой перезагрузки сервера, как только стартует служба резервного копирования, на нём на минуту появляется незнакомый процесс PowerShell — и пропадает.",
+   "Подозрительная активность на хосте появляется только в те моменты, когда пользователь открывает определённое приложение, и в остальное время машина выглядит чистой."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/09.webp"
+ },
+ {
+  "id": "expansion-10",
+  "deck": "expansion",
+  "type": "persist",
+  "name_en": "Malware Injection into Client Software",
+  "name_ru": "Внедрение вредоноса в клиентское ПО",
+  "desc_en": "The attackers insert their malware to run alongside (or in) third-party software. Stuxnet and Bonadan did this.",
+  "desc_ru": "Злоумышленники встраивают своё вредоносное ПО так, чтобы оно запускалось вместе со сторонним ПО (или внутри него). Так действовали Stuxnet и Bonadan.",
+  "detections_en": [
+   "User and Entity Behavior Analytics",
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "39",
+   "38",
+   "40"
+  ],
+  "tools": [
+   "Stuxnet",
+   "Bonadan"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Хеш исполняемого файла популярного клиентского приложения на нескольких машинах не совпадает с хешем дистрибутива от производителя.",
+   "Обычный SSH-клиент администраторов почему-то начал устанавливать исходящие соединения с адресом, не имеющим отношения к вашим серверам."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/10.webp"
+ },
+ {
+  "id": "expansion-11",
+  "deck": "expansion",
+  "type": "persist",
+  "name_en": "Malicious Email Rules",
+  "name_ru": "Вредоносные правила почты",
+  "desc_en": "The attackers create rules in an email inbox and/or client that trigger on specific events or when certain keywords are present in a message.",
+  "desc_ru": "Злоумышленники создают в почтовом ящике и/или почтовом клиенте правила, которые срабатывают при определённых событиях или при наличии в письме заданных ключевых слов.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "SIEM Log Analysis"
+  ],
+  "detections": [
+   "38",
+   "40",
+   "34"
+  ],
+  "tools": [
+   "Gamaredon Group"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Финансовый директор жалуется, что не получает письма от банка и аудиторов, — их как будто кто-то сразу убирает из входящих.",
+   "Письма со словами «счёт» и «оплата» в теме из ящика бухгалтера автоматически пересылаются на внешний адрес на бесплатном почтовом сервисе."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/11.webp"
+ },
+ {
+  "id": "expansion-12",
+  "deck": "expansion",
+  "type": "persist",
+  "name_en": "Windows Service Recovery Actions",
+  "name_ru": "Действия восстановления служб Windows",
+  "desc_en": "The attackers use Windows Service failure recovery actions as a means of persistence on an accessible service they can remotely crash on demand.",
+  "desc_ru": "Злоумышленники используют действия восстановления после сбоя службы Windows для закрепления: они настраивают доступную службу, которую могут удалённо «уронить» в любой момент, чтобы запустить свой код.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "38",
+   "40"
+  ],
+  "tools": [
+   "Windows Service Recovery Actions"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Одна из служб на сервере падает по несколько раз в день, и после каждого падения ненадолго запускается странный исполняемый файл из временной папки.",
+   "При аудите конфигурации обнаружилось, что у служебного сервиса в параметрах восстановления указан «запуск программы» с подозрительным путём."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/12.webp"
+ },
+ {
+  "id": "expansion-13",
+  "deck": "expansion",
+  "type": "persist",
+  "name_en": "Registry Keys for Persistence",
+  "name_ru": "Ключи реестра для закрепления",
+  "desc_en": "The attackers add/modify registry commands to cause their malware to run on system startup and/or user login. This has been around forever. Almost every piece of solid malware in existence can do this.",
+  "desc_ru": "Злоумышленники добавляют или изменяют записи реестра, чтобы их вредонос запускался при старте системы и/или входе пользователя. Приём старый как мир — его умеет почти любое приличное вредоносное ПО.",
+  "detections_en": [
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis"
+  ],
+  "detections": [
+   "38",
+   "40"
+  ],
+  "tools": [
+   "reg command"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "На нескольких рабочих станциях сразу после входа пользователя запускается неизвестный файл из папки AppData, даже после «чистки» антивирусом.",
+   "Сравнение с эталонным образом показало новые записи автозагрузки, указывающие на файл со случайным именем."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/13.webp"
+ },
+ {
+  "id": "expansion-14",
+  "deck": "expansion",
+  "type": "c2",
+  "name_en": "Exfiltration Over Physical Medium",
+  "name_ru": "Эксфильтрация через физический носитель",
+  "desc_en": "The attackers use a USB drive, printouts, or even socks... yes, socks, as a way to get data out of a network. This requires an accomplice on the inside or it can be used with the Insider Threat (Initial Compromise) card.",
+  "desc_ru": "Злоумышленники выносят данные из сети на USB-флешке, в распечатках или даже в носках… да, в носках. Для этого нужен сообщник внутри; карту можно сочетать с картой «Инсайдерская угроза» (первоначальный доступ).",
+  "detections_en": [
+   "Physical Security Review",
+   "Endpoint Security Protection Analysis",
+   "Endpoint Analysis",
+   "User Awareness Training"
+  ],
+  "detections": [
+   "expansion-16",
+   "38",
+   "40"
+  ],
+  "tools": [
+   "USB drive/socks and a dream... a dream of evil."
+  ],
+  "specialties_ru": [],
+  "clues_ru": [
+   "Система контроля устройств на рабочей станции сотрудника отдела разработки зафиксировала подключение неизвестного съёмного носителя поздно вечером.",
+   "Сотрудники заметили, что коллега в последние недели распечатывает сотни страниц внутренней документации и уносит их домой."
+  ],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/14.webp"
+ },
+ {
+  "id": "expansion-15",
+  "deck": "expansion",
+  "type": "procedure",
+  "name_en": "Call a Consultant",
+  "name_ru": "Вызов консультанта",
+  "desc_en": "Do you want help? Feeling stuck? Rolling badly? Need a different perspective on the incident? Then maybe it's time to phone a friend.\n\nYou can choose one Consultant Card to help your team with the incident.\n\nThe Consultant Card's modifier is effective immediately.",
+  "desc_ru": "Нужна помощь? Зашли в тупик? Кубики не идут? Нужен свежий взгляд на инцидент? Возможно, пора позвонить другу.\n\nВы можете выбрать одну карту консультанта, которая поможет вашей команде с инцидентом.\n\nЭффект карты консультанта действует немедленно.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/15.webp"
+ },
+ {
+  "id": "expansion-16",
+  "deck": "expansion",
+  "type": "procedure",
+  "name_en": "Physical Security Review",
+  "name_ru": "Проверка физической безопасности",
+  "desc_en": "Do you have security cameras? Do you have security guards? Do you have access badges for certain areas in your facilities? Can just anyone access your sensitive IT infrastructure? No? Are you sure?",
+  "desc_ru": "Защитники проверяют физическую безопасность объекта: записи камер видеонаблюдения, журналы охраны и систем контроля доступа по пропускам, кто и когда входил в серверные и другие критичные помещения. Есть ли у вас камеры? Охрана? Пропуска в отдельные зоны? Может ли кто угодно добраться до вашей чувствительной ИТ-инфраструктуры? Нет? Вы уверены?",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [],
+  "effect_ru": "",
+  "image": "cards/expansion/16.webp"
+ },
+ {
+  "id": "expansion-17",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "Food Poisoning",
+  "name_ru": "Пищевое отравление",
+  "desc_en": "The life of this organization depends upon just one thing: finding someone back there who can not only work this incident, but who didn't have fish for dinner.\n\nEach of the Defenders must roll a D20 and the person with the lowest number will finish the session by themselves without any assistance from the others.",
+  "desc_ru": "Жизнь организации зависит лишь от одного: найти человека, который не только сможет разобрать этот инцидент, но и не ел рыбу на ужин.\n\nКаждый из защитников бросает D20; тот, у кого выпало меньше всех, доигрывает сессию в одиночку, без помощи остальных.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без игрового эффекта: в одиночной игре вы и так разбираетесь с инцидентом сами.",
+  "image": "cards/expansion/17.webp"
+ },
+ {
+  "id": "expansion-18",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "SIEM Goes Down",
+  "name_ru": "SIEM упал",
+  "desc_en": "No SIEM for you!\n\nIt is discovered that due to an intern error, your logging server/SIEM has not been logging properly for the last two weeks. All SIEM actions are off the table for the rest of the session.",
+  "desc_ru": "Никакого SIEM для вас!\n\nВыясняется, что из-за ошибки стажёра ваш сервер журналирования/SIEM последние две недели нормально не собирал журналы. Все действия с SIEM недоступны до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Security Information and Event Management (SIEM) Log Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "Процедура «Анализ журналов SIEM» недоступна до конца игры.",
+  "image": "cards/expansion/18.webp"
+ },
+ {
+  "id": "expansion-19",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "This Isn't the First Time, and Won't Be the Last",
+  "name_ru": "Это не в первый раз и не в последний",
+  "desc_en": "This is not the first time the attackers have been on your network.\n\nThrough forensic analysis, it has been discovered that the backdoor had internal DNS servers' IP addresses hard-coded in them because the attackers have been in before. Have the Incident Captain draw an additional Persistence Card.",
+  "desc_ru": "Злоумышленники уже не в первый раз в вашей сети.\n\nКриминалистический анализ показал, что в бэкдоре жёстко прописаны IP-адреса внутренних DNS-серверов — злоумышленники бывали здесь и раньше. В игру добавляется ещё одна карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта закрепления.",
+  "image": "cards/expansion/19.webp"
+ },
+ {
+  "id": "expansion-20",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "EDR Compromise",
+  "name_ru": "Компрометация EDR",
+  "desc_en": "The attackers gain access to your Endpoint Protection suite of tools.\n\nEndpoints stop reporting to the EDR console... The attackers found a console session that hadn't timed out yet and issued mass uninstalls. All Endpoint Security Protection Analysis actions are unavailable for the rest of the session.",
+  "desc_ru": "Злоумышленники получили доступ к вашему комплексу защиты конечных точек.\n\nКонечные точки перестают отчитываться в консоль EDR… Злоумышленники нашли не закрытую по тайм-ауту сессию консоли и запустили массовое удаление агентов. Процедура «Анализ средств защиты конечных точек» недоступна до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "remove_procedure",
+    "count": 1,
+    "which": {
+     "procedures": [
+      "Endpoint Security Protection Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "Процедура «Анализ средств защиты конечных точек» недоступна до конца игры.",
+  "image": "cards/expansion/20.webp"
+ },
+ {
+  "id": "expansion-21",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "Attackers Taunt You",
+  "name_ru": "Злоумышленники издеваются",
+  "desc_en": "The attackers call out the security team, via a message to every system on the network.\n\nThe attackers use msg command to send a pop-up to incident responders, \"Shall we play a game?\"",
+  "desc_ru": "Злоумышленники обращаются к команде безопасности через сообщение на каждой системе в сети.\n\nС помощью команды msg они показывают специалистам по реагированию всплывающее окно: «Сыграем в игру?»",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без игрового эффекта — просто давление на нервы.",
+  "image": "cards/expansion/21.webp"
+ },
+ {
+  "id": "expansion-22",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "Attackers Timestomp Key Evidence Files",
+  "name_ru": "Злоумышленники подделали метки времени ключевых улик",
+  "desc_en": "(-3) Modifier for Log-Related Actions\n\nThere are tools that allow attackers to modify Modified-Accessed-Created-Entry (MACE) timestamps of files. One such tool is in Metasploit called Timestomp.\n\nThe attackers can change the MACE for their malware to be in the future. What does this do to your handling of evidence? Can you trust timestamps at all?",
+  "desc_ru": "Модификатор (−3) для действий, связанных с журналами\n\nСуществуют инструменты, позволяющие злоумышленникам менять метки времени файлов MACE (изменение, доступ, создание, запись MFT). Один из них — Timestomp в Metasploit.\n\nЗлоумышленники могут выставить своему вредоносу метки времени из будущего. Что это значит для работы с уликами? Можно ли вообще доверять меткам времени?",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": -3,
+    "target": {
+     "procedures": [
+      "Security Information and Event Management (SIEM) Log Analysis",
+      "Firewall Log Analysis",
+      "Cloud Event Log Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "−3 к процедурам «Анализ журналов SIEM», «Анализ журналов межсетевого экрана» и «Анализ облачных журналов» до конца игры.",
+  "image": "cards/expansion/22.webp"
+ },
+ {
+  "id": "expansion-23",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "No Good Deed Goes Unpunished...",
+  "name_ru": "Ни одно доброе дело не остаётся безнаказанным…",
+  "desc_en": "The Purple Team uncovers another incident.\n\nTools: Scythe, Atomic Red Team, Caldera\n\nWhen tuning your detection capabilities during a purple team engagement (unrelated to the incident at hand), your team detects another attack. You now have two compromises to deal with. Have the Incident Captain pull another set of Attack Cards. The Defenders get five extra turns.",
+  "desc_ru": "Пурпурная команда обнаружила ещё один инцидент.\n\nИнструменты: Scythe, Atomic Red Team, Caldera\n\nВо время настройки средств обнаружения в рамках пурпурных учений (не связанных с текущим инцидентом) ваша команда выявляет ещё одну атаку. Теперь у вас две компрометации. В игру добавляется ещё один полный набор карт атак. Защитники получают пять дополнительных ходов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [
+   "Scythe",
+   "Atomic Red Team",
+   "Caldera"
+  ],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "set"
+   },
+   {
+    "op": "extra_turns",
+    "count": 5
+   }
+  ],
+  "effect_ru": "В игру добавляется второй полный набор из 4 скрытых атак. Вы получаете +5 ходов.",
+  "image": "cards/expansion/23.webp"
+ },
+ {
+  "id": "expansion-24",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "Our Friend \"Hacky\"",
+  "name_ru": "Наш друг «Хаки»",
+  "desc_en": "You discover other attackers have been on your network for months.\n\nHave the Incident Captain draw an additional Initial Compromise Card.",
+  "desc_ru": "Вы обнаруживаете, что в вашей сети уже несколько месяцев хозяйничают другие злоумышленники.\n\nВ игру добавляется ещё одна карта первоначального доступа.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "add_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "В игру добавляется ещё одна скрытая карта первоначального доступа.",
+  "image": "cards/expansion/24.webp"
+ },
+ {
+  "id": "expansion-25",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "Is it Getting Hot in Here?",
+  "name_ru": "Тут становится жарковато?",
+  "desc_en": "HVAC systems are important... and they will fail at the worst times. This... is one of those times.\n\nYour data center HVAC system is infected with a worm. It's supposed to be air-gapped. It is 103°F outside, and the server temperatures are rising. All servers need to be shut down. RIGHT NOW! Hope you have a \"hot site.\"",
+  "desc_ru": "Системы климат-контроля (HVAC) важны… и отказывают в самый неподходящий момент. Сейчас как раз такой момент.\n\nСистема кондиционирования вашего ЦОД заражена червём — хотя она должна быть физически изолирована. На улице +39 °C, температура серверов растёт. Все серверы нужно выключить. ПРЯМО СЕЙЧАС! Надеемся, у вас есть «горячая» резервная площадка.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без прямого игрового эффекта — обсудите, как вы продолжите работу без серверов.",
+  "image": "cards/expansion/25.webp"
+ },
+ {
+  "id": "expansion-26",
+  "deck": "expansion",
+  "type": "inject",
+  "name_en": "\"Don't Forget to Smash the Subscribe Button!\"",
+  "name_ru": "«Не забудьте подписаться на канал!»",
+  "desc_en": "Some attackers just want to watch the world burn.\n\nThe attackers post a YouTube video detailing the extent of their attack because it wasn't getting the press they thought it deserved.",
+  "desc_ru": "Некоторые злоумышленники просто хотят посмотреть, как мир горит.\n\nЗлоумышленники публикуют на YouTube видео с подробностями своей атаки — им показалось, что пресса уделила ей недостаточно внимания.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "narrative"
+   }
+  ],
+  "effect_ru": "Без игрового эффекта — но PR-отделу теперь не до сна.",
+  "image": "cards/expansion/26.webp"
+ },
+ {
+  "id": "expansion-27",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Alethe Denis",
+  "name_ru": "Alethe Denis",
+  "desc_en": "The Incident Captain must reveal the Initial Compromise Card",
+  "desc_ru": "Раскрывается карта первоначального доступа.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "OSINT (разведка по открытым источникам)",
+   "Социальная инженерия",
+   "Обучение осведомлённости о безопасности",
+   "Политики и соответствие требованиям",
+   "Публичные выступления",
+   "Фанат комиксов"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "Раскрывается карта первоначального доступа.",
+  "image": "cards/expansion/27.webp"
+ },
+ {
+  "id": "expansion-28",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Tim Medin",
+  "name_ru": "Tim Medin",
+  "desc_en": "The Incident Captain must reveal the Pivot and Escalate Card",
+  "desc_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Наступательные операции",
+   "Управление рисками",
+   "Управление уязвимостями",
+   "Преподаватель и автор по ИБ",
+   "Публичные выступления",
+   "PowerPoint… много-много PowerPoint"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "image": "cards/expansion/28.webp"
+ },
+ {
+  "id": "expansion-29",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Jorge Orchilles",
+  "name_ru": "Jorge Orchilles",
+  "desc_en": "The Incident Captain must reveal the Pivot and Escalate Card",
+  "desc_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Наступательная безопасность",
+   "Пурпурная команда",
+   "Разработка правил обнаружения (detection engineering)",
+   "Соавтор C2 Matrix",
+   "Преподаватель и автор по ИБ",
+   "Публичные выступления"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "Раскрывается карта повышения привилегий и перемещения.",
+  "image": "cards/expansion/29.webp"
+ },
+ {
+  "id": "expansion-30",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Alissa Torres",
+  "name_ru": "Alissa Torres",
+  "desc_en": "The Incident Captain must reveal the Persistence Card",
+  "desc_ru": "Раскрывается карта закрепления.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Исполнитель триажа хостов",
+   "Мастер криминалистики памяти",
+   "Призыватель метаданных файловой системы",
+   "Истребитель kill chain в реагировании на инциденты",
+   "Архитектор вдохновляющих PPTX"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "persist"
+   }
+  ],
+  "effect_ru": "Раскрывается карта закрепления.",
+  "image": "cards/expansion/30.webp"
+ },
+ {
+  "id": "expansion-31",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Dieter Smith",
+  "name_ru": "Dieter Smith",
+  "desc_en": "(+5) Modifier for dice rolls for the next (3) turns",
+  "desc_ru": "Модификатор (+5) к броскам кубика на следующие (3) хода.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Синяя команда",
+   "Автоматизатор на PowerShell",
+   "Злой Google-фу",
+   "Решение проблем",
+   "Ценитель игр",
+   "Отец-гик"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 5,
+    "target": "all",
+    "turns": 3
+   }
+  ],
+  "effect_ru": "+5 ко всем броскам на 3 хода.",
+  "image": "cards/expansion/31.webp"
+ },
+ {
+  "id": "expansion-32",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Marcus J. Carey",
+  "name_ru": "Marcus J. Carey",
+  "desc_en": "(+2) Modifier on all dice rolls for the rest of the session",
+  "desc_ru": "Модификатор (+2) ко всем броскам кубика до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Архитектура безопасности",
+   "Реагирование на инциденты",
+   "Разработка инструментов безопасности и атаки",
+   "Наставничество",
+   "Мотивационные выступления",
+   "Построение бизнеса"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 2,
+    "target": "all"
+   }
+  ],
+  "effect_ru": "+2 ко всем броскам до конца игры.",
+  "image": "cards/expansion/32.webp"
+ },
+ {
+  "id": "expansion-33",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Robert M. Lee",
+  "name_ru": "Robert M. Lee",
+  "desc_en": "For the next (2) turns, each of the Defenders roll a D20 and use the highest number",
+  "desc_ru": "Следующие (2) хода каждый из защитников бросает D20, и используется наибольший результат.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Кибербезопасность АСУ ТП (ICS/OT)",
+   "Реагирование на инциденты",
+   "Киберразведка (CTI)",
+   "Собираю команду из людей умнее меня",
+   "Моим мнением никто никогда не интересовался"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "advantage",
+    "turns": 2
+   }
+  ],
+  "effect_ru": "Преимущество на 2 хода: бросаете 2d20 и берёте больший результат.",
+  "image": "cards/expansion/33.webp"
+ },
+ {
+  "id": "expansion-34",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Chloé Messdaghi",
+  "name_ru": "Chloé Messdaghi",
+  "desc_en": "The Defenders get an extra (3) turns to complete the session",
+  "desc_ru": "Защитники получают (3) дополнительных хода на завершение сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Стратегия",
+   "Коммуникация киберрисков",
+   "Управление ущербом",
+   "Публичные выступления",
+   "Оптимистка",
+   "Всегда спокойна в бурю"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "extra_turns",
+    "count": 3
+   }
+  ],
+  "effect_ru": "+3 хода к лимиту игры.",
+  "image": "cards/expansion/34.webp"
+ },
+ {
+  "id": "expansion-35",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Eric Conrad",
+  "name_ru": "Eric Conrad",
+  "desc_en": "(+3) Modifier for all Procedure Cards that mention DeepBlueCLI for the rest of the session",
+  "desc_ru": "Модификатор (+3) для всех карт процедур, где упоминается DeepBlueCLI, до конца сессии.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Охота на угрозы (threat hunting)",
+   "Обработка инцидентов",
+   "Защищённая архитектура безопасности",
+   "Публичные выступления",
+   "Наставничество",
+   "Реставрация аркадных автоматов золотой эпохи"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "modifier",
+    "value": 3,
+    "target": {
+     "procedures": [
+      "Server Analysis",
+      "User and Entity Behavior Analytics (UEBA)",
+      "Endpoint Analysis"
+     ]
+    }
+   }
+  ],
+  "effect_ru": "+3 к «Анализу серверов», «Поведенческой аналитике (UEBA)» и «Анализу конечных точек» до конца игры.",
+  "image": "cards/expansion/35.webp"
+ },
+ {
+  "id": "expansion-36",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "John Strand",
+  "name_ru": "John Strand",
+  "desc_en": "The Defenders get to choose (2) additional Consultant Cards",
+  "desc_ru": "Защитники могут выбрать (2) дополнительные карты консультантов.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Преподаватель и автор по ИБ",
+   "Публичные выступления",
+   "PowerPoint… много-много PowerPoint",
+   "Оператор тяжёлой техники",
+   "Громкий злой рок-н-ролл",
+   "Горный велосипед на пугающие расстояния"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "offer_consultant",
+    "count": 2
+   }
+  ],
+  "effect_ru": "Вы выбираете ещё двух консультантов.",
+  "image": "cards/expansion/36.webp"
+ },
+ {
+  "id": "expansion-37",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Joff Thyer",
+  "name_ru": "Joff Thyer",
+  "desc_en": "The Incident Captain must reveal (all) the Pivot and Escalate Card(s)",
+  "desc_ru": "Раскрываются (все) карты повышения привилегий и перемещения.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Разработка вредоносного ПО",
+   "Красная команда",
+   "Пурпурная команда",
+   "Клавишник",
+   "Ценитель красного вина",
+   "Муж и отец",
+   "Столяр-любитель"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "pivot"
+   }
+  ],
+  "effect_ru": "Раскрываются все карты повышения привилегий и перемещения.",
+  "image": "cards/expansion/37.webp"
+ },
+ {
+  "id": "expansion-38",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Beau Bullock",
+  "name_ru": "Beau Bullock",
+  "desc_en": "The Incident Captain must reveal (all) the Initial Compromise Card(s)",
+  "desc_ru": "Раскрываются (все) карты первоначального доступа.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Красная команда",
+   "Облака",
+   "Active Directory",
+   "Безопасность блокчейна",
+   "Гитара",
+   "Метание топоров",
+   "Magic: The Gathering",
+   "Воспитание детей"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_attack",
+    "category": "initial"
+   }
+  ],
+  "effect_ru": "Раскрываются все карты первоначального доступа.",
+  "image": "cards/expansion/38.webp"
+ },
+ {
+  "id": "expansion-39",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Richard Phung",
+  "name_ru": "Richard Phung",
+  "desc_en": "The Incident Captain must reveal (all) the Attack Card(s) detected by User and Entity Behavior Analytics",
+  "desc_ru": "Раскрываются (все) карты атак, которые обнаруживаются поведенческой аналитикой (UEBA).",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Обучение и осведомлённость пользователей",
+   "SIEM (управление информацией и событиями безопасности)",
+   "Классификация данных и управление ими",
+   "Критическое мышление",
+   "Поиск путей (pathfinding)",
+   "Ловля окуня"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "reveal_detected_by",
+    "procedure": "User and Entity Behavior Analytics (UEBA)",
+    "all": true
+   }
+  ],
+  "effect_ru": "Раскрываются все скрытые атаки, которые ловит поведенческая аналитика (UEBA).",
+  "image": "cards/expansion/39.webp"
+ },
+ {
+  "id": "expansion-40",
+  "deck": "expansion",
+  "type": "consultant",
+  "name_en": "Edward Miro",
+  "name_ru": "Edward Miro",
+  "desc_en": "The Defenders get to nullify any Inject Card",
+  "desc_ru": "Защитники могут отменить любую карту вводной.",
+  "detections_en": [],
+  "detections": [],
+  "tools": [],
+  "specialties_ru": [
+   "Социальная инженерия",
+   "Физическая безопасность",
+   "Обучение",
+   "Универсальный специалист",
+   "Знаком с «TheBlindHacker»",
+   "Выживание в дикой природе"
+  ],
+  "clues_ru": [],
+  "effects": [
+   {
+    "op": "inject_shield",
+    "count": 1
+   }
+  ],
+  "effect_ru": "Следующая вводная будет отменена.",
+  "image": "cards/expansion/40.webp"
+ }
+]
