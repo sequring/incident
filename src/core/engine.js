@@ -90,6 +90,7 @@ export function createGame(cards, rng, opts = {}) {
     consultantPicks: 0,
     injectShield: 0,
     cleanChecks: new Set(),
+    slotIgnores: {},
     hints: 3,
     history: [],
     status: 'playing',
@@ -157,8 +158,9 @@ function captainPickReveal(state, procId) {
 export function candidates(state, slot) {
   if (state.revealed[slot]) return [state.attacks[slot]];
   const taken = new Set(slotsOf(state).filter((s) => s !== slot && state.revealed[s]).map((s) => state.attacks[s]));
+  const ignore = state.slotIgnores[slot];
   return state.deck.attacks[state.slotType[slot]]
-    .filter((c) => !taken.has(c.id) && !c.detections.some((d) => state.cleanChecks.has(d)))
+    .filter((c) => !taken.has(c.id) && !c.detections.some((d) => state.cleanChecks.has(d) && !ignore?.has(d)))
     .map((c) => c.id);
 }
 
@@ -172,14 +174,26 @@ function reveal(state, slot, events, cause) {
 const slotFor = (state, category) =>
   unrevealedSlots(state).find((s) => !category || category === 'any' || state.slotType[s] === category);
 
-function addAttack(state, type, rng, events) {
+const detectable = (state, c) => c.detections.some((d) => state.table.includes(d) && state.removed[d] !== FOREVER);
+
+// Cards that can take over a hidden slot. A swapped slot must stay consistent with earlier clean checks;
+// a brand-new slot only has to be catchable by something on the table.
+function hiddenPool(state, type, { newSlot = false } = {}) {
   const used = new Set(Object.values(state.attacks));
-  const pool = state.deck.attacks[type].filter((c) => !used.has(c.id) && !c.detections.some((d) => state.cleanChecks.has(d)));
+  const unused = state.deck.attacks[type].filter((c) => !used.has(c.id));
+  const fair = newSlot ? unused : unused.filter((c) => !c.detections.some((d) => state.cleanChecks.has(d)));
+  const catchable = fair.filter((c) => detectable(state, c));
+  return catchable.length ? catchable : fair;
+}
+
+function addAttack(state, type, rng, events) {
+  const pool = hiddenPool(state, type, { newSlot: true });
   if (!pool.length) return;
   const n = slotsOf(state).filter((s) => state.slotType[s] === type).length + 1;
   const slot = `${type}${n}`;
   state.attacks[slot] = rng.pick(pool).id;
   state.slotType[slot] = type;
+  state.slotIgnores[slot] = new Set(state.cleanChecks);
   events.push({ kind: 'attack_added', slot, type });
 }
 
@@ -241,8 +255,10 @@ export function applyEffects(state, effects, rng, events, source, depth = 0) {
         const pool = named ?? state.table.filter((p) => !removedNow(state, p) && !crit.has(p) && p !== state.deck.crisis);
         const victims = named ?? rng.shuffle(pool).slice(0, e.count ?? 1);
         for (const v of victims) {
-          state.removed[v] = untilFor(state, e.turns);
-          events.push({ kind: 'removed', procId: v, turns: e.turns ?? null });
+          // Never lock the game: the last procedure able to catch a hidden attack only leaves for 3 turns.
+          const turns = e.turns ?? (crit.has(v) ? 3 : null);
+          state.removed[v] = untilFor(state, turns);
+          events.push({ kind: 'removed', procId: v, turns });
         }
         break;
       }
@@ -332,8 +348,7 @@ export function applyEffects(state, effects, rng, events, source, depth = 0) {
       case 'swap_attack': {
         const slot = slotFor(state, e.category);
         if (!slot) break;
-        const used = new Set(Object.values(state.attacks));
-        const pool = state.deck.attacks[state.slotType[slot]].filter((c) => !used.has(c.id) && !c.detections.some((d) => state.cleanChecks.has(d)));
+        const pool = hiddenPool(state, state.slotType[slot]);
         if (!pool.length) break;
         state.attacks[slot] = rng.pick(pool).id;
         events.push({ kind: 'swapped', slot, type: state.slotType[slot] });

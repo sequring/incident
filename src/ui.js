@@ -4,6 +4,7 @@ import { TYPE_RU, TYPE_COLOR } from './core/narrator.js';
 import { DIFFICULTIES } from './session.js';
 import { DECKS } from './core/decks.js';
 import { expansions } from './data/index.js';
+import { postmortemFacts, emptyForm, toMarkdown, REASONS, ACTION_KINDS } from './postmortem.js';
 
 export function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);
@@ -379,7 +380,8 @@ export function showEnd(session, onRestart) {
         h('h3', {}, 'Разбор'),
         h('p', { class: 'cy-dim' }, 'Какие из этих процедур реально работают в вашей компании? Что помешало бы им сработать — бюджет, люди, политика, технологии?')),
       h('div', { class: 'sheet-actions' },
-        h('button', { class: 'btn primary', onclick: onRestart }, 'Новое расследование'),
+        h('button', { class: 'btn primary', onclick: () => showPostmortem(session, () => showEnd(session, onRestart)) }, 'Постмортем'),
+        h('button', { class: 'btn', onclick: onRestart }, 'Новое расследование'),
         h('button', { class: 'btn', onclick: closeModal }, 'Вернуться к столу'))),
   );
   sheet.classList.add('wide', 'cyber');
@@ -431,4 +433,118 @@ export function renderSidebar(root, session, handlers) {
     log,
   );
   log.scrollTop = log.scrollHeight;
+}
+
+const pmKey = (id) => `postmortem:${id}`;
+
+function loadForm(facts) {
+  try {
+    const saved = JSON.parse(localStorage.getItem(pmKey(facts.id)) ?? 'null');
+    if (saved) return { ...emptyForm(facts), ...saved };
+  } catch { /* storage unavailable */ }
+  return emptyForm(facts);
+}
+
+function saveForm(id, form) {
+  try { localStorage.setItem(pmKey(id), JSON.stringify(form)); } catch { /* storage unavailable */ }
+}
+
+function download(name, text) {
+  const url = URL.createObjectURL(new Blob([text], { type: 'text/markdown;charset=utf-8' }));
+  const a = h('a', { href: url, download: name });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export function showPostmortem(session, back) {
+  const facts = postmortemFacts(session, DECKS.find((d) => d.key === session.deckKey)?.title ?? '');
+  const form = loadForm(facts);
+  const save = () => saveForm(facts.id, form);
+  const field = (key, label, rows = 3, placeholder = '') => h('label', { class: 'pm-field', for: `pm-${key}` },
+    h('span', {}, label),
+    h('textarea', { id: `pm-${key}`, rows, placeholder, oninput: (e) => { form[key] = e.target.value; save(); } }, form[key]));
+  const status = h('span', { class: 'pm-status', 'aria-live': 'polite' });
+  const flash = (text) => { status.textContent = text; setTimeout(() => { status.textContent = ''; }, 2500); };
+
+  const gapBlocks = facts.chain.map((c) => {
+    const g = form.gaps[c.slot] ??= { reason: c.found ? '' : REASONS[0], comment: '', have: {} };
+    return h('div', { class: `pm-gap ${c.found ? 'hit' : 'missed'}` },
+      h('div', { class: 'pm-gap-head' },
+        h('b', {}, `${c.type}: ${c.name}`),
+        h('span', {}, c.found ? `обнаружено · ход ${c.revealed?.turn ?? '—'} · ${c.revealed?.how ?? ''}` : 'упущено')),
+      h('p', { class: 'cy-dim' }, 'Какие из процедур, ловящих эту технику, реально есть у вас?'),
+      h('ul', { class: 'pm-have' }, c.detections.map((d) => {
+        const sel = h('select', { id: `pm-have-${c.slot}-${d.id}`, onchange: (e) => {
+          const v = e.target.value;
+          if (v === '') delete g.have[d.id]; else g.have[d.id] = v === 'yes';
+          save();
+        } },
+        h('option', { value: '' }, '— не оценено'),
+        h('option', { value: 'yes' }, 'есть'),
+        h('option', { value: 'no' }, 'нет'));
+        sel.value = g.have[d.id] === true ? 'yes' : g.have[d.id] === false ? 'no' : '';
+        return h('li', {}, h('label', { for: sel.id }, d.name), sel);
+      })),
+      !c.found && h('label', { class: 'pm-inline', for: `pm-reason-${c.slot}` }, h('span', {}, 'Почему не обнаружили'),
+        (() => {
+          const sel = h('select', { id: `pm-reason-${c.slot}`, onchange: (e) => { g.reason = e.target.value; save(); } },
+            REASONS.map((r) => h('option', { value: r }, r)));
+          sel.value = g.reason || REASONS[0];
+          return sel;
+        })()),
+      h('textarea', { id: `pm-comment-${c.slot}`, rows: 2, placeholder: 'Комментарий: что мешает в реальности, что нужно', oninput: (e) => { g.comment = e.target.value; save(); } }, g.comment));
+  });
+
+  const actionsBody = h('tbody');
+  const renderActions = () => {
+    actionsBody.replaceChildren(...form.actions.map((a, i) => {
+      const input = (key, ph) => h('input', { id: `pm-act-${i}-${key}`, value: a[key], placeholder: ph, 'aria-label': ph, oninput: (e) => { a[key] = e.target.value; save(); } });
+      const kind = h('select', { id: `pm-act-${i}-kind`, 'aria-label': 'Тип', onchange: (e) => { a.kind = e.target.value; save(); } }, ACTION_KINDS.map((k) => h('option', { value: k }, k)));
+      kind.value = a.kind;
+      return h('tr', {},
+        h('td', {}, input('what', 'Что сделать')),
+        h('td', {}, input('owner', 'Кто')),
+        h('td', {}, input('due', 'Срок')),
+        h('td', {}, kind),
+        h('td', {}, h('button', { class: 'pm-del', 'aria-label': 'Удалить задачу', onclick: () => { form.actions.splice(i, 1); save(); renderActions(); } }, '×')));
+    }));
+  };
+  renderActions();
+
+  const md = () => toMarkdown(facts, form);
+  const sheet = openSheet(h('div', { class: 'postmortem' },
+    h('div', { class: 'brief-head' }, h('span', { class: 'cy-label' }, `// ${facts.id} · ${facts.deck} · ${facts.date}`), h('span', { class: 'end-tag' }, facts.result)),
+    h('h2', { class: 'glitch', 'data-text': 'ПОСТМОРТЕМ' }, 'ПОСТМОРТЕМ'),
+    h('p', { class: 'cy-dim' }, 'Формат blameless: ищем пробелы в процессах и инструментах, а не виноватых. Черновик сохраняется в браузере автоматически.'),
+    h('section', { class: 'cy-panel' }, h('h3', {}, 'Участники и резюме'),
+      h('label', { class: 'pm-field', for: 'pm-participants' }, h('span', {}, 'Участники и роли'),
+        h('input', { id: 'pm-participants', value: form.participants, placeholder: 'Анна — SOC L2, Игорь — сетевик, Ольга — ИБ-руководитель', oninput: (e) => { form.participants = e.target.value; save(); } })),
+      field('summary', 'Краткое описание инцидента', 3, 'Что произошло, как обнаружили, чем закончилось — 3–5 предложений')),
+    h('section', { class: 'cy-panel' }, h('h3', {}, 'Пробелы в обнаружении'), ...gapBlocks),
+    h('section', { class: 'cy-panel' }, h('h3', {}, 'Хронология'),
+      h('div', { class: 'pm-table' }, h('table', {},
+        h('thead', {}, h('tr', {}, ['Ход', 'Процедура', 'Бросок', 'Итог', 'События'].map((t) => h('th', {}, t)))),
+        h('tbody', {}, facts.timeline.map((t) => h('tr', { class: t.success ? 'ok' : 'bad' },
+          h('td', {}, String(t.turn)), h('td', {}, t.proc),
+          h('td', {}, `${t.roll}${t.mod ? ` ${t.mod > 0 ? '+' : '−'}${Math.abs(t.mod)}` : ''} = ${t.total}`),
+          h('td', {}, t.success ? 'успех' : 'провал'), h('td', {}, t.notes.join('; ') || '—'))))))),
+    h('section', { class: 'cy-panel' }, h('h3', {}, 'Выводы'),
+      h('div', { class: 'pm-lessons' },
+        field('wentWell', 'Что сработало', 4),
+        field('wentWrong', 'Что не сработало', 4),
+        field('lucky', 'Где повезло', 4))),
+    h('section', { class: 'cy-panel' }, h('h3', {}, 'Задачи'),
+      h('div', { class: 'pm-table' }, h('table', { class: 'pm-actions' },
+        h('thead', {}, h('tr', {}, ['Действие', 'Ответственный', 'Срок', 'Тип', ''].map((t) => h('th', {}, t)))), actionsBody)),
+      h('button', { class: 'btn', onclick: () => { form.actions.push({ what: '', owner: '', due: '', kind: ACTION_KINDS[1] }); save(); renderActions(); } }, 'Добавить задачу')),
+    h('div', { class: 'sheet-actions' },
+      h('button', { class: 'btn primary', onclick: () => { download(`postmortem-${facts.id}.md`, md()); flash('Файл скачан'); } }, 'Скачать .md'),
+      h('button', { class: 'btn', onclick: () => {
+        navigator.clipboard?.writeText(md()).then(() => flash('Markdown скопирован'), () => flash('Не удалось скопировать — используйте «Скачать .md»'));
+      } }, 'Скопировать Markdown'),
+      h('button', { class: 'btn', onclick: back }, 'Назад к итогам'),
+      status)));
+  sheet.classList.add('wide', 'cyber');
 }

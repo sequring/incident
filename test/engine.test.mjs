@@ -86,7 +86,7 @@ const expansions = Object.fromEntries(readdirSync(new URL('../src/data/decks/', 
   .map((f) => [f.replace('.json', ''), JSON.parse(readFileSync(new URL(`../src/data/decks/${f}`, import.meta.url)))]));
 
 test('every attack in every deck has 2 clues and a detection that exists in its deck', () => {
-  for (const key of ['core', ...Object.keys(expansions)]) {
+  for (const key of ['core', ...Object.keys(expansions), 'all']) {
     const deck = composeDeck(key, cards, expansions);
     const procs = new Set(deck.filter((c) => c.type === 'procedure').map((c) => c.id));
     for (const c of deck.filter((x) => ['initial', 'pivot', 'persist', 'c2'].includes(x.type))) {
@@ -136,4 +136,26 @@ test('inject shield cancels the next inject', () => {
   const entry = playProcedure(g, '33', scriptedRng([1]));
   assert.ok(entry.events.some((e) => e.kind === 'inject_cancelled'));
   assert.equal(g.turn, 2);
+});
+
+test('postmortem markdown includes chain, timeline, gaps and actions', async () => {
+  const { postmortemFacts, emptyForm, toMarkdown } = await import('../src/postmortem.js');
+  const g = createGame(cards, scriptedRng([]), { fixedAttacks, pentestInject: false });
+  playProcedure(g, '34', scriptedRng([15]));
+  playProcedure(g, '33', scriptedRng([5]));
+  const byId = g.deck.byId;
+  const session = { state: g, byId, startedAt: new Date(2026, 9, 12, 2, 7) };
+  const facts = postmortemFacts(session, 'Базовая колода');
+  assert.equal(facts.id, 'INC-20261012-0207');
+  assert.equal(facts.chain.find((c) => c.slot === 'initial').revealed.turn, 1);
+  const form = emptyForm(facts);
+  form.participants = 'Анна | SOC';
+  form.gaps.pivot.have['34'] = false;
+  form.actions[0] = { what: 'Включить аудит Kerberos', owner: 'Игорь', due: 'Q4', kind: 'Обнаружить' };
+  const md = toMarkdown(facts, form);
+  assert.match(md, /# Постмортем INC-20261012-0207/);
+  assert.match(md, /Анна \\| SOC|Анна \| SOC/);
+  assert.match(md, /\| 1 \| Анализ журналов SIEM \| 15 \+3 = 18 \| успех \| раскрыто: Фишинг \|/);
+  assert.match(md, /Анализ журналов SIEM — \*\*нет\*\*/);
+  assert.match(md, /\| Включить аудит Kerberos \| Игорь \| Q4 \| Обнаружить \|/);
 });

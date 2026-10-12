@@ -122,10 +122,15 @@ if (import.meta.env.DEV) {
     get busy() { return busy; },
     game,
     get board() { return board; },
+    speed: (k) => { for (const sc of [board, intro]) { sc.time.timeScale = k; sc.tweens.timeScale = k; } },
     play,
     restart,
     addAttack: (category) => {
       applyEffects(session.state, [{ op: 'add_attack', category }], session.rng, []);
+      refresh();
+    },
+    effects: (effects) => {
+      applyEffects(session.state, effects, session.rng, []);
       refresh();
     },
   };

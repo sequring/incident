@@ -270,3 +270,38 @@ body, button, input { font-family: var(--mono); }
 .sheet.wide { width: min(940px, 100%); }
 .actions .btn { font-size: 12px; padding: 8px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .end-tag { margin-left: auto; }
+
+/* ---------- postmortem form ---------- */
+.postmortem input, .postmortem textarea, .postmortem select {
+  width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 0;
+  font: 13px/1.5 var(--mono); padding: 7px 9px;
+}
+.postmortem textarea { resize: vertical; }
+.postmortem input:focus-visible, .postmortem textarea:focus-visible, .postmortem select:focus-visible { outline: 1px solid var(--ok); border-color: var(--ok); }
+.pm-field { display: grid; gap: 4px; margin-top: 10px; }
+.pm-field > span, .pm-inline > span { font-size: 12px; color: var(--muted); }
+.pm-gap { border-top: 1px solid var(--line); padding-block: 12px; display: grid; gap: 8px; }
+.pm-gap:first-of-type { border-top: 0; }
+.pm-gap-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.pm-gap-head span { font-size: 12px; }
+.pm-gap.hit .pm-gap-head span { color: var(--ok); }
+.pm-gap.missed .pm-gap-head span { color: var(--bad); }
+.pm-have { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.pm-have li { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 10px; align-items: center; font-size: 13px; }
+.pm-inline { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 10px; align-items: center; }
+@media (max-width: 640px) { .pm-have li, .pm-inline { grid-template-columns: 1fr; } }
+.pm-lessons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .pm-lessons { grid-template-columns: 1fr; } }
+.pm-table { overflow-x: auto; }
+.pm-table table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
+.pm-table th { text-align: left; font-size: 11px; color: var(--muted); text-transform: uppercase; padding: 6px 8px; }
+.pm-table td { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }
+.pm-table tr.ok td:nth-child(4) { color: var(--ok); }
+.pm-table tr.bad td:nth-child(4) { color: var(--bad); }
+.pm-actions td { padding: 4px; }
+.pm-actions td:nth-child(1) { width: 44%; }
+.pm-actions td:nth-child(4) { width: 150px; }
+.pm-del { background: none; border: 1px solid var(--line); color: var(--muted); width: 30px; height: 30px; font: inherit; }
+.pm-del:hover { color: var(--bad); border-color: var(--bad); }
+.postmortem .cy-panel > .btn { margin-top: 10px; }
+.pm-status { align-self: center; font-size: 12px; color: var(--ok); }

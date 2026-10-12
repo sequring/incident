@@ -12,6 +12,7 @@ export const DIFFICULTIES = {
 export class Session {
   constructor({ deck = 'core', difficulty = 'normal', classicInjects = true, seed = Date.now() } = {}) {
     this.deckKey = deck;
+    this.startedAt = new Date();
     this.cards = loadDeck(deck);
     this.rng = createRng(seed);
     this.state = createGame(this.cards, this.rng, { ...DIFFICULTIES[difficulty].opts, pentestInject: classicInjects });

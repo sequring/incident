@@ -248,9 +248,10 @@ export class BoardScene extends Phaser.Scene {
     container.on('pointerdown', () => this.onCard(s().revealed[slot] ? s().attacks[slot] : null));
     const entry = { container, inner, back, idx, dump, lock, q, name, face, shown: false };
     this.hoverZoom(container, w, hgt, 1.5, () => entry.shown);
+    // Fade the inner layer: place() kills tweens on the outer container during relayout.
     if (slotsOf(s()).length > 4) {
-      container.setAlpha(0);
-      this.tweens.add({ targets: container, alpha: 1, duration: 500 });
+      inner.setAlpha(0);
+      this.tweens.add({ targets: inner, alpha: 1, duration: 500 });
     }
     return entry;
   }

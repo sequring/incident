@@ -26,14 +26,19 @@ export const DECKS = [
 const sig = (c) => `${c.type}:${norm(c.name_en)}`;
 
 // A playable deck = core cards + the expansion's own cards, without duplicate titles.
+// References to a dropped duplicate (e.g. the same procedure printed in two expansions) point to the kept copy.
 export function composeDeck(key, core, expansions) {
   const extra = key === 'core' ? [] : key === 'all' ? Object.values(expansions).flat() : expansions[key] ?? [];
-  const seen = new Set(core.map(sig));
+  const kept = new Map(core.map((c) => [sig(c), c.id]));
+  const alias = {};
   const cards = [...core];
   for (const c of extra) {
-    if (seen.has(sig(c))) continue;
-    seen.add(sig(c));
+    const k = sig(c);
+    if (kept.has(k)) { alias[c.id] = kept.get(k); continue; }
+    kept.set(k, c.id);
     cards.push(c);
   }
-  return cards;
+  return cards.map((c) => (c.detections?.some((d) => alias[d])
+    ? { ...c, detections: [...new Set(c.detections.map((d) => alias[d] ?? d))] }
+    : c));
 }
