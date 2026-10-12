@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "sim": "node sim/simulate.mjs",
-    "test": "node --test test/",
+    "test": "node --test \"test/*.test.mjs\"",
     "playtest": "node scripts/playtest.mjs"
   },
   "dependencies": {
